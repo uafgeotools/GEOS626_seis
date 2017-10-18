@@ -1,0 +1,16 @@
+Extra scripts needed to run Matlab codes.
+
+Basic utilities:
+fontsize.m        -- change font size throughout a figure
+plot_histo.m      -- plot histograms
+globefun3.m       -- plot a point on the sphere
+
+seis2GR.m         -- hw_gr.m
+markT.m           -- lab_fft.m
+fftvec.m          -- lab_fft.m, lab_dispersion.m
+bandpass.m        -- lab_dispersion.m
+markt.m           -- lab_dispersion.m
+plot_covsamples.m -- genlsq.m
+plot_epicenters.m -- genlsq.m
+read_pzfile.m     -- lab_response.m
+w2fstack.m        -- sumatra_modes.m

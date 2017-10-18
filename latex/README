@@ -1,0 +1,47 @@
+This directory contains the latex source code used to make the homework assignments.
+If you are interested in learning latex by doing your homework in latex,
+then you can use these files as templates.
+
+The template files require carlcommands.tex for user-defined variables.
+The figure files are not available (but could be if you want them).
+
+If GEOTOOLS is installed, then the path to all bib files and carlcommands.tex should be visible.
+At the start of GEOS 626, carlcommands.tex should be in seis2016/latex.
+After GEOTOOLS is installed, the seis2016 copy of carlcommands.tex can be deleted.
+
+------
+TO COMPILE
+
+latex hw_matlab
+xdvi hw_matlab &
+
+TO EDIT (use some text editor, e.g., emacs)
+emacs hw_matlab.tex
+
+------
+IF YOU WANT A TUTORIAL ON USING LATEX
+
+The GEOTOOLS repository contains some instructions and examples in Latex.
+(We will need to use GEOTOOLS later in GEOS 626.)
+To get GEOTOOLS, execute these commands
+
+cd
+mkdir REPOSITORIES
+cd REPOSITORIES
+git clone /home/admin/repositories/github/GEOTOOLS
+
+then 
+
+cd latex_util
+
+Open the README file ("more README" or "emacs README &") to see the instructions.
+
+You will also find a wealth of resources on the internet.
+
+------
+
+Carl command:
+
+rsync -av hw_genlsq.tex hw_math.tex hw_modesA.tex hw_mt.tex hw_sumatraB.tex hw_inv.tex hw_matlab.tex hw_modesB.tex hw_sumatraA.tex hw_tomo.tex /home/carltape/REPOSITORIES/classes/seis2016/latex/
+
+------
