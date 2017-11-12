@@ -12,6 +12,7 @@
 \documentclass[11pt,titlepage,fleqn]{article}
 
 \input{hw626_header}
+%\input{hw627_header}
 
 \renewcommand{\baselinestretch}{1.15}
 
@@ -57,7 +58,8 @@ This is a follow-up to the simple iterative Newton method example in \verb+lab_n
 
 Generalized least squares was introduced by Tarantola \citep{TarantolaValette1982quest,TarantolaValette1982nonlinear}; a comprehensive review can be found in \citet{Tarantola2005}, available as a pdf (note~\footnote{The author's website states: ``If you can not purchase the book, download it for free.''}). Generalized least squares is a Bayesian probabilistic inverse problem that assumes Gaussian uncertainties for model parameters and data.
 
-Following \citet[][p.~205]{Tarantola2005}, the general form of a {\bf nonlinear least-squares misfit function} is\footnote{Here I am using $\cprior$ whereas Tarantola uses $\covm$.}
+Following \citet[][p.~205]{Tarantola2005}, the general form of a {\bf nonlinear least-squares misfit function} is
+%\footnote{Here I am using $\cprior$ whereas Tarantola uses $\covm$.}
 %
 \begin{eqnarray}
 \misfitvar(\bem) &=& \misfitvar_{\rm D}(\bem) + \misfitvar_{\rm M}(\bem) 
@@ -99,9 +101,9 @@ Throughout the assignment, and in the code, keep in mind the interchangability o
 %
 The posterior model is the same as the final model of an iterative problem. And the ``target model'' is the same as the ``true model'': this is the model used to generate the ``target data'' or ``true data''. We will use the notation $\mpost$ and $\mtarget$.
 
-% 627: list inv or seis directory
+% 627: list inverse or seismo directory
 \bigskip\noindent
-{\bf To get the necessary scripts for this assignment, go into your {\tt seis2016} directory and type {\tt git pull}.}
+{\bf To get the necessary scripts for this assignment, go into your {\tt seismo} directory and type {\tt git pull}.}
 
 %------------------------
 
@@ -136,7 +138,7 @@ HINT: You may find it useful to use the two matrix identities that we derived in
 \label{cpost2}
 \end{eqnarray}
 
-\item (0.5) Assuming there are $M$ model parameters and $N$ observations, what are the dimensions of each non-$\bC$ matrix in \refEqab{mpost1}{cpost2} that must be inverted?
+\item (0.5) List each matrix in \refEqab{mpost1}{cpost2} that must be inverted. Also list the dimensions of each matrix, assuming that there are $M$ model parameters and $N$ observations.
 \end{enumerate}
 
 %------------------------
@@ -164,7 +166,7 @@ Use $\cdots$ to indicate an element within a sequence.
 %------------------------
 
 \pagebreak
-\subsection*{Problem 2 (0.8). Earthquake location: understanding the code}
+\subsection*{Problem 2 (0.9). Earthquake location: understanding the code}
 
 \begin{itemize}
 \item Be sure you have done Problem 1 before starting this problem.
@@ -196,7 +198,7 @@ You then record the P wave arrival times at all other stations. You choose an in
 Run \verb+genlsq_template.m+, then hit ``0'' to exit. You should generate six figures, one of which is \refFig{fig:srcrec}. Examine \verb+genlsq_template.m+ and \verb+forward_epicenter.m+ to see what is being plotted in these figures. Answer the following questions ``in words,'' that is, without excerpts from the code.
 
 \begin{enumerate}
-\item How is the prior model and the prior model covariance matrix determined?
+\item In the code, how is the prior model and the prior model covariance matrix determined?
 
 \vspace{1cm}
 
@@ -221,16 +223,17 @@ Run \verb+genlsq_template.m+, then hit ``0'' to exit. You should generate six fi
 
 %------------------
 
-\item (0.3) 
+
+\item (0.4) 
 
 \begin{enumerate}
-\item Write down the quasi-Newton algorithm from \citet[][Eq.~6.319]{Tarantola2005}. Use $\nu_n = 1$, use $\cprior$ instead of $\covm$, and use $\bg(\bem_n)$ to represent the predictions of the forward model.
+\item (0.0) Write down the quasi-Newton algorithm from \citet[][Eq.~6.319]{Tarantola2005}. Use $\nu_n = 1$, use $\cprior$ instead of $\covm$, and use $\bg(\bem_n)$ to represent the predictions of the forward model.
 
 \vspace{1cm}
 
-\item Complete \refTab{tab:vars}.
+\item (0.2) Complete \refTab{tab:vars}.
 
-\item Compare Eq.~6.319 with Eq.~6.291,
+\item (0.1) Compare Eq.~6.319 with Eq.~6.291,
 %
 \begin{equation}
 \bem_{n+1} \approx \bem_{n} - \bHh^{-1}_n \bgammah_n.
@@ -240,7 +243,7 @@ What are $\bgammah$ and $\bHh$?
 
 \vspace{1cm}
 
-\item What is the equation for $\cpost$?
+\item (0.1) What is the equation for $\cpost$?
 
 \end{enumerate}
 
@@ -287,17 +290,17 @@ Show your lines of code.
 % comment out for 627:
 Show your lines of code.
 
-List $\mpost$ and $\cpost$ after four iterations. Note that the posterior model is simply the final model of your iterative algorithm.
+List $\mpost$ and $\cpost$ after \textcolor{red}{four iterations}. (The initial model is $\bem_0$, the first iteration is $\bem_1$.) Note that the posterior model is simply the final model of your iterative algorithm.
 
 %------------------
 
 \item (0.5) 
 \begin{enumerate}
-\item In the space provided in \verb+genlsq.m+, use $\cpost$ to compute the posterior correlation matrix. Show your lines of code, and display the correlation matrix. Do not use the Matlab command \verb+corrcov+ in you computation, but you can use this command to check.
+\item (0.1) In the space provided in \verb+genlsq.m+, use $\cpost$ to compute the posterior correlation matrix. Show your lines of code, and display the correlation matrix. Do not use the Matlab command \verb+corrcov+ in you computation, but you can use this command to check.
 
-\item List the posterior standard deviations for each model parameter.
+\item (0.3) List the posterior standard deviations for each model parameter. Include units.
 
-\item What is the correlation matrix for $\cprior$?
+\item (0.1) What is the correlation matrix for $\cprior$?
 \end{enumerate}
 
 \end{enumerate}
@@ -305,7 +308,7 @@ List $\mpost$ and $\cpost$ after four iterations. Note that the posterior model 
 %------------------
 
 \pagebreak
-\subsection*{Problem 4 (2.7). Earthquake location: interpreting the results}
+\subsection*{Problem 4 (2.6). Earthquake location: interpreting the results}
 % 627
 %\subsection*{[OPTIONAL] Problem 4 (2.7). Earthquake location: interpreting the results}
 
@@ -313,8 +316,8 @@ List $\mpost$ and $\cpost$ after four iterations. Note that the posterior model 
 
 \item (0.3)
 \begin{enumerate}
-\item How do the uncertainty estimates for the model parameters change from the prior model to the posterior model?
-\item List the parameters in order of greatest reduction in uncertainty to least reduction in uncertainty .
+\item (0.1) List how the uncertainty estimates for the model parameters change from the prior model to the posterior model.
+\item (0.2) List the parameters in order of greatest reduction in uncertainty to least reduction in uncertainty.
 \end{enumerate}
 
 %------------------
@@ -323,7 +326,7 @@ List $\mpost$ and $\cpost$ after four iterations. Note that the posterior model 
 
 %------------------
 
-\item (0.3) Express the solution $\bem_{\rm post}$ with units. List $\pm\sigma$ uncertainties with two significant figures.
+\item (0.3) Express the solution $\bem_{\rm post}$ with units. List all numbers to 0.01 precision.
 
 %------------------
 
@@ -335,12 +338,12 @@ List $\mpost$ and $\cpost$ after four iterations. Note that the posterior model 
 
 %------------------
 
-\item (0.3)
+\item (0.2)
 %
 \begin{enumerate}
-\item How many iterations are needed for convergence in this example? \\
+\item (0.1) How many iterations are needed for convergence in this example? \\
       What indications do we have that convergence has occurred?
-\item Explain the relationships among the convergence curves for the data misfit, model misfit, and total misfit.
+\item (0.1) Explain the relationships among the convergence curves for the data misfit, model misfit, and total misfit.
 \end{enumerate}
 
 %------------------
@@ -349,13 +352,13 @@ List $\mpost$ and $\cpost$ after four iterations. Note that the posterior model 
 \item (0.5) Set \verb+irandom_initial_model = 1+, \verb+irandom_target_model = 1+, and \verb+idata_errors = 2+. Then re-run.
 %
 \begin{enumerate}
-\item Include two figures: (1) convergence curves, (2) posterior distribution plotted on \refFig{fig:srcrec} but without ray paths. \\
+\item (0.2) Include two figures: (1) convergence curves, (2) posterior distribution plotted on \refFig{fig:srcrec} but without ray paths. \\
 {\bf Note: these figures are automatically generated by \verb+genlsq.m+.}
-\item How many iterations are needed for convergence?
-\item Try a few runs. \\
+\item (0.1) How many iterations are needed for convergence?
+\item (0.1) Try a few runs. \\
 Does the positive correlation that you previously identified continue to appear? \\
 Does the negative correlation that you previously identified continue to appear?
-\item Is there any pattern to the position of $\mpost$ relative to $\mtarget$?
+\item (0.1) Is there any pattern to the position of $\mpost$ relative to $\mtarget$?
 \end{enumerate}
 
 \end{enumerate}

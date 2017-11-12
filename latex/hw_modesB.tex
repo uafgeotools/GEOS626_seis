@@ -11,7 +11,7 @@
 \centering
 {\large \bf Problem Set 7: Love waves for a layered Earth\footnote{This problem set was adapted from one by Charles Ammon, Penn State University.}} \\
 GEOS 626: Applied Seismology, Carl Tape \\
-Assigned: March 9, 2016 --- Due: March 23, 2016 \\
+%Assigned: March 9, 2016 --- Due: March 23, 2016 \\
 Last compiled: \today
 \end{spacing}
 
@@ -27,6 +27,10 @@ Section 2.7 of \citet{SteinWysession} \\
 Chapter 7 of \citet{AkiRichardsE2}
 
 \item A table of wave parameters is listed in \refTab{tab:waveparm}. For the flat-layered model, the factors such as degree ($l$) and earth radius ($a$) are not relevant; therefore the final two columns are not relevant to this problem.
+
+\item Shear velocity, compressional velocity, phase velocity, group velocity.
+
+\item Speed vs velocity.
 
 \end{itemize}
 
@@ -245,6 +249,8 @@ Suggestion: For plotting purposes only, you may find it simpler to transform you
 
 \item (1.0) Check the system of equations (\refeq{rODEs}) for this solution (see modes homework solutions). You should get much better agreement if you lower the tolerance levels for \verb+ode45+.
 
+Show your code and output to demonstrate your findings.
+
 \item (0.0) What is the normalized value of stress at the surface, $T(r_a)\,/\max(|T(r)|)$?
 
 After you do the check, you can go back to using the default tolerance.
@@ -273,7 +279,7 @@ period, s & $f_0$, frequency, mHz & $k_0$, wavenumber, 1/m  \\ \hline\hline
 \item (0.5) Compute all possible solutions for the target period of $T = 3.0$ s.
 %
 \begin{enumerate}
-\item Turn in a plot showing the two eigenfunctions, and list your results in the format of the table below. \\
+\item (0.3) Turn in a plot showing the two eigenfunctions, and list your results in the format of the table below. \\
 
 \begin{spacing}{1.5}
 \begin{tabular}{c|c|c|c}
@@ -285,16 +291,24 @@ $n=1$ & & & \\ \hline
 \end{tabular}
 \end{spacing}
 
-\item What is the relationship between the number of zero crossings of $W_n(r)$ in the layer and $n$?
-\item What are the two types of waves that are apparent in each eigenfunction?
+\item (0.1) What is the relationship between the number of zero crossings of $W_n(r)$ in the layer and $n$?
+\item (0.1) What are the two types of waves that are apparent in each eigenfunction?
 %Based on the shapes of the eigenfunctions, would you expect higher-$n$ modes to travel faster or slower?
 \end{enumerate}
 
 %----------------
 
-\item (1.0) Loop over a range of frequencies to construct the dispersion plot you sketched in Problem~1-\ref{prob:model1}. Use an equally spaced frequency vector ($\sim$50 values) ranging between periods of 3.0 seconds and 20.0 seconds. Sketch (by hand or in Matlab) vertical bars corresponding to $f_{{\rm c}n}$.
+\item (1.0)
+\begin{enumerate}
+\item (0.8) Loop over a range of frequencies to construct the dispersion plot you sketched in Problem~1-\ref{prob:model1}. Use an equally spaced frequency vector ($\sim$50 values) ranging between periods of 3.0 seconds and 20.0 seconds.
+%
+\begin{itemize}
+\item Sketch (by hand or in Matlab) vertical bars corresponding to $f_{{\rm c}n}$.
+\item Label the branches $n=0$, $n=1$, etc.
+\end{itemize}
 
-Include an additional plot of phase speed versus period, and sketch (by hand or in Matlab) vertical bars corresponding to $f_{{\rm c}n}$ ($T_{{\rm c}n}$).
+\item (0.2) Include an additional plot of phase speed versus period, and sketch (by hand or in Matlab) vertical bars corresponding to $f_{{\rm c}n}$ ($T_{{\rm c}n}$).
+\end{enumerate}
 
 %----------------
 

@@ -13,7 +13,7 @@
 \centering
 {\large \bf Problem Set 2: Linear algebra and vectors} \\
 GEOS 626: Applied Seismology, Carl Tape \\
-Assigned: January 25, 2016 --- Due: February 1, 2016 \\
+%Assigned: January 25, 2016 --- Due: February 1, 2016 \\
 Last compiled: \today \\
 \end{spacing}
 
@@ -24,6 +24,8 @@ Last compiled: \today \\
 The purpose of this problem set is to review a few mathematical concepts that are important to seismology. These concepts will be useful in following the class reading \citep{SteinWysession,ShearerE2} and for future homework assignments.
 
 For many problems you are welcome to use Matlab to check your answers. If you find yourself doing horrendous algebra, then probably you have made a prior mistake.
+
+%------------------------
 
 \subsection*{Problem 1 (5.0). Matrix decompositions}
 
@@ -42,51 +44,7 @@ The matrix for this problem is
 \end{array} \right]
 \end{equation*}
 
-%---------------
-
-\begin{enumerate}
-\item (0.2) {\bf Determinant.}
-
-Calculate the determinant of $\bA$.
-
-\item (0.5) {\bf Matrix inverse.}
-
-\begin{enumerate}
-\item How do we know that the inverse of $\bA$ must exist?
-\item Calculate $\bA^{-1}$.
-\end{enumerate}
-
-\item (1.0) {\bf Eigenvalues.}
-
-Calculate the eigenvalues of $\bA$, assuming that one of the eigenvalues is $1$.
-
-\item (1.8) {\bf Eigenvectors.}
-
-\begin{enumerate}
-\item (1.3) Calculate an eigenbasis of $\bA$ (by hand). Show all row-reduction steps by hand.
-
-\item (0.2) Use Matlab to check that $\bA\bU = \bU\bD$, where $\bU$ is your eigenbasis and $\bD$ is your diagonal matrix with eigenvalues on the diagonal. (Note: I am not asking to use Matlab's \verb+eig+ command.) Show your commands and output.
-
-\item (0.2) Using Matlab, normalize the columns of $\bU$ and check that $\bA\bU = \bU\bD$ with your new $\bU$. Show your commands and output.
-
-Hint: Let $\bv_1 = \bA(\be_1)$.
-
-\item (0.1) In words, what is the relationship between matrices $\bA$ and $\bD$?
-\end{enumerate}
-
-\pagebreak
-\item (1.5) {\bf Orthogonalization.}
-
-\begin{enumerate}
-\item (1.3) Use the Gram-Schmidt procedure to derive matrices $\bQ$ and $\bR$ of the decomposition of $\bA = \bQ\bR$. See \refFigii{fig:proj}{fig:ortho} as a guide.
-%\footnote{If you use Aster p.~301, note that his $\bw_k$ are {\em not} normalized. So his $\bw_k$ are my $\bh_k$, and my $\bw_k = \bh_k/\|\bh_k\|$. See \refFig{fig:ortho}.}
-
-\item (0.1) Using Matlab, check that $\bA = \bQ\bR$ with your $\bQ$ and $\bR$. Show your commands and output.
-
-\item (0.1) Compare your results with those obtained using Matlab's factorization in \verb+[Q,R] = qr(A)+. Show your commands and output.
-\end{enumerate}
-
-\end{enumerate}
+\input{hw_math_input}
 
 %------------------------
 

@@ -13,7 +13,7 @@
 \centering
 {\large \bf Problem Set 9: Seismic tomography using ray theory} \\
 GEOS 626: Applied Seismology, Carl Tape \\
-Assigned: April 4, 2016 --- Due: April 11, 2016 \\
+%Assigned: April 4, 2016 --- Due: April 11, 2016 \\
 Last compiled: \today
 \end{spacing}
 
@@ -78,7 +78,9 @@ From the class notes (\verb+notes_taylor.pdf+), the ray theory traveltime pertur
 where $\rmd s$ denotes a segment of the $i$th ray.
 
 \begin{enumerate}
-\item Show how this leads to 
+\item Assume a homogeneous reference model with $c_0$ everywhere.
+
+Show how \refEq{ray_tomography} leads to 
 %
 \begin{equation}
 \bDelta\bd = \bG\bDelta\bem,
@@ -128,15 +130,15 @@ For example, row $i=3293$ of $\bG$ (and $\bDelta\bd$) corresponds to the pairing
 \end{itemize}
 
 \begin{enumerate}
-\item What are the units for $d_i$, $m_k$, and $G_{ik}$?
+\item (0.2) What are the units for $d_i$, $m_k$, and $G_{ik}$?
 
-\item Demonstrate that the value of $G_{ik}$ with $i=126$ and $k=204$ is $-10.3747$. \\
+\item (2.4) Demonstrate that the value of $G_{ik}$ with $i=126$ and $k=204$ is $-10.3747$. \\
 (To be safe, check the value \verb+Gik(126,204)+.) \\
 Note: Based on the indexing above, the $i=126$ measurement corresponds to the ray path between the \verb+isrc=1+ source and the \verb+irec=126+ receiver.
 
-\item What does each row of $\bG$ correspond to?
+\item (0.2) What does each row of $\bG$ correspond to?
 
-\item What does each column of $\bG$ correspond to?
+\item (0.2) What does each column of $\bG$ correspond to?
 \end{enumerate}
 
 %-----------------
@@ -171,11 +173,16 @@ Instructions:
 \end{itemize}
 
 \begin{enumerate}
-\item (0.4) Write the symbolic expression for the solution $\bem$ to the least squares problem $\bG\bem=\bd$ in the case where $\bG^T\bG$ is full rank.  List the dimensions of $\bem$, $\bd$, $\bG$, $\bG^T\bG$, and $\bG^T\bd$.
+\item (0.5)
+\begin{enumerate}
+\item (0.1) Write the symbolic expression for the solution $\bem$ to the least squares problem $\bG\bem=\bd$ in the case where $\bG^T\bG$ is full rank.
+
+\item (0.4) List the dimensions and units of $\bem$, $\bd$, $\bG$, $\bG^T\bG$, and $\bG^T\bd$.
+\end{enumerate}
 
 %------------
 
-\item (0.4) Compute $\bem$ using your formula.  What do you get, and why is this the case?
+\item (0.3) Compute $\bem$ using your formula.  What do you get, and why is this the case?
 
 %------------
 
@@ -187,7 +194,7 @@ Instructions:
 %
 \begin{enumerate}
 
-\item (0.5) Compute $\bem_{\lambda}$ for $\lambda = 10$. \\
+\item (0.6) Compute $\bem_{\lambda}$ for $\lambda = 10$. \\
 List the sum of the squares of the entries of the residual vector $\br_\lambda = \bG\bem_\lambda-\bd$; this is the {\em misfit norm} (squared).
 List the sum of the squares of the entries of the model vector $\bem_{\lambda}$; this is the {\em model norm} (squared).
 
@@ -197,12 +204,15 @@ List the sum of the squares of the entries of the model vector $\bem_{\lambda}$;
 
 \verb+lamvec = 10.^linspace(log10(minlam), log10(maxlam), numlam);+
 
-with $\lambda_{\rm min} = 0.1$ and $\lambda_{\rm max} = 100$.
+with $\lambda_{\rm min} = 0.1$ and $\lambda_{\rm max} = 1000$.
 
 %------------
 
-\item (0.5) Using a \verb+loglog+ plot (or transform your values from $x$ to $\log x$), plot the misfit norm ($y$-axis) versus model norm ($x$-axis).
+\item (0.4) Plot the misfit norm ($y$-axis) versus model norm ($x$-axis) using log-scaled values.
+
 %The misfit norm is the sum of the squares of the residuals, where the $i$the residual is $(\bG\bem-\bd)_i$. The model norm is the sum of the squares of the model parameters $m_k$.
+
+I recommend transforming the quantities by $\log_{10}$, then using the \verb+plot+ command, rather than dealing with the \verb+loglog+ command.
 
 \end{enumerate}
 
@@ -211,9 +221,9 @@ with $\lambda_{\rm min} = 0.1$ and $\lambda_{\rm max} = 100$.
 \item (1.0) 
 
 \begin{enumerate}
-\item Plot some of these model vectors by expanding them in the spherical spline basis functions. Use the same color scale for each plot: \verb+caxis([-0.05 0.05])+. (See~Note\footnote{If you want the {\tt seis} color scale from GMT, then type {\tt colormap(seis)} after each figure is done.}.) Superimpose the source locations in each plot.
+\item (0.6) Plot some of these model vectors by expanding them in the spherical spline basis functions. Use the same color scale for each plot: \verb+caxis([-0.05 0.05])+. (See~Note\footnote{If you want the {\tt seis} color scale from GMT, then type {\tt colormap(seis)} after each figure is done.}.) Superimpose the source locations in each plot.
 
-\item Comment on any trends that you see in phase speed maps that you produce. \\
+\item (0.4) Comment on any trends that you see in phase speed maps that you produce. \\
 What happens as $\lambda \rightarrow \infty$?
 \end{enumerate}
 
@@ -228,7 +238,7 @@ Notes:
 %
 where $\bc_{\lambda} = \delta\ln c(\phi, \theta)$ is a vector of phase speed perturbations.
 
-\item The simplest way to plot $\bc_{\lambda}$ is probably with the \verb+scatter+ command.
+\item The simplest way to plot $\bc_{\lambda}$ is probably with the \verb+scatter+ command. But using something like \verb+pcolor+ will produce prettier results.
 
 \end{itemize}
 
@@ -243,7 +253,7 @@ Note: Plot only the five sources that were used in the inversion.
 \item (0.3) Repeat using only the first source.
 \end{enumerate}
 
-\item (0.4) What are two ways to stabilize the inverse problem, given total control over the experimental design?  \\
+\item (0.4) What are two ways to stabilize the inverse problem based on the experimental design? \\
 Hint: How can we construct a matrix $\bG^T\bG$ with fewer zeros?
 
 \end{enumerate}
@@ -254,13 +264,11 @@ Hint: How can we construct a matrix $\bG^T\bG$ with fewer zeros?
 \subsection*{Problem 3 (1.8). Connections with real tomography problems.}
 
 \begin{enumerate}
-\item (0.6) Our data vector contains a set of traveltime differences between a wave in our model and a wave in the target model (\ie the unknown Earth model). In practice, how is this measurement made?
+\item (0.6) Our data vector contains a set of traveltime differences between a wave in our model and a wave in the target model (\ie the unknown Earth model). For real problems, how is this measurement made?
 
 \item (0.6) After the first iteration, we no longer have a uniform ``reference'' model for phase speed. How will we need to adapt our algorithm to accommodate iterations of the phase speed model?
 
-% curved ray paths
-% new data vector
-% perturbations from a nonuniform reference model
+Hint: How will $\bG$, $\bd$, and $\bem$ change?
 
 \item (0.6) In a real problem we might make measurements at several different periods. How can the phase speed for different periods be used to obtain a 3D model of shear wave structure?
 
@@ -270,7 +278,7 @@ Hint: Think about the modes homework.
 
 %------------------------
 
-\subsection*{Problem.} \howmuchtime\
+\subsection*{Problem} \howmuchtime\
 
 %-------------------------------------------------------------
 %\pagebreak

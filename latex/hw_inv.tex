@@ -59,14 +59,14 @@ where $u_i$ denotes one of $M_{\rm g}$ geometrical parameters and $v_k$ denotes 
 %The $A+B$ parameters of $\bem$ {\em completely describe} PREM.
 
 \begin{enumerate}
-\item How many geometrical parameters are needed to describe PREM?
-\item How many material parameters are needed to describe PREM? Hint: $>$10.
-\item How many material parameters are needed to describe PREM in the isotropic approximation? Hint: Make sure to read the footnote of Table 1 in the paper.
+\item (0.2) How many geometrical parameters are needed to describe PREM?
+\item (0.2) How many material parameters are needed to describe PREM? Hint: $>$10.
+\item (0.1) How many {\em fewer} material parameters are needed to describe PREM in the isotropic approximation? Hint: Make sure to read the footnote of Table 1 in the paper.
 \end{enumerate}
 
 %-------------------
 
-\pagebreak
+%\pagebreak
 
 \item (1.0) {\bf Henceforth we will use PREM in the isotropic approximation.}
 
@@ -74,11 +74,11 @@ where $u_i$ denotes one of $M_{\rm g}$ geometrical parameters and $v_k$ denotes 
 % BUT THINKING ABOUT TRAVEL TIMES, USING VS (HERE) MIGHT BE BETTER TO USE
 
 \begin{enumerate}
-\item Write a Matlab function that inputs a vector of radial (or depth) values and outputs a vector of $\vs$ values; include your code.
+\item (0.6) Write a Matlab function that inputs a vector of radial (or depth) values and outputs a vector of $\vs$ values; include your code.
 
 Hint: Use the command \verb+polyval+ to save some time.
 
-\item Compute $\vs$ for depths of 1.5~km, 10~km, 20~km, and 50~km; lst the values with $>$5 significant digits, so that I can numerically check them. \\
+\item (0.4) Compute $\vs$ for depths of 1.5~km, 10~km, 20~km, and 50~km; list the values with $>$5 significant digits, so that I can numerically check them. \\
 Do the values seem reasonable, given the materials you expect at these depths?
 \end{enumerate}
 
@@ -121,7 +121,9 @@ We have replaced the normalized radial integration limits, $[0,1]$, with actual 
 %
 where $N$ is the number of layers in PREM, $r_0 = 0$, $r_N = D$, $a_{ik}$ represents the $\delta\vs(r)$ coefficient associated with the $i$th layer and the $k$th-order polynomial term, and $b_{ik}$ are the corresponding coefficients for $\delta\rho(r)$.
 
-\item (0.2) How many observations and unknown parameters and represented in \refEq{dT2}? (Assume that each layer is parameterized by a cubic polynomial.)
+\item (0.2) How many observations are represented in \refEq{dT2}? 
+
+How many unknown parameters are represented in \refEq{dT2}? (Assume that each layer is parameterized by a cubic polynomial.)
 
 \item (0.3) Using the (simple) formula for angular frequency, derive an expression for $\delta\omega/\omega$ in terms of $\delta T/T$.
 
@@ -178,7 +180,7 @@ Using \refEq{ellipse}, write down a system of 8 equations containing the unknown
 
 \item  (0.4) In schematic matrix form, write down the least-squares problem $\bG\bem=\bd$ whose unknown vector is $\bem = (a,b,c)^T$, and show the dimensions of each array.
 
-\item (0.1) Solve $\bG\bem=\bd$ for $\bem$ in symbolic form (\ie with $\bG$, $\bem$, and $\bd$ only), and assume that $\bG$ has rank $M = 3$ and $N > M$ (``overdetermined'').
+\item (0.1) Solve $\bG\bem=\bd$ for $\bem$ in symbolic form (\ie with $\bG$, $\bem$, and $\bd$ only), and assume that $\bG$ has rank $M = 3$ and $N > M$ (``overdetermined''). Show your steps.
 \end{enumerate}
 
 %-----------------
@@ -207,7 +209,7 @@ Hint: See the class notes on the linear regression example (\verb+notes_taylor.p
 
 \item (1.0)
 \begin{enumerate}
-\item Using Matlab, implement your result in 3-1-c and solve for $\bem$ using the data
+\item (0.5) Using Matlab, implement your result in 3-1-c and solve for $\bem$ using the data
 %
 \begin{equation*}
 (x_i,\;y_i) \;:\; (3,3),\;(1,-2),\;(0,3),\;(-1,2),\;(-2,-2),\;(0,-4),\;(-2,0),\;(2,0).
@@ -215,9 +217,9 @@ Hint: See the class notes on the linear regression example (\verb+notes_taylor.p
 
 %(Hint: The design matrix $\bG$ should be $8 \times 3$.)
 
-\item Check that the result is the same as if you simply use the ``\verb+\+'' command: \verb+m = G\d+.
+\item (0.0) Check that the result is the same as if you simply use the ``\verb+\+'' command: \verb+m = G\d+.
 
-\item Produce a plot showing both the data and the best-fitting ellipse.
+\item (0.5) Produce a plot showing both the data and the best-fitting ellipse.
 
 \end{enumerate}
 
