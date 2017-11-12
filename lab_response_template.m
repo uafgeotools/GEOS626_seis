@@ -9,12 +9,10 @@
 % The example waveform is from CAN (Canberra, Australia) for the
 % 2004 Mw 9.X Sumatra-Andaman earthquake.
 %
-% Carl Tape, 03/31/2012
+% Carl Tape, 2012-03-31
 %
 
-clear
-close all
-clc
+clear, close all, clc
 
 deg = 180/pi;
 spdy = 86400;   % seconds per day

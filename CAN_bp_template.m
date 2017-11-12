@@ -8,30 +8,10 @@ clear, close all, clc
 
 spdy = 86400;       % seconds per day
 
-% test file is the 2004 Sumatra earthquake recorded at CAN.G, featured in
-% Figure 1 of Park et al. 2005 (Science)
-ddir = '/home/admin/databases/SUMATRA/data/';
-dbname = [ddir 'sumatra'];
+% load G.CAN.LHZ for Sumatra-Andaman earthquake
 station = 'CAN';
 channel = 'BHZ';
-
-% waveform time interval
-% pick times to get the entire waveform
-% NOTE: all times are in days
-startTime0 = datenum(2004,12,25,12,58,50);
-endTime0 = datenum(2005,1,4,12,58,50);
-startTime = startTime0 - 1;
-endTime = endTime0 + 1;
-
-% load waveform
-ds = datasource('antelope',dbname); 
-scnl = scnlobject(station,channel,'','');
-w = waveform(ds,scnl,startTime,endTime);
-w = remove_calib(w);
-datestr(get(w,'start'),31)
-datestr(get(w,'end'),31)
-get(w,'duration')
-figure; plot(w);
+w = sumatra_read_seis(station,channel);
 
 % specify bandpass filter
 % YOU WILL NEED TO CHANGE THE LIMITS HERE

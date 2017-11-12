@@ -5,23 +5,21 @@
 % See also CAN_response_template.m
 %
 
-clear
-close all
-clc
+clear, close all, clc
 
 spdy = 86400;   % seconds per day
 
 % load the 10-day time series at CAN from BEFORE the Sumatra earthquake
 tdir = '/home/admin/databases/SUMATRA/data/sac_LH_noise/G_LH/';
 filename = [tdir '2004.350.00.41.42.8698.G.CAN..LHZ.D.SAC'];
-w = loadsacfile({filename});
+w = loadsac(waveform,filename);
 figure; plot(w);
-tstart0 = get(w,'start');
-tend0   = get(w,'end');
+tstart = get(w,'start');
+tend   = get(w,'end');
 
 % example of getting an absolute time from the seismogram
 tpick = 3*1e5;  % CHANGE THIS TO IDENTIFY THE EARTHQUAKE
-datestr(tstart0 + tpick/spdy,31)
+datestr(tstart + tpick/spdy,31)
 
 % comment this for next step
 break
