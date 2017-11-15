@@ -1,15 +1,10 @@
 classes/seismo/latex/README
 
-This directory contains the latex source code used to make the homework assignments.
-If you are interested in learning latex by doing your homework in latex,
-then you can use these files as templates.
+This directory contains the latex source code used to make the homework assignments and labs. If you are interested in learning latex by doing your homework or labs in latex, then you can use these files as templates.
 
-The template files require carlcommands.tex for user-defined variables.
-The figure files are not available (but could be if you want them).
+The template files require carlcommands.tex for user-defined variables. The figure files are not available (but could be if you want them).
 
-If GEOTOOLS is installed, then the path to all bib files and carlcommands.tex should be visible.
-At the start of GEOS 626, carlcommands.tex should be in seismo/latex.
-After GEOTOOLS is installed, the seismo copy of carlcommands.tex can be deleted.
+If GEOTOOLS is installed, then the path to all bib files and carlcommands.tex should be visible. At the start of GEOS 626, carlcommands.tex should be in seismo/latex. After GEOTOOLS is installed, the seismo copy of carlcommands.tex can be deleted.
 
 ------
 TO COMPILE
@@ -17,7 +12,7 @@ TO COMPILE
 latex hw_matlab
 xdvi hw_matlab &
 
-TO EDIT (use some text editor, e.g., emacs)
+TO EDIT (use some text editor like emacs or gedit)
 emacs hw_matlab.tex
 
 ------
@@ -39,15 +34,5 @@ cd latex_util
 Open the README file ("more README" or "emacs README &") to see the instructions.
 
 You will also find a wealth of resources on the internet.
-
-------
-
-Carl commands:
-
-cd /home/carltape/classes/appliedseis/homework/
-ln -s /home/carltape/REPOSITORIES/classes/seismo/latex/*.tex .
-rm *commands*tex
-
-hw626_header.tex hw_genlsq_table.tex hw_genlsq.tex hw_inv.tex hw_math.tex hw_matlab.tex hw_modesA.tex hw_modesB.tex hw_mt.tex hw_sumatraA.tex hw_sumatraB.tex hw_tomo.tex
 
 ------

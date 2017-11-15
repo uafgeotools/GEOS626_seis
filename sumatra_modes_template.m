@@ -13,14 +13,14 @@ clear
 close all
 clc
 
-iload = 0;      % USER: CHANGE THIS
+bload = false;      % USER: CHANGE THIS
 
 % add path in order to access additional files and scripts
 datadir = '/home/admin/databases/SUMATRA/data/wfobject/';
 addpath(datadir);
 
 % first load all the data
-if iload==1
+if bload
     % get waveforms from the database (calls getwaveform.m)
     sumatra_modes_fft;
     disp(sprintf('%i/%i bad records that will not be used:',length(scut),nw));
