@@ -7,15 +7,13 @@
 % This assumes that you have added the path to the GEOTOOLS directories.
 %
 
-clear
-close all
-clc
+clear, close all, clc
 
 spdy = 86400;   % seconds per day
 
 % extract the full database of BHZ waveforms
-otime_pde = datenum(2004,12,26,0,58,50);
-originTime = otime_pde;
+otimePDE = datenum(2004,12,26,0,58,50);
+originTime = otimePDE;
 tshift = 0.5*3600;      % in seconds
 duration_s = 4.0*3600;  % in seconds
 startTime = originTime - tshift/spdy;

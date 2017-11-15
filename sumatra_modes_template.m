@@ -13,7 +13,7 @@ clear
 close all
 clc
 
-iload = 1;      % USER: CHANGE THIS
+iload = 0;      % USER: CHANGE THIS
 
 % add path in order to access additional files and scripts
 datadir = '/home/admin/databases/SUMATRA/data/wfobject/';

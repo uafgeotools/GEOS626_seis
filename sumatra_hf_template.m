@@ -7,9 +7,7 @@
 % This assumes that you have added the path to the GEOTOOLS directories.
 %
 
-clear
-close all
-clc
+clear, close all, clc
 
 spdy = 86400;   % seconds per day
 
@@ -24,10 +22,10 @@ if 0==1
 end
 
 % extract the full database of BHZ waveforms
-otime_pde = datenum(2004,12,26,0,58,50);
-originTime = otime_pde;
-startTime = originTime - 10;
-endTime   = originTime + 10;
+otimePDE   = datenum(2004,12,26,0,58,50);
+originTime = otimePDE;
+startTime  = originTime - 1/24;
+endTime    = originTime + 4/24;
 
 % the advantage of using getwaveform.m is that it will add all kinds of
 % headers to the waveform objects, such as station azimuth, distance, etc
