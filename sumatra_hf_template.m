@@ -1,5 +1,6 @@
 %
 % sumatra_hf_template.m
+% Applied Seismology, GEOS 626, University of Alaska Fairbanks
 % 
 % Template script for analyzing the direct arrival waveforms from Sumatra:
 %     channel BHZ, duration of up to 2 hours

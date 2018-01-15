@@ -1,7 +1,6 @@
 %
 % lab_linefit.m
-% Carl Tape, GEOS 626, Applied Seismology
-% Carl Tape, GEOS 627, Inverse Problems and Parameter Estimation
+% Applied Seismology, GEOS 626, University of Alaska Fairbanks
 %
 % This program introduces the least squares method for the example of
 % fitting a line (i.e., a model with two parameters) to a set of scattered

@@ -1,5 +1,6 @@
 %
 % lab_response.m
+% Applied Seismology, GEOS 626, University of Alaska Fairbanks
 % 
 % This script shows some conventions for instrument response files
 % associated with GISMO/Antelope and rdseed/sac.
@@ -8,8 +9,6 @@
 %
 % The example waveform is from CAN (Canberra, Australia) for the
 % 2004 Mw 9.X Sumatra-Andaman earthquake.
-%
-% Carl Tape, 2012-03-31
 %
 
 clear, close all, clc

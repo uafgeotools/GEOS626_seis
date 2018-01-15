@@ -1,5 +1,6 @@
 %
 % CAN_response_template.m
+% Applied Seismology, GEOS 626, University of Alaska Fairbanks
 %
 % Template script for deconvolving the instrument response in the frequency
 % domain.
@@ -8,8 +9,6 @@
 % 2004 Mw 9.X Sumatra-Andaman earthquake.
 %
 % Be sure to run lab_response.m (and see lab_response.pdf) before proceeding.
-%
-% Carl Tape, 2012-03-31
 %
 
 clear, close all, clc

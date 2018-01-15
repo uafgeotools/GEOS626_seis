@@ -1,5 +1,6 @@
 %
 % sumatra_modes_template.m
+% Applied Seismology, GEOS 626, University of Alaska Fairbanks
 % 
 % Template script for analyzing modes spectra for sumatra
 %

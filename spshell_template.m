@@ -1,6 +1,6 @@
 %
 % spshell_template.m
-% Applied Seismology, Geos 626, UAF
+% Applied Seismology, GEOS 626, University of Alaska Fairbanks
 %
 % This program computes the toroidal modes for a spherical shell with
 % uniform rigidity and density.
@@ -12,7 +12,7 @@
 % GLOBAL VARIABLES: l rvec WT rspan mu rho
 %
 % by Charles Ammon, Pen State, 2000
-% modifications by Carl Tape, UAF, 01/2012
+% modifications by Carl Tape, UAF, 2012
 %
 
 close all; clear all; clc

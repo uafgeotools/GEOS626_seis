@@ -1,5 +1,5 @@
 function [p,z,c,A0,k] = read_pzfile(pzfile,ideriv,listfile)
-% READ_PZFILE reads sac-convention poles and zeros from a sac pole-zero file
+%READ_PZFILE reads sac-convention poles and zeros from a sac pole-zero file
 %
 % INPUT
 %   pzfile  pole-zero file produced by rdseed (v 5.2)
@@ -16,7 +16,7 @@ function [p,z,c,A0,k] = read_pzfile(pzfile,ideriv,listfile)
 % note: CONSTANT = A0 * SENSITIVITY (c = A0*k)
 % note: the antelope 'calib' field is 1/CONSTANT (adjusting for units)
 %
-% Carl Tape, 3/29/2012
+% Carl Tape, 2012-03-29
 %
 
 if ~exist(pzfile,'file'), error([pzfile ' does not exist']); end

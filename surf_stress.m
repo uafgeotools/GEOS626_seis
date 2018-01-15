@@ -1,4 +1,6 @@
 function value = surf_stress(f)
+%SURF_STRESS calculate stress at the surface of a toroidal earth
+% Applied Seismology, GEOS 626, University of Alaska Fairbanks
 
 global omega rvec WT rspan % mu rho l
 

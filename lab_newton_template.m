@@ -1,7 +1,6 @@
 %
 % lab_newton.m
-% Carl Tape, GEOS 626, Applied Seismology
-% Carl Tape, GEOS 627, Inverse Problems and Parameter Estimation
+% Applied Seismology, GEOS 626, University of Alaska Fairbanks
 %
 % This is a template for implementing an iterative Newton algorithm.
 % See Tarantola (2005), Eq. 6.291.

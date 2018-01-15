@@ -1,5 +1,6 @@
 %
 % sumatra_lf_template.m
+% Applied Seismology, GEOS 626, University of Alaska Fairbanks
 % 
 % Template script for analyzing direct arrival waveforms from Sumatra:
 %    channel LHZ, duration up to 10 days

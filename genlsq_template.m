@@ -11,7 +11,7 @@
 %
 % calls forward_epicenter.m, plot_epicenters.m, plot_covsamples.m
 %
-% Carl Tape, 01-Jan-2012
+% Carl Tape, 2012-01-01
 %
 
 clc

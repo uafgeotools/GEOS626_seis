@@ -1,7 +1,8 @@
 %
 % CAN_header.m
+% Applied Seismology, GEOS 626, University of Alaska Fairbanks
 %
-% This script reads in a pre-saved seismic waveform the shows the 2014
+% This script reads in a pre-saved seismic waveform the shows the 2004
 % Sumatra-Andaman earthquake recorded at Canberra, Australia (G.CAN).
 % The seismogram was featured in Figure 1 of Park et al. 2005 (Science).
 %

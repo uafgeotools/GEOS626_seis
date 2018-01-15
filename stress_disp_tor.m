@@ -1,9 +1,11 @@
 function dWT = stress_disp_tor(r,WT)
-
-global omega l imod rho mu % rspan rvec WT
-
+%STRESS_DISP_TOR displacement and stress for a toroidal earth
+% Applied Seismology, GEOS 626, University of Alaska Fairbanks
+%
 % The input values of WT(1) and WT(2) are W(r) and T(r) respectively.
 % The returned deriatives are stored in dWT
+
+global omega l imod rho mu % rspan rvec WT
 
 % structural values at radius r: density and rigidity
 % note: if imod=0, then the program will use the rho and mu from spshell.m

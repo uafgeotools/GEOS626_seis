@@ -15,7 +15,7 @@
 % CALLED BY : optimization.m
 % CALLS     : plot_epicenters.m
 %
-% Carl Tape, 3/18/2010
+% Carl Tape, 2010-03-18
 %
 
 %==========================================================================

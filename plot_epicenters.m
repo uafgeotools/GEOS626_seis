@@ -1,9 +1,9 @@
 function plot_epicenters(mprior_samples,mprior,minitial,mtarget,opts,mpost)
-% PLOT_EPICENTERS plots epicenters within the source-station geometry
+%PLOT_EPICENTERS plots epicenters within the source-station geometry
 %
 % called by forward_epicenter.m, optimization.m
 %
-% Carl Tape, 24-Feb-2010
+% Carl Tape, 2010-02-24
 %
 
 % input options

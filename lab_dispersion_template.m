@@ -1,6 +1,6 @@
 %
 % lab_dispersion.m
-% Carl Tape, Applied Seismology (GEOS 626)
+% Applied Seismology, GEOS 626, University of Alaska Fairbanks
 % 
 % Example of computing group dispersion and phase dispersion using two
 % seismograms (real data).

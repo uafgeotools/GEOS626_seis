@@ -1,5 +1,6 @@
 %
 % CAN_bp_template.m
+% Applied Seismology, GEOS 626, University of Alaska Fairbanks
 % 
 % Template script for bandpass filtering the vertical seismogram.
 %

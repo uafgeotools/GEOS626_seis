@@ -1,5 +1,5 @@
 function plot_covsamples(msamples,rho,tlab,msamples2,rho2,tlab2,mlabs)
-% PLOT_COVMSAMPLES generates plots for samples of covariance matrix
+%PLOT_COVMSAMPLES generates plots for samples of covariance matrix
 %
 % INPUT
 %    msamples   n x s matrix of vector samples
@@ -18,7 +18,7 @@ function plot_covsamples(msamples,rho,tlab,msamples2,rho2,tlab2,mlabs)
 %
 % called by optimization.m, optim_hw.m
 %
-% Carl Tape, 01-Jan-2012
+% Carl Tape, 2012-01-01
 %
 
 NMAX = 6;   % max number to make into scatterplot

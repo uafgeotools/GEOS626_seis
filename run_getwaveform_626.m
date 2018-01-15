@@ -1,7 +1,10 @@
 %
 % run_getwaveform_626.m
-% copied from run_getwaveform_short.m in GEOTOOLS
+% Applied Seismology, GEOS 626, University of Alaska Fairbanks
 %
+% Load waveforms from the UAF waveform database, then plot record sections.
+%
+% copied from run_getwaveform_short.m in GEOTOOLS
 % Abbreviated version of run_getwaveform.m and getwaveform_input.m
 %
 

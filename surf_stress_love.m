@@ -1,4 +1,7 @@
 function value = surf_stress_love(k0)
+%SURF_STRESS_LOVE calculate stress at the surface of a toroidal earth
+% Applied Seismology, GEOS 626, University of Alaska Fairbanks
+%
 % modified from surf_stress.m in the modes homework
 
 global k rspan rvec WT mbeta mmu omega

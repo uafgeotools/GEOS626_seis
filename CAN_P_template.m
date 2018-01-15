@@ -1,5 +1,6 @@
 %
 % CAN_P_template.m
+% Applied Seismology, GEOS 626, University of Alaska Fairbanks
 % 
 % Template script for analyzing the Sumatra P wave at CAN.
 % See also CAN_response_template.m

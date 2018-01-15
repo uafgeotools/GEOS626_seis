@@ -1,6 +1,6 @@
 %
 % hw_gr_template.m
-% Applied Seismology, GEOS 626, Jan 2014
+% Applied Seismology, GEOS 626, University of Alaska Fairbanks
 % 
 % Homework template:
 % Gutenberg-Richter frequency-magnitude relation

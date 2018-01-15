@@ -1,6 +1,6 @@
 %
 % lab_fft.m
-% Carl Tape, Applied Seismology (GEOS 626)
+% Applied Seismology, GEOS 626, University of Alaska Fairbanks
 %
 % Spectral analysis of the motion of the sun due to planetary orbits.
 %

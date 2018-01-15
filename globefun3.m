@@ -13,8 +13,6 @@ function globefun3(R,lat,lon,bool_point,lc)
 % see globe.m, globefunN.m
 % called by test_globefun.m
 %
-% Carl Tape, 1/2005
-%
 
 deg = 180/pi;
 lw = 1.0;
