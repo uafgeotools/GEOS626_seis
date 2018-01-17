@@ -34,11 +34,12 @@ disp(sprintf('GCMT catalog duration is %.3f years',tran_yr));
 
 % plot the catalog, colored by depth
 % note: use wrapTo360 to center the map on longitude=180
+% note: this means that the coastlines from "load coast" will not plot correctly
 [~,isort] = sort(dep,'descend');    % plot deepest events on top
 msize = 4^2;                        % marker size
 figure;
 scatter(wrapTo360(lon(isort)),lat(isort),msize,dep(isort),'filled');
-axis([0 360 -90 90]);
+axis equal, axis([0 360 -80 80]); set(gca,'xtick',[0:30:360],'ytick',[-90:30:90]);
 xlabel('Longitude'); ylabel('Latitutde');
 title(sprintf('GCMT catalog (%i events), colored by depth (km)',length(dep)));
 caxis([0 600]); colorbar
