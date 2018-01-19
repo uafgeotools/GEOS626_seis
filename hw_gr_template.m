@@ -60,40 +60,40 @@ dmag = 0.1;     % magnitude bin width
 
 %---------------------------
 
-if 1==1
-    % example to show one way to plot multiple items with log-scaled axes
-    % (1) generate fake data and a best-fitting line
-    % (2) plot lines
-    n = 50;
-    x = linspace(4,10,n)';
-    b = 1;
-    a = 9;
-    e = 0.1;
-    err = e*(-1+2*randn(n,1));
-    Nd = 10.^(a-b*x + err);
-    N  = 10.^(a-b*x);
-    N2  = 10.^(a-1-b*x);
+break
 
-    figure;
-    h1 = semilogy(x,Nd,'bV','markersize',8,'markerfacecolor','w');
-    hold on;    % after this you do not need semilogy -- it is automatic
-    h2 = plot(x,N,'k-');
-    h3 = plot(x,N2,'r-');
-    legend([h1 h2 h3],'fake data','cumulative fit','incremental fit');
-    set(gca,'xtick',4:9);
-    set(gca,'ytick',10.^[-1:5],'yticklabel',{'0.1','1','10','100','1000','10000','1000000'});
-    xlabel('Moment magnitude, Mw'); ylabel('Number of fake earthquakes');
-    title('dummy plot to show one way of plotting multiple things with log-y axes');
+% example to show one way to plot multiple items with log-scaled axes
+% (1) generate fake data and a best-fitting line
+% (2) plot lines
+n = 50;
+x = linspace(4,10,n)';
+b = 1;
+a = 9;
+e = 0.1;
+err = e*(-1+2*randn(n,1));
+Nd = 10.^(a-b*x + err);
+N  = 10.^(a-b*x);
+N2  = 10.^(a-1-b*x);
 
-    % set iprint=1 if you want to produce figures as postscript files
-    % note: type 'ps2pdf plot_example.ps' from the command line to make a pdf
-    iprint = 1;
-    pdir = './';    % directory where you want the figure to go
-    if iprint==1, print(gcf,'-dpsc',[pdir 'plot_example']); end
-    
-    % an even simpler version (note: no 'hold on' is needed):
-    %figure; semilogy(x,Nd,'bV',x,N,'k-',x,N2,'r-');
-    %legend('fake data','cumulative fit','incremental fit');
-end
+figure;
+h1 = semilogy(x,Nd,'bV','markersize',8,'markerfacecolor','w');
+hold on;    % after this you do not need semilogy -- it is automatic
+h2 = plot(x,N,'k-');
+h3 = plot(x,N2,'r-');
+legend([h1 h2 h3],'fake data','cumulative fit','incremental fit');
+set(gca,'xtick',4:9);
+set(gca,'ytick',10.^[-1:5],'yticklabel',{'0.1','1','10','100','1000','10000','1000000'});
+xlabel('Moment magnitude, Mw'); ylabel('Number of fake earthquakes');
+title('dummy plot to show one way of plotting multiple things with log-y axes');
+
+% set iprint=1 if you want to produce figures as postscript files
+% note: type 'ps2pdf plot_example.ps' from the command line to make a pdf
+iprint = 1;
+pdir = './';    % directory where you want the figure to go
+if iprint==1, print(gcf,'-dpsc',[pdir 'plot_example']); end
+
+% an even simpler version (note: no 'hold on' is needed):
+%figure; semilogy(x,Nd,'bV',x,N,'k-',x,N2,'r-');
+%legend('fake data','cumulative fit','incremental fit');
 
 %==========================================================================
