@@ -56,7 +56,7 @@ caxis([0 600]); colorbar
 
 dmag = 0.1;     % magnitude bin width
 % note: seis2GR.m is NOT a built-in matlab command
-[Ncum,N,Medges] = seis2GR(Mw,dmag);
+[N,Ninc,Medges] = seis2GR(Mw,dmag);
 
 %---------------------------
 
