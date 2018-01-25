@@ -13,7 +13,7 @@
 \centering
 {\large \bf Problem Set 2: Linear algebra and vectors} \\
 GEOS 626: Applied Seismology, Carl Tape \\
-%Assigned: January 25, 2016 --- Due: February 1, 2016 \\
+Assigned: January 29, 2018 --- Due: February 5, 2018 \\
 Last compiled: \today \\
 \end{spacing}
 
@@ -23,7 +23,7 @@ Last compiled: \today \\
 
 The purpose of this problem set is to review a few mathematical concepts that are important to seismology. These concepts will be useful in following the class reading \citep{SteinWysession,ShearerE2} and for future homework assignments.
 
-For many problems you are welcome to use Matlab to check your answers. If you find yourself doing horrendous algebra, then probably you have made a prior mistake.
+Except for Problem 1, you are welcome to use Matlab to support your answers. If you find yourself doing horrendous algebra, then probably you have made a prior mistake.
 
 %------------------------
 
@@ -127,7 +127,7 @@ Hint: Let $A\bu = \bv$ and show that $\|\bu\| = \|\bv\|$.
 %
 \begin{eqnarray}
 \hlf \left( \bd - \bG\bem \right)^T \left( \bd - \bG\bem \right)
-&=& \hlf \bem^T\bA\bem + \bb^T\bem + \bc
+&=& \hlf \bem^T\bA\bem + \bb^T\bem + c
 \label{lsq1}
 \end{eqnarray}
 %
@@ -138,7 +138,7 @@ where
 \,,\hspace{20pt}
 \bb = -\bG^T\bd
 \,,\hspace{20pt}
-\bc = \hlf\bd^T\bd
+c = \hlf\bd^T\bd
 \,.
 \end{equation}
 %
@@ -182,7 +182,8 @@ Hint: For a scalar $a$, note that $a = a^T$.
 %
 Express the solution as a sum of three vectors.
 
-Matlab is permissible (though it is not needed).
+Hint: Feel free to use a computer to help.
+%Matlab is permissible (though it is not needed).
 
 \end{enumerate}
 
@@ -216,7 +217,7 @@ Consider the vector field
 \begin{enumerate}
 \item (0.5) Derive the Taylor series expansion of $f(x) = \ln(x)$ about the point $x = x_0$. List terms up to the third order.
 
-\item (0.5) Let $x_0 = 3.5$. In all of the plots use $x$ limits from $-1$ to 10 (\verb+xlim([-1 10])+).
+\item (0.5) Let $x_0 = 3.5$. In all of the plots, use $x$ limits from $-1$ to 10 (\verb+xlim([-1 10])+).
 %
 \begin{enumerate}
 \item (0.2) Plot the zeroth-, first-, second-, and third-order terms on a single plot.

@@ -3,6 +3,12 @@
 
 \input{hw626_header}
 
+% change the figures to ``Figure L3'', etc
+\renewcommand{\thefigure}{L\arabic{figure}}
+\renewcommand{\thetable}{L\arabic{table}}
+\renewcommand{\theequation}{L\arabic{equation}}
+\renewcommand{\thesection}{L\arabic{section}}
+
 % for referencing anything in the supplement
 \usepackage{xr}
 \externaldocument{/home/carltape/latex/notes/cmt/TapeTape/notes_mt_626}
@@ -27,14 +33,14 @@ GEOS 626: Applied Seismology, Carl Tape \\
 Last compiled: \today
 \end{spacing}
 
-% assume that Figures 1-6 are in beachnotes_626.pdf
-\setcounter{figure}{6}
-\setcounter{table}{1}
+% assume that Figures 1-7 are in beachnotes_626.pdf
+%\setcounter{figure}{7}
+%\setcounter{table}{1}
 %------------------------
 
 \subsection*{Instructions}
 
-This is a pen-and-paper lab exercise that does not involve any computer. You should have a ruler, and you are permitted to use a calculator. The exercise directly follows the class notes \mtfile, which has Figures 1--6 and Table 1. I recommend using colored pens or pencils.
+This is a pen-and-paper lab exercise that does not involve any computer. You should have a ruler, and you are permitted to use a calculator. The exercise directly follows the class notes \mtfile, which has Figures 1--7 and Table 1. I recommend using colored pens or pencils.
 
 %------------------------
 
@@ -69,7 +75,7 @@ M = \begin{pmatrix} m_{11} & m_{12} \\ m_{21} & m_{22} \end{pmatrix}
 \item We now want to relate our graphical representation of the moment matrix with some standard depictions in the literature. One is that the moment matrix entries are represented as couples, such as in \citet[][Figure 4.4-4]{SteinWysession} (Figure~\ref{fig:SW} here), \citet[][Figure~9.2]{ShearerE2}, and \citet[][Figure 3.7]{AkiRichardsE2}.
 %
 \begin{enumerate}
-\item Sketch the force couples in Figure~\ref{fig:template4} associated with the four entries of the matrix of the moment tensor, $m_{ij}$. You should sketch 8 arrows in total---the same number as in Figure~\ref{fig:template}.
+\item Sketch the force couples in Figure~\ref{fig:template4} associated with the four entries of the matrix of the moment tensor $m_{ij}$. You should sketch 8 arrows in total---the same number as in Figure~\ref{fig:template}.
 (Here we have a $2 \times 2$ matrix $m_{ij}$, not a $3 \times 3$ matrix, but the basic concepts are the same.)
 
 Draw the base of each vector at the tip of $\e_1$, $-\e_1$, $\e_2$, or $-\e_2$.
@@ -98,13 +104,15 @@ Here, draw all forces as unit vectors.
 %
 \begin{enumerate}
 \item Write down the matrix of the moment tensor for each of the vector fields.
+
 \item The $T$-axis (``tensional'' axis) is the eigenvector direction associated with positive eigenvalue. The $P$-axis (``compressional'' axis) is the eigenvector direction associated with negative eigenvalue. Label $\mb{T}$ and $\mb{P}$ in the right-hand plot.
+
 \item The eigenvectors are not the fault or slip vectors. For a double couple moment tensor only, the direction of the fault and slip vectors can be obtained from the eigenvectors as 
 %
 \begin{eqnarray*}
-\mb{N} = \mb{T} + \mb{P}
+\mb{N} = (\mb{T} + \mb{P})/\sqrt{2}
 \\
-\mb{S} = \mb{T} - \mb{P}
+\mb{S} = (\mb{T} - \mb{P})/\sqrt{2}
 \end{eqnarray*}
 %
 Sketch $\mb{N}$ and $\mb{S}$ at the application point $\e_2$ in the right-hand plot.
@@ -122,6 +130,20 @@ Sketch $\mb{N}$ and $\mb{S}$ at the application point $\e_2$ in the right-hand p
 \item Sketch the basis vectors $\{\e_1,\e_2\}$ in the top two.
 \item Each vector can be decomposed into an ``isotropic'' part that points outward. Check that the isotropic vectors are all the same. Why is this the case?
 \end{enumerate}
+
+%--------------
+
+\item In \refFig{fig:SWfour}, use the templates and draw the couples (in red) for the following matrices:
+%
+\begin{equation*}
+%M =
+\begin{pmatrix} 0 & -1 & 0 \\ -1 & 1 & 0 \\ 0 & 0 & -1 \end{pmatrix},
+\begin{pmatrix} 2 &  0 & 1 \\  0 & 0 & 1 \\ 1 & 1 & -2 \end{pmatrix}
+\end{equation*}
+%
+Pick two more examples.
+
+%--------------
 
 \end{enumerate}
 
