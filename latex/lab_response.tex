@@ -67,6 +67,7 @@ In Matlab, type \verb+methods waveform+ to see the main functions in the toolbox
 
 %------------------------
 
+\pagebreak
 \section{Computing and plotting instrument response, $I(\omega)$}
 
 Run \tfile, which produces Matlab figures 1--5.
@@ -229,7 +230,7 @@ Rotate to R and T to isolate SH waves.
 \section{Matlab script \tfile}
 \label{sec:script}
 
-\small
+\footnotesize
 \begin{spacing}{1.0}
 \begin{verbatim}
 clear, close all, clc
@@ -397,11 +398,13 @@ if iprint==1, orient tall; print(gcf,'-depsc',sprintf('%sCAN_response_fig%i',pdi
 \includegraphics[width=16cm]{CAN_response_fig1.eps}
 \caption[]
 {{
-Figure 1 output from \tfile.
+{\bf Figure 1} output from \tfile.
 Note that the amplitudes are normalized by the maximum value.
 }}
 \label{fig1}
 \end{figure}
+
+%\setcounter{figure}{2}
 
 \iffalse
 \begin{figure}
@@ -409,7 +412,7 @@ Note that the amplitudes are normalized by the maximum value.
 \includegraphics[width=16cm]{CAN_response_fig2.eps}
 \caption[]
 {{
-Figure 2 output from \tfile.
+{\bf Figure 2} output from \tfile.
 Note that the amplitudes are normalized by the maximum value.
 }}
 \label{fig2}
@@ -421,7 +424,7 @@ Note that the amplitudes are normalized by the maximum value.
 \includegraphics[width=16cm]{CAN_response_fig3.eps}
 \caption[]
 {{
-Figure 3 output from \tfile.
+{\bf Figure 3} output from \tfile.
 Note that the amplitudes are normalized by the maximum value.
 }}
 \label{fig3}
@@ -433,7 +436,7 @@ Note that the amplitudes are normalized by the maximum value.
 \includegraphics[width=16cm]{CAN_response_fig4.eps}
 \caption[]
 {{
-Figure 4 output from \tfile.
+{\bf Figure 4} output from \tfile.
 Note that the amplitudes are normalized by the maximum value.
 }}
 \label{fig4}
@@ -445,7 +448,7 @@ Note that the amplitudes are normalized by the maximum value.
 \includegraphics[width=16cm]{CAN_response_fig5.eps}
 \caption[]
 {{
-Figure 5 output from \tfile.
+{\bf Figure 5} output from \tfile.
 The dashed red lines are plotted on top of the blue lines as a check.
 }}
 \label{fig5}

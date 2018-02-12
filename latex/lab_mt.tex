@@ -42,6 +42,9 @@ Last compiled: \today
 
 This is a pen-and-paper lab exercise that does not involve any computer. You should have a ruler, and you are permitted to use a calculator. The exercise directly follows the class notes \mtfile, which has Figures 1--7 and Table 1. I recommend using colored pens or pencils.
 
+\medskip\noindent
+{\em Note}: When estimating the coordinates (\ie the lengths of each component) of a vector, you want to imagine the origin to be at the tail of the vector. 
+
 %------------------------
 
 \subsection*{Exercises}
@@ -75,7 +78,7 @@ M = \begin{pmatrix} m_{11} & m_{12} \\ m_{21} & m_{22} \end{pmatrix}
 \item We now want to relate our graphical representation of the moment matrix with some standard depictions in the literature. One is that the moment matrix entries are represented as couples, such as in \citet[][Figure 4.4-4]{SteinWysession} (Figure~\ref{fig:SW} here), \citet[][Figure~9.2]{ShearerE2}, and \citet[][Figure 3.7]{AkiRichardsE2}.
 %
 \begin{enumerate}
-\item Sketch the force couples in Figure~\ref{fig:template4} associated with the four entries of the matrix of the moment tensor $m_{ij}$. You should sketch 8 arrows in total---the same number as in Figure~\ref{fig:template}.
+\item Sketch the force couples in Figure~\ref{fig:template4} associated with the four entries of the matrix of the moment tensor $m_{ij}$. You should sketch 8 arrows in total---the same number you sketched in Figure~\ref{fig:template}.
 (Here we have a $2 \times 2$ matrix $m_{ij}$, not a $3 \times 3$ matrix, but the basic concepts are the same.)
 
 Draw the base of each vector at the tip of $\e_1$, $-\e_1$, $\e_2$, or $-\e_2$.
@@ -103,7 +106,7 @@ Here, draw all forces as unit vectors.
 \item See Figure~\ref{fig:templateDC}.
 %
 \begin{enumerate}
-\item Write down the matrix of the moment tensor for each of the vector fields.
+\item Write the matrix of the moment tensor for each of the vector fields.
 
 \item The $T$-axis (``tensional'' axis) is the eigenvector direction associated with positive eigenvalue. The $P$-axis (``compressional'' axis) is the eigenvector direction associated with negative eigenvalue. Label $\mb{T}$ and $\mb{P}$ in the right-hand plot.
 
@@ -137,20 +140,15 @@ Sketch $\mb{N}$ and $\mb{S}$ at the application point $\e_2$ in the right-hand p
 %
 \begin{equation*}
 %M =
+\begin{pmatrix} 3 &  0 & 0 \\  0 & 2 & 0 \\ 0 & 0 &  1 \end{pmatrix},
+\begin{pmatrix} -1 &  0 & 0 \\  0 & -2 & 0 \\ 0 & 0 & -3 \end{pmatrix},
 \begin{pmatrix} 0 & -1 & 0 \\ -1 & 1 & 0 \\ 0 & 0 & -1 \end{pmatrix},
 \begin{pmatrix} 2 &  0 & 1 \\  0 & 0 & 1 \\ 1 & 1 & -2 \end{pmatrix}
 \end{equation*}
-%
-Pick two more examples.
 
 %--------------
 
 \end{enumerate}
-
-%-------------------------------------------------------------
-\bibliographystyle{agu08}
-\bibliography{carl_abbrev,carl_main,carl_him}
-%-------------------------------------------------------------
 
 %==============================================================
 
@@ -257,6 +255,12 @@ Template for bonus exercise.
 \label{fig:SWfour}
 }
 \end{figure}
+
+%-------------------------------------------------------------
+\clearpage\pagebreak
+\bibliographystyle{agu08}
+\bibliography{carl_abbrev,carl_main,carl_him}
+%-------------------------------------------------------------
 
 %====================================================================
 \end{document}
