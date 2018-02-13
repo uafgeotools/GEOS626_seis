@@ -4,7 +4,7 @@
 %
 % Spectral analysis of the motion of the sun due to planetary orbits.
 %
-% calls fftvec.m, markT.m
+% calls fftvec.m, markp.m
 %
 
 clear
