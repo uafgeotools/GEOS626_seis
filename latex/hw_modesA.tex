@@ -5,10 +5,6 @@
 
 \renewcommand{\baselinestretch}{1.1}
 
-\newcommand{\tnl}[2]{\mbox{$_{#1}\ssT_{#2}$}}
-\newcommand{\snl}[2]{\mbox{$_{#1}\ssS_{#2}$}}
-\newcommand{\snlm}[3]{\mbox{$_{#1}\ssS_{#2}^{#3}$}}
-
 \newcommand{\Tnl}{\mbox{${}_nT_l$}}   % eigenfun
 \newcommand{\Wnl}{\mbox{${}_nW_l$}}   % eigenfun
 \newcommand{\Ynl}{\mbox{${}_nY_l$}}   % spherical harmonics
@@ -24,7 +20,7 @@
 \centering
 {\large \bf Problem Set 5: Toroidal modes of a spherically symmetric earth\footnote{This problem set was designed and written by Charles Ammon, Penn State University. I have made some modifications.}} \\
 GEOS 626: Applied Seismology, Carl Tape \\
-%Assigned: February 22, 2016 --- Due: February 29, 2016 \\
+Assigned: February 26, 2018 --- Due: March 9, 2018 \\
 Last compiled: \today \\
 \end{spacing}
 
@@ -35,7 +31,7 @@ Last compiled: \today \\
 \begin{itemize}
 \item This problem set provides a hands-on introduction to how normal modes of a particular earth model can be computed. The goal is to gain a better understanding for the concepts of normal modes, eigenfrequencies, eigenfunctions, and dispersion.
 
-\item The necessary starting Matlab scripts and data are available from \verb+seismo+ directory on the linux network; type \verb+git pull+ to obtain the latest version of files. The relevant files are:
+\item The necessary starting Matlab scripts and data are available in the class github directory. The relevant files are:
 %
 \begin{itemize}
 \item \verb+spshell_template.m+ (\refSec{sec:shell})
@@ -58,14 +54,13 @@ Note the differences in nomenclature listed in \refTab{tab:names}.
 %-----------------------------
 
 \begin{figure}[h]
-\begin{center}
+\centering
 \includegraphics[width=5.5cm]{modes_shells.eps}
 \caption[]
 {{
-Cross section of the spherical shell model assumed in this problem. Since the outer core is fluid, a shell is representative of earth for toroidal vibrations. We assume this shell can have radial variations in density, $\rho(r)$, and rigidity, $\mu(r)$.
+Cross section of the spherical shell model assumed in this problem. Since the outer core is fluid, a shell is representative of earth for toroidal vibrations. We assume this shell can have radial variations in density $\rho(r)$ and rigidity $\mu(r)$.
 \label{fig:shells}
 }}
-\end{center}
 \end{figure}
 
 %-----------------------------
@@ -223,7 +218,7 @@ Once I know two frequency values that bracket a root, I use the Matlab function 
 \subsection{More from \cite{DT} on \refEq{ODEs}}
 \label{sec:ODEs}
 
-A derivation of \refEq{ODEs} is presented in \cite{DT}; our \refEq{ODEs} corresponds to their equations 8.114 and 8.115. As stated in \cite[][p.~270]{DT}, the traction, $\bt$, exerted on any spherical surface is given in terms of the displacment scalars $U$, $V$, and $W$ by
+A derivation of \refEq{ODEs} is presented in \citet{DT}; our \refEq{ODEs} corresponds to their equations 8.114 and 8.115. As stated in \citet[][p.~270]{DT}, the traction $\bt$ exerted on any spherical surface is given in terms of the displacment scalars $U$, $V$, and $W$ by
 %
 \begin{equation}
 \bt = \brh \cdot \bT = R\,\bP_{lm} + S\,\bB_{lm} + T\,\bC_{lm},
@@ -995,8 +990,8 @@ $\#$2-\ref{prob:earth_cubic} & 6 & cubic & cubic & 20 & NA  & \\ \hline
 \includegraphics[width=14cm]{modes_Tr.eps}
 \caption[]
 {{
-Stress profiles, $T(r)$, for the first 14 values in the frequency vector.
-The index into the frequency vector, $i$, is labeled at $T(a)$ for each curve.
+Stress profiles $T(r)$  for the first 14 values in the frequency vector.
+The index $i$ into the frequency vector is labeled at $T(a)$ for each curve.
 See Problem 1-\ref{prob:Tr}.
 \label{fig:Tr}
 }}

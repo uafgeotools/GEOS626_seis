@@ -33,6 +33,7 @@ Last compiled: \today
 The goals of this problem set are:
 %
 \begin{enumerate}
+\item to review complex numbers and functions
 \item to practice deconvolving the instrument response from a raw seismogram recorded in ``counts''
 \item to introduce you to the frequency dependence of the seismic wavefield, especially with regard to seismological investigations of earthquake sources and Earth structure
 \end{enumerate}
@@ -43,8 +44,6 @@ The goals of this problem set are:
 
 \item Make sure you have done the lab (\verb+lab_response.pdf+).
 
-%---------
-
 \item The main scripts you will use are
 %
 \begin{itemize}
@@ -54,17 +53,11 @@ The goals of this problem set are:
 \item \verb+CAN_bp_template.m+
 \end{itemize}
 %
-Make a copy of each of these files. The label ``CAN'' is for a station at Canberra, Australia, featured in \citet[][Figure~1]{Park2005}.
-
-%---------
+Make a copy of each of these files. The label \verb+CAN+ is for a station at Canberra, Australia, featured in \citet[][Figure~1]{Park2005}.
 
 \item The main function to extract waveforms from our local database is \verb+sumatra_read_seis.m+. Note that this is called within the template scripts.
 
-%---------
-
 \item The Global CMT catalog is at \verb+www.globalcmt.org+
-
-%---------
 
 \item Background reading:
 
@@ -81,14 +74,14 @@ Make a copy of each of these files. The label ``CAN'' is for a station at Canber
 
 \end{itemize}
 
-%---------
-
 \item In your answers, please include lines of your computer code if either of these applies:
 %
 \begin{itemize}
 \item your code does not ``work''
 \item you think that the code lines are useful for conveying your solution
 \end{itemize}
+
+\item I try to keep some correspondence between the notation for time series versus the Fourier transform: $c(t)$ vs $C(\omega)$, $\fft(t)$ vs $\ffw(\omega)$, $x_d(t)$ vs $X_d(\omega)$, $x_v(t)$ vs $X_v(\omega)$, $x_a(t)$ vs $X_a(\omega)$.
 
 \end{itemize}
 
@@ -130,11 +123,12 @@ z &=& a + bi
 %
 \begin{eqnarray}
 I(\omega) &=& A(\omega)\,e^{i\phi(\omega)}
+\label{Iw}
 \\
 &=& A(\omega)\cos\phi(\omega) + i\,A(\omega)\sin\phi(\omega)
 \end{eqnarray}
 %
-The first version is conceptually more useful, since $I(\omega)$ is represented as two real-valued functions for amplitude $A(\omega)$ and phase $\phi(\omega)$.
+The version in \refEq{Iw} is conceptually more useful, since $I(\omega)$ is represented as two real-valued functions for amplitude $A(\omega)$ and phase $\phi(\omega)$.
 
 $A(\omega)$ is clearly the amplitude in the sense that
 %
@@ -151,8 +145,8 @@ $A(\omega)$ is clearly the amplitude in the sense that
 \item (0.1) Let $z$ be a complex number and $z^*$ its complex conjugate. Derive the following expressions in two different ways: (1)~$z = r e^{i\theta}$, (2)~$z = a+bi$.
 %
 \begin{enumerate}
-\item $z_1 z_2$ (derive new $r$ and $\theta$)
-\item $z_1 / z_2$ (derive new $r$ and $\theta$)
+\item $z_1 z_2$ (derive new $r$ and $\theta$ or $a$ and $b$)
+\item $z_1 / z_2$ (derive new $r$ and $\theta$ or $a$ and $b$)
 \item $(z_1 z_2)^* = z_1^* z_2^*$
 \item $|z| = \sqrt{z^* z}$
 \end{enumerate}
@@ -179,7 +173,7 @@ Hint: You can assume that $h(t)$ is zero at $\pm\infty$. This is a reasonable as
 
 %-----------
 
-\item (0.1) \refEq{fftder1} holds for the first derivative of $\fft(t)$, which we denote as either $\dot{\fft}(t)$ or $\fft^{(1)}(t)$. The expression can be generalized for the $n$th derivative, which is (using two different notations)
+\item (0.2) \refEq{fftder1} holds for the first derivative of $\fft(t)$, which we denote as either $\dot{\fft}(t)$ or $\fft^{(1)}(t)$. The expression can be generalized for the $n$th derivative, which is (using two different notations)
 %
 \begin{eqnarray}
 \cF \left[ \fft^{(n)}(t) \right] &=& (i\omega)^n \, \cF \left[ \fft(t) \right]
@@ -206,10 +200,10 @@ A_n(\omega) = \omega^n A(\omega)
 
 \item (0.1) Amplitude spectra are almost always plotted in $\log_{10}$-$\log_{10}$ space, with $\log_{10}\omega$ on the $x$-axis and $\log_{10}A$ on the $y$-axis. We will use the natural log and ignore the unnecessary complication of using log-base-10. We will derive the relationship between
 %
-\begin{enumerate}
-\item the slope in log-log space of an amplitude spectrum, $A(\omega)$, for an input function $\fft(t)$
-\item the slope in log-log space of an amplitude spectrum, $A_n(\omega)$, for an input function $h^{(n)}(t)$, where $h(t) = h^{(0)}(t)$ and $h^{(n)}(t)$ is the $n$th derivative of $h(t)$
-\end{enumerate}
+\begin{itemize}
+\item the slope in log-log space of an amplitude spectrum $A(\omega)$ for an input function $\fft(t)$
+\item the slope in log-log space of an amplitude spectrum $A_n(\omega)$ for an input function $h^{(n)}(t)$, where $h(t) = h^{(0)}(t)$ and $h^{(n)}(t)$ is the $n$th derivative of $h(t)$
+\end{itemize}
 
 The key step is to make the coordinate substitution
 %
@@ -246,7 +240,7 @@ where the prime ($'$) represents differentiation with respect to $u$.
 \end{equation}
 %
 with slope $m$.
-Let $A(\omega) = A_0(\omega)$ represent the amplitude spectrum for a displacement time series, $\fft(t)$. Let $A(\omega)$ be flat ($m=0$).
+Let $A(\omega) = A_0(\omega)$ represent the amplitude spectrum for a displacement time series $\fft(t)$. Let $A(\omega)$ be flat ($m=0$).
 
 What is the slope of the amplitude spectrum for velocity, $A_1(\omega)$, in log-log space?
 
@@ -269,7 +263,7 @@ What is the slope of the acceleration spectrum, $A_2(\omega)$, in log-log space?
 
 \item (0.0) Run \verb+CAN_response.m+. The first time you run this, it will compute and save the Fourier transform of a seismogram. This will take about 5 minutes.
 
-Note: make sure that you run this from your \verb+seismo+ directory, since the file will be saved there.
+Note: Make sure that you run this from your \verb+seismo+ directory, since the file will be saved there.
 
 %-------------------
 
@@ -289,7 +283,7 @@ Hint: the magnitude is $\mw > 6$.
 \item (0.0) Does this aftershock have the same mechanism as the mainshock?
 \item (0.4) In summary, identify and interpret the main features in the seismogram.
 
-Hint: noise is a feature.
+Hint: Noise is a feature.
 \end{enumerate}
 
 %-------------------
@@ -300,6 +294,9 @@ Hint: noise is a feature.
 \item (0.3) Plot $|C(\omega)|$ using log-log scaling (\verb+loglog+). \\
 Label the frequency window $[0.2,1.0]$~mHz (note mHz, not Hz).
 \item (0.2) Interpret the largest-amplitude spikes in the spectrum.
+
+Tip: Use \verb+markp.m+ to get the period associated with any peak.
+
 \item (0.1) What is the maximum allowable frequency and why?
 \item (0.1) What is the minimum (non-zero) allowable frequency and why? \\
 What is the corresponding period?
@@ -307,13 +304,13 @@ What is the corresponding period?
 
 %-------------------
 
-\item (0.8) 
+\item (0.8) Tip: Read \citet{Park2005}.
 
 \begin{enumerate}
 \item (0.3) Plot the amplitude spectrum (do {\em not} use any log scaling) $|C(\omega)|$ over the frequency window $[0.2,1.0]$~mHz.
-\item (0.2) Label each of the peaks that you see \citep[\eg][]{Park2005}.
+\item (0.2) Label each of the peaks that you see (\eg \snl{0}{2}).
 \item (0.2) Why are some of the peaks ``split'' but one is not?
-\item (0.1) What is the significance of some of the smallest peaks that you identified?
+\item (0.1) What is the relevance of some of the smallest peaks that you identified?
 \end{enumerate}
 
 %-------------------
@@ -351,11 +348,11 @@ X_a(\omega) I_a(\omega) &=& C(\omega)
 Run \verb+CAN_noise.m+. This will generate a time series at CAN for 10 days prior to the Sumatra earthquake.
 
 \begin{enumerate}
-\item (0.2) Using the GCMT catalog, list the magnitude, location, and origin time of the conspicuous event. 
+\item (0.2) Using the GCMT catalog, list the magnitude, location, and origin time of the conspicuous event within the time series. 
 
 \item (0.3) Extract {\bf a multi-day time series that does not contain any earthquake-like signals}. Include this plot. What is the dominant period?
 
-Tip: use the command \verb+plot(w,'xunit','h')+ to plot in hours.
+Tip: Use the command \verb+plot(w,'xunit','h')+ to plot in hours.
 
 \item (1.5)
 
@@ -367,10 +364,10 @@ Plot the amplitude spectrum of acceleration using log-log scaling and the freque
 Tip: If you want a smoother spectral curve, try something like
 
 \noindent
-\verb+Habs_smooth = 10.^smooth(log10(Habs),1000,'moving');+
+\verb+Xabs_smooth = 10.^smooth(log10(Xabs),1000,'moving');+
 
 \noindent
-where \verb+Habs+ is the amplitude spectrum $|H(\omega)|$.
+where \verb+Xabs+ is the amplitude spectrum $|X_a(\omega)|$.
 
 \item (0.2) On your plot, mark the ocean microseismic period ranges \trange{5}{8} and \trange{10}{16} that are mentioned in \citet[][Section 11.2]{ShearerE2}.
 

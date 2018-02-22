@@ -56,27 +56,27 @@ Solar motion due to planetary influences. Upper left represents a $\sim$100-year
 Examine the (synthetic) time series of solar motion and the text output in the command window.
 %
 \begin{enumerate}
-\item What is the dominant period of oscillation?
+\item What is the main period of oscillation?
 \item What planet is responsible for the dominant period?
-\item Write the solar motion, $c(t)$, in terms of $x(t)$ and $y(t)$. (Examine the code.)
-\item What is the number of points, $n$, in the discretized version of $c(t)$? 
+\item Write the solar motion $c(t)$ in terms of $x(t)$ and $y(t)$. (Examine the code.)
+\item What is the number of points $n$ in the discretized version of $c(t)$? 
 \item What does the function \verb+fftvec.m+ do?
 \end{enumerate}
 
 %---------
 
-\item For the shorter-length time series, compute the Fourier transform (see \verb+fft+):
+\item For the {\bf shorter-length time series}, compute the Fourier transform (see \verb+fft+):
 %
 \begin{equation*}
-F(f) = \cF[c(t)]
+H(f) = \cF[c(t)]
 \end{equation*}
 %
-Check that $F(f)$ is complex and has the same number of points as $c(t)$.
+Check that $H(f)$ is complex and has the same number of points as $c(t)$.
 
 %---------
 
 \item  Compute the amplitude spectrum, $A(f)$ (see \verb+conj+).
-The power spectral density, $P(f)$, and spectral amplitude, $A(f)$, are real functions given by
+The power spectral density $P(f)$ and spectral amplitude $A(f)$ are real functions given by
 %
 \begin{eqnarray*}
 P(f) &=& H^{*}(f)\,H(f)
@@ -88,34 +88,34 @@ where $H(f)$ is the Fourier transform of $c(t)$.
 
 %---------
 
-\item Plot and analyze the amplitude spectrum (use \verb+semilogy+). \\
+\item Plot the amplitude spectrum (use \verb+semilogy+) and describe in in qualitative terms. \\
 Use the function \verb+fftvec.m+ to obtain the frequency vector. \\
 Plot the $y$-axis with the range \verb+ylim([1e-4 1e1])+.
 
 %---------
 
-\item  Use the function \verb+markT.m+ to help identify periods associated with spectral peaks. Then answer the following questions:
+\item  Use the function \verb+markp.m+ to help identify periods associated with spectral peaks. (An example of how to use \verb+markp.m+ will be done in lab.) Then answer the following questions:
 %
 \begin{enumerate}
 \item What is the number of points, $n$, in the discretized version of $c(t)$?
 \item What is the number of points in the discretized version of $H(f)$?
-\item What is the $\Delta t$ sampling interval?
-\item What is the Nyquist frequency ($\fnyq$)? \\
+\item What is the sampling interval $\Delta t$?
+\item What is the Nyquist frequency $\fnyq$? \\
 List an analytical expression and also the numerical value.
-\item What is the $\Delta f$ interval? \\
+\item What is the frequency interval $\Delta f$? \\
 List an analytical expression and also the numerical value.
 \item What planet is retrograde?
 \item What planets are identifiable as prograde?
 \item What planets are not resolved?
 \end{enumerate}
 
-\item Now try the longer-length time series (\verb+longdata = 1+) and repeat the analysis.
+\item Now try the {\bf longer-length time series} (\verb+longdata = 1+) and repeat the analysis.
 %
 \begin{enumerate}
-\item What is the number of points, $n$, in the discretized version of $c(t)$?
-\item What is the $\Delta t$ sampling interval?
-\item What is the Nyquist frequency ($\fnyq$)?
-\item What is the $\Delta f$ interval?
+\item What is the number of points $n$ in the discretized version of $c(t)$?
+\item What is the sampling interval $\Delta t$?
+\item What is the Nyquist frequency $\fnyq$?
+\item What is the frequency interval $\Delta f$?
 \item What planets are identifiable as prograde?
 \item What planets are not resolved?
 \end{enumerate}

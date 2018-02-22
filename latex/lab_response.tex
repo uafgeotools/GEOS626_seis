@@ -41,7 +41,7 @@ Last compiled: \today
 
 %---------
 
-\item Background reading on instrument response and Fourier analysis: \\ \citet[][Ch.~6]{SteinWysession}
+\item Background reading on instrument response and Fourier analysis: \\ \citet[][Ch.~6]{SteinWysession} and \verb+notes_fft.pdf+
 
 %---------
 
@@ -57,7 +57,7 @@ In Matlab, type \verb+methods waveform+ to see the main functions in the toolbox
 
 %---------
 
-\item There are different tools in seismology for deconvolving instrument responses and for processing seismic waveforms. We are using Matlab and GISMO, but alternative tools include ObsPy \citep{obspy2010} and SAC \citep{SAC}. {\bf Do not get bogged down in the details of the functions we are using;} at some level, we have to use certain functions as black boxes. Our goal is to understand how to use these tools.
+\item There are different tools in seismology for deconvolving instrument responses and for processing seismic waveforms. We are using Matlab and GISMO, but alternative tools include ObsPy \citep{obspy2010} and SAC \citep{SAC}. {\bf Do not get bogged down in the details of the functions we are using.} Our goal is to understand how to {\em use} these tools.
 
 %---------
 
@@ -68,9 +68,35 @@ In Matlab, type \verb+methods waveform+ to see the main functions in the toolbox
 %------------------------
 
 \pagebreak
+\section{Background}
+
+The output from a seismometer is in ``counts'' as a function of time. (See Note \footnote{The IRIS webpage for frequently asked questions says: ``Counts'' is the raw number read off the physical instrument, ie. the voltage read from a sensor.}.) The scaling from counts to ground motion is not simple and is described by the ``instrument response''.
+
+The relationship between ground motion, instrument response, and the output from a seismometer can be written in the time domain or frequency domain as
+%
+\begin{eqnarray}
+x_a(t) * i_a(t) &=& c(t)
+\\
+X_a(\omega) I_a(\omega) &=& C(\omega)
+\end{eqnarray}
+%
+Here we have assumed that the instrument response is described with respect to acceleration. But we could alternatively consider the instrument response with respect to velocity or displacement; {\bf the key point is that what comes out of the seismometer, $C(\omega)$, is fixed.}
+
+Instrument response is a complex function that can be written as
+%
+\begin{equation}
+I(\omega) = A(\omega) e^{i \phi(\omega)}
+\label{Iw}
+\end{equation}
+%
+For most theoretical derivations, $\omega = 2\pi f$ tends to simplify the notation. However, for interpretation purposes, $f$ (or period, $T = 1/f$) is a more intuitive quantity. Most of our plots will use $f$, not $\omega$.
+
+%------------------------
+
+%\pagebreak
 \section{Computing and plotting instrument response, $I(\omega)$}
 
-Run \tfile, which produces Matlab figures 1--5.
+Run \tfile, which produces Matlab figures 1--5. {\bf Examine the figures and read the code in order to understand what is being done and shown.}
 %
 \begin{itemize}
 \item Figure~1 (\refFig{fig1}) is generated with two commands
@@ -82,13 +108,7 @@ response_plot(res0);
 %
 This uses utilities within GISMO to read the instrument response within the Antelope database. What is needed to get the instrument response is the station (CAN), then channel (LHZ), a time, a vector of frequencies, and the name of the database. The time (\verb+startTime+) is needed because the instrument response may change as a function of time, based on changes made at the station, either from in-person visits or from remote interaction. The instrument response file could change because, for example, maybe the sensor is replaced, or it is reoriented, or the response is updated from what the manufacturer provided.
 
-The plot shows $\phi(\omega)$ and $A(\omega)$, where
-%
-\begin{equation}
-I(\omega) = A(\omega) e^{i \phi(\omega)}
-\end{equation}
-%
-For most theoretical derivations, $\omega = 2\pi f$ tends to simplify the notation. However, for interpretation purposes, $f$ (or period, $T = 1/f$) is a more intuitive quantity. Most of our plots will use $f$, not $\omega$.
+The plot shows $\phi(\omega)$ and $A(\omega)$, as in \refEq{Iw}.
 
 The instrument response here is not just the response of the instrument; it also includes the digitizer. The sample rate for this channel is 1~sample per second ($\Delta t = 1$~s), so the {\bf Nyquist frequency}
 %
@@ -96,7 +116,7 @@ The instrument response here is not just the response of the instrument; it also
 \fnyq = 1/(2\Delta t)
 \end{equation}
 %
-is $\fnyq = 0.5$~Hz. For $f > \fnyq$ we see that the phase response is quite complicated (this is the FIR filter), and the amplitude response declines to $10^{-5}$.
+is $\fnyq = 0.5$~Hz. For $f > \fnyq$ we see that the phase response is quite complicated (this is the finite-impulse response filter), and the amplitude response declines to $10^{-5}$.
 
 As a general rule, you need to be very careful if you are looking at signals with frequencies above $\fnyq$.
 
@@ -153,13 +173,9 @@ CONSTANT	+6.876917e+21
 \end{spacing}
 \normalsize
 
-QUESTION: What are the input and output units for this instrument response?
-
-QUESTION: What is the time interval over which this instrument response is valid?
-
 %---------------------
 
-\item Figure~5 (\refFig{fig5}) shows the instrument response $I_d(\omega)$ to displacement, velocity $I_v(\omega)$, and acceleration $I_a(\omega)$. We will see in the homework that 
+\item Figure~5 (\refFig{fig5}) shows the instrument response to displacement, velocity, and acceleration, denoted by $I_d(\omega)$, $I_v(\omega)$, and $I_a(\omega)$. We will see in the homework that 
 %
 \begin{eqnarray*}
 X_v(\omega) &=& (i\omega) X_d(\omega)
@@ -169,14 +185,7 @@ X_a(\omega) &=& (i\omega) X_v(\omega)
 %
 where $X_d$, $X_v$, and $X_a$ are the Fourier transforms of displacement $x_d(t)$, velocity $x_v(t)$, and acceleration $x_a(t)$.
 
-We also have the relationship between ground motion, instrument response, and the output from a seismometer:
-\begin{eqnarray}
-x_a(t) * i_a(t) &=& c(t)
-\\
-X_a(\omega) I_a(\omega) &=& C(\omega)
-\end{eqnarray}
-%
-Here we have assumed that the the instrument response is described with respect to acceleration. But we could alternatively consider the instrument response with respect to velocity or displacement; {\bf the key point is that what comes out of the seismometer, $C(\omega)$, is fixed.} But we can describe the input ground motion as displacement, velocity, or acceleration. Showing all three together and omitting explicit $\omega$ dependence, we have
+We can describe the input ground motion as displacement, velocity, or acceleration. Showing all three together and omitting explicit $\omega$ dependence, we have
 %
 \begin{eqnarray}
 C &=& X_a I_a = X_v I_v =  X_d I_d 
@@ -190,16 +199,34 @@ I_v &=& I_d / (i\omega)
 I_a &=& I_v / (i\omega)
 \end{eqnarray}
 %
-It turns out that the effect of differentiation in the time domain leads to an {\em increase by a factor of one} in the slope of the amplitude spectrum, $|H(\omega)|$, in log-log space, for example, by changing from $X_d(\omega)$ to $X_v(\omega)$. But when we are looking at the {\em instrument response}, the slope will {\em decrease by a factor of one} when changing from, say, $I_d(\omega)$ to $I_v(\omega)$.
+It turns out that the effect of differentiation in the time domain leads to an {\em increase by a factor of one} in the slope of the amplitude spectrum of ground motion ($H(\omega)$) in log-log space, for example, by changing from $X_d(\omega)$ to $X_v(\omega)$. But when we are looking at the {\em instrument response}, the slope will {\em decrease by a factor of one} when changing from, say, $I_d(\omega)$ to $I_v(\omega)$.
 
 We see this in \refFig{fig5}. Consider the flat segment in $I_v(\omega)$. Change to $I_a(\omega)$ and the slope decreases; change to $I_d(\omega)$ and the slope increases.
-
-QUESTION: What is meant by a ``broadband'' seismometer?
 
 \end{itemize}
 
 %------------------------
 
+\pagebreak
+\subsection*{Questions}
+
+\begin{enumerate}
+\item Mark the Nyquist frequency in the plots in \refFig{fig1}.
+
+\item Referring to the pole-zero file above, what are the input and output units for this instrument response?
+
+\item Referring to the pole-zero file above, what is the time interval over which this instrument response is valid?
+
+\item What are the variables \verb+Id+, \verb+Iv+, and \verb+Ia+?
+
+What do the functions \verb+angle+ and \verb+abs+ do to these?
+
+\item What is meant by a ``broadband'' seismometer?
+\end{enumerate}
+
+%------------------------
+
+\iffalse
 \section{Deconvolve instrument response for a seismogram}
 
 FUTURE PART OF THE LAB (see also \verb+lab_sumatra.pdf+):
@@ -218,12 +245,15 @@ Show what the main arrival looks like at bandpass 50-500s with and without decon
 Rotate to R and T to isolate SH waves.
 [Having the previous 10 days allows for the noise analysis in hw_sumatraA.pdf]
 \end{verbatim}
+\fi
 
 %-------------------------------------------------------------
-\pagebreak
+%\pagebreak
 \bibliographystyle{agu08}
 \bibliography{carl_abbrev,carl_main,carl_him}
 %-------------------------------------------------------------
+
+\pagebreak
 
 \appendix
 
@@ -404,7 +434,7 @@ Note that the amplitudes are normalized by the maximum value.
 \label{fig1}
 \end{figure}
 
-%\setcounter{figure}{2}
+\setcounter{figure}{2}
 
 \iffalse
 \begin{figure}
@@ -442,6 +472,8 @@ Note that the amplitudes are normalized by the maximum value.
 \label{fig4}
 \end{figure}
 \fi
+
+\setcounter{figure}{4}
 
 \begin{figure}
 \centering
