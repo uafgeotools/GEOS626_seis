@@ -15,7 +15,7 @@ clc, close all
 % USER PARAMETERS
 
 iex = 1;                % CHANGE THIS OR ADD YOU OWN EXAMPLE
-bgetwaveform = false;    % 
+bgetwaveform = true;    % 
 bplotrs = true;         % 
 
 %==========================================================================
