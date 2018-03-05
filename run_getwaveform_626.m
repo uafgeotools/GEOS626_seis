@@ -8,9 +8,17 @@
 % Abbreviated version of run_getwaveform.m and getwaveform_input.m
 %
 
-clear
-clc
-close all
+%clear              % do not clear variables when replotting record sections 
+clc, close all
+
+%==========================================================================
+% USER PARAMETERS
+
+iex = 1;                % CHANGE THIS OR ADD YOU OWN EXAMPLE
+bgetwaveform = false;    % 
+bplotrs = true;         % 
+
+%==========================================================================
 
 % simple example of getting waveforms from a database
 if 0==1
@@ -43,14 +51,11 @@ iunit = 1;
 tlims = [];     % time limits for plotting
 imap = 1;
 
-%========================================
+%==========================================================================
 
 % default parameters for waveform extraction
 samplerate = [];
 cutoff = [];
-
-% USER CHANGE THIS OR ADD YOUR OWN EXAMPLE
-iex = 1;
 
 switch iex
     case 1
@@ -189,17 +194,19 @@ switch iex
         elatN = 64.9222; elonN = -148.9461; edepN = 19.4; emagN = 3.88;
         elatI = 60.10; elonI = -152.83; edepI = 101; emagI = 2.9;
         
-        % source
-        originTime = originTimeN; elat = elatN; elon = elonN; edep_km = edepN; mag = emagN; stasub = [0 200];   % Nenana
-        %originTime = originTimeA; elat = elatA; elon = elonA; edep_km = edepA; mag = emagA; stasub = [0 2000];   % Andreanof
-        %originTime = originTimeI; elat = elatI; elon = elonI; edep_km =edepI; mag = emagI; stasub = [0 400];   % Iliamna
+        % source: USER CHOOSE ONE
+        originTime = originTimeN; elat = elatN; elon = elonN; edep_km = edepN; mag = emagN; stasub = [0  200]; duration_s = 200;  % Nenana
+        %originTime = originTimeA; elat = elatA; elon = elonA; edep_km = edepA; mag = emagA; stasub = [0 2000]; duration_s = 600;  % Andreanof
+        %originTime = originTimeI; elat = elatI; elon = elonI; edep_km = edepI; mag = emagI; stasub = [0  400]; duration_s = 200;  % Iliamna
         eid = [];
         chan = {'BHZ'};
 
-        % parameters for triggered waveforms across Alaska
-        duration_s = 200; oshift = 10; T1 = 1/4; T2 = 1/2;    % Nenana
-        %duration_s = 600; oshift = 10; T1 = 1/4; T2 = 1/2;    % Andreanof
-        %duration_s = 200; oshift = 10; T1 = 1/4; T2 = 1/2;    % Iliamna
+        % bandpass
+        oshift = 10; T1 = 1/4; T2 = 1/2;
+        
+    case 8
+        % TRY YOUR OWN EXAMPLE HERE
+        
         
 end
 
@@ -215,8 +222,6 @@ fprintf('startTime is %s\n',datestr(startTime,31));
 fprintf('total length of time requested: %.2f s (= %.2f min = %.2f hours)\n',...
     dur_dy*spdy,dur_dy*3600,dur_dy*24);
 
-%==========================================================================
-
 % additional user parameters
 %sacdir = './';      % =[] to return waveform object only
 sacdir = [];
@@ -224,14 +229,18 @@ iint = 0;            % integrate waveforms: =1 for displacement, =0 for velocity
 iprocess = 1;        % iprocess = 2 to deconvolve
 irs = 1;
 
-% get waveform object (optional: write sac files to a directory)
-tic
-[w,s,site,sitechan] = getwaveform(idatabase,startTime,endTime,chan,iint,iprocess,cutoff,samplerate,stasub,sacdir,originTime,elat,elon,edep_km,mag,eid);
-toc
-disp(sprintf('%.1f s to execute getwaveform.m from run_getwaveform_short.m',toc));
+if bgetwaveform
+    % get waveform object (optional: write sac files to a directory)
+    tic
+    [w,s,site,sitechan] = getwaveform(idatabase,startTime,endTime,chan,iint,iprocess,cutoff,samplerate,stasub,sacdir,originTime,elat,elon,edep_km,mag,eid);
+    toc
+    disp(sprintf('%.1f s to execute getwaveform.m from run_getwaveform_short.m',toc));
+end
 
-%--------------------------------------------------------------------------
+%==========================================================================
 % FROM HERE ON OUT, PLOTTING AND CHECKING ONLY
+
+if bplotrs
 
 whos w s site sitechan
 
@@ -250,6 +259,8 @@ if and(irs==1,~isempty(w))
     % note: these can be printed to file by setting bprint_record_section=true in plotw_rs.m
     plotw_rs(w,rssort,iabs,tshift,tmark,T1,T2,pmax,iintp,inorm,tlims,nfac,azstart,iunit,imap);
 end
+
+end  % bplotrs
 
 %--------------------------------------------------------------------------
 % ANALYZE INDIVIDUAL RECORDS

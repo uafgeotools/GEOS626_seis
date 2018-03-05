@@ -28,7 +28,7 @@ idir = './data/';       % you might need to change the path to data
 load([idir 'cmtall_sub']);
 whos
 
-% duration of catalog, in years
+% duration of catalog, in years (tran_year = "time range in years")
 tran_yr = (max(otime) - min(otime))/365.25;
 disp(sprintf('GCMT catalog duration is %.3f years',tran_yr));
 
@@ -59,6 +59,10 @@ dmag = 0.1;     % magnitude bin width
 [N,Ninc,Medges] = seis2GR(Mw,dmag);
 
 %---------------------------
+% Problem 1-3
+
+% START YOUR WORK HERE
+
 
 break
 

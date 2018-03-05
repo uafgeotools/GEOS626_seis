@@ -4,7 +4,9 @@ function value = surf_stress(f)
 
 global omega rvec WT rspan % mu rho l
 
-WT0 = [1.0 0.0];        % the initial values of [displacement stress]
+WT0 = [1.0 0.0];        % the initial values of [displacement stress],
+                        % at the bottom of the shell (core-mantle-boundary)
+                        % --> T(a) = 0 is Eq. 3
 
 omega = 2*pi*f;         % angular frequency (stress_disp_tor.m)
 

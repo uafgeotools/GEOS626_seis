@@ -152,13 +152,16 @@ polezero.poles = p;
 polezero.zeros = z;
 polezero.normalization = c;
 res = response_get_from_polezero(f,polezero);
-Id = res.values;        % displacement
+% displacement
+Id = res.values;
 figure(xf); subplot(nr,nc,1); hold on; plot(f,angle(Id)*deg,'r--'); grid on;
 figure(xf); subplot(nr,nc,2); hold on; plot(f,abs(Id),'r--'); axis(10.^[-4 2 -5 12]); grid on;
-Iv = Id./(1i*omega);    % velocity
+% velocity
+Iv = Id./(1i*omega);
 figure(xf); subplot(nr,nc,3); hold on; plot(f,angle(Iv)*deg,'r--'); grid on;
 figure(xf); subplot(nr,nc,4); hold on; plot(f,abs(Iv),'r--'); axis(10.^[-4 2 -5 12]); grid on;
-Ia = Id./(-omega.^2);   % acceleration
+% acceleration
+Ia = Id./(-omega.^2);
 figure(xf); subplot(nr,nc,5); hold on; plot(f,angle(Ia)*deg,'r--'); grid on;
 figure(xf); subplot(nr,nc,6); hold on; plot(f,abs(Ia),'r--'); axis(10.^[-4 2 -5 12]); grid on;
 if iprint==1, orient tall; print(gcf,'-depsc',sprintf('%sCAN_response_fig%i',pdir,xf)); end
@@ -172,7 +175,7 @@ if 0==1
     numf = 100;
     f = logspace(log10(fmin),log10(fmax),numf)';
 
-    dbname = '/aerun/sum/params/Stations/master_stations';
+    dbname = '/aec/db/stations/master_stations';
     sta = 'F3TN'; chan = 'HHZ';
     res0 = response_get_from_db(sta,chan,datenum(2015,1,1),f,dbname);
     response_plot(res0,[fmin fmax]);

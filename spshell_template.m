@@ -40,14 +40,14 @@ rho = 4380;             % density
 mu  = 5930*5930*rho;    % rigidity (mu = 1.54e11 Pa)
 
 % options for searching solution space
-l = 2;                  % degree (l >= 1)
-nmax = 8;               % maximum n (default = 8)
+l = 40;                  % degree (l >= 1)
+nmax = 0;               % maximum n (default = 8)
                         % nmax+1 is the max number of roots/eigenfunctions/subplots
                         % nmax=0 will return the first root (n=0)
 % plotting options                        
 iplot_eig_freqs = 1;    % plot eigenfunctions (=1) or not (=0)
                         % =0 will speed up the calculations
-iplot_all_freqs = 1;    % plot eigenfunctions for all input frequencies,
+iplot_all_freqs = 0;    % plot eigenfunctions for all input frequencies,
                         % including those that do not satisfy the boundary conditions
                         % =1 for initial problem only
 
@@ -62,8 +62,8 @@ pdir = './';
 % range of frequencies (note: omega = 2*pi*f), in Hz
 fmin = 1/3600;      % initial frequency to start (T = one hour)
 df = 0.0002;        % frequency step size (chosen by trial and error)
-%fmax = 0.08;        % stopping frequency (somewhat arbitrary)
-fmax = 0.003;
+fmax = 0.08;        % stopping frequency (somewhat arbitrary)
+%fmax = 0.003;
 fvec = [fmin:df:fmax];
 numf = length(fvec);
 disp(sprintf('frequency vector ranges from %.3f mHz to %.3f mHz',fmin*1e3,fmax*1e3));

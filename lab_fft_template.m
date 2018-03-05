@@ -53,7 +53,11 @@ subplot(3,1,3); plot(tL, yL,'b',ts,ys,'r--'); axis(ax3);
 xlabel('time, years'); ylabel('y distance, AU'); 
 %orient tall, wysiwyg
 
-if longdata==0, t = ts; c = cs; else t = tL; c = cL; end
+if longdata==0
+    t = ts; c = cs;
+else
+    t = tL; c = cL;
+end
 
 % sidereal orbit periods -- IN YEARS
 % http://ssd.jpl.nasa.gov/?planet_phys_par
@@ -81,6 +85,8 @@ end
 
 %==========================================================================
 % FFT ANALYSIS HERE
+
+whos t c
 
 
 

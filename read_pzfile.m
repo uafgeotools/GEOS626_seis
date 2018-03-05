@@ -6,6 +6,13 @@ function [p,z,c,A0,k] = read_pzfile(pzfile,ideriv,listfile)
 %   ideriv  =0 for disp (default), =1 for vel, =2 for accel
 %   iwrite  OPTIONAL: if present, write the PZ file to the command window
 %
+% OUTPUT
+%   p       poles
+%   z       zeros
+%   c       CONSTANT = A0 * SENSITIVITY (c = A0*k)
+%   A0      A0
+%   k       SENSITIVITY
+%
 % There are three essential points about the sac PZ files that are produced
 % by the program rdseed.
 %    1. The response is always for DISPLACEMENT in units of meters.
@@ -13,7 +20,6 @@ function [p,z,c,A0,k] = read_pzfile(pzfile,ideriv,listfile)
 %          NOT included (though they are in the RESP file).
 %    3. The INPUT is meters, the OUTPUT is counts (not the other way).
 %
-% note: CONSTANT = A0 * SENSITIVITY (c = A0*k)
 % note: the antelope 'calib' field is 1/CONSTANT (adjusting for units)
 %
 % Carl Tape, 2012-03-29
