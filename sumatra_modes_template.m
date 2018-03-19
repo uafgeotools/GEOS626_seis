@@ -14,7 +14,7 @@ clear
 close all
 clc
 
-bload = false;      % USER: CHANGE THIS
+bload = true;      % USER: CHANGE THIS
 
 % add path in order to access additional files and scripts
 datadir = '/home/admin/databases/SUMATRA/data/wfobject/';
