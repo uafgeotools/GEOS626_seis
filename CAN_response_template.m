@@ -24,16 +24,11 @@ w = sumatra_read_seis(station,channel);     % this will also plot the waveform
 sps = get(w,'freq');        % samples per second
 dt = 1/sps;                 % time step
 
-% example of getting an absolute time from the seismogram
-tpick = 3*1e5;      % based on the plot
-tstart = get(w,'start');
-datestr(tstart + tpick/spdy,31)
-
 % compute FFT
-% READE THESE NOTES:
+% READ THESE NOTES:
 % + this can take ~5 minutes, depending on how long the time series is
 % + this will attach the frequency version to the waveform object
-% + the file fftmat.m will be saved in your local directory,
+% + the file fftcan.mat will be saved in your local directory,
 %   so be sure to run Matlab from the same directory
 % + when you copy-and-paste this block, be sure to CHANGE fname (e.g., fftcan_noise)
 fname = './fftcan';
@@ -41,6 +36,7 @@ if ~exist([fname '.mat'],'file')
     
     % for FFT (specifically for modes): demean and taper
     w = demean(w); 
+    % tapering is probably onlu needed for the multi-day time series
     wd = get(w,'data');
     nd = length(wd);
     taper = tukeywin(nd,1);     % matlab taper function
@@ -65,5 +61,10 @@ whos f C
 
 %--------------------------------------------------------------------------
 % HOMEWORK/LAB EXERCISE STARTS HERE
+
+% example of getting an absolute time from the seismogram
+tpick = 3*1e5;      % based on the plot
+tstart = get(w,'start');
+datestr(tstart + tpick/spdy,31)
 
 
