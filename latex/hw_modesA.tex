@@ -147,19 +147,21 @@ angular orders,
 %radial orders,
 $l$, these equations can be integrated numerically using a Runge-Kutta approach \citep[\eg][]{Press1988}.
 
-Before you integrate \refEq{ODEs}, you must specify values of $l$, the density, the shear modulus, and the frequency $\omega$. Integration produces two functions of radius, $\hat{W}(r)$ and $\hat{T}(r)$. If the stress is zero at the top of the shell (earth surface) and the bottom of the shell (core-mantle boundary),
+Before you integrate \refEq{ODEs}, you must specify values of $l$, the density, the shear modulus, and the frequency $\omega$. Integration produces two functions of radius, $W(r)$ and $T(r)$. If the stress is zero at the top of the shell (earth surface) and the bottom of the shell (core--mantle boundary),
 %
 \begin{eqnarray}
-\hat{T}(a) &=& 0
+\hat{T}(a) &=& 0 \;\;\;\;\;\; {\rm top\;of\;shell}
+\label{BC1}
 \\
-\hat{T}(b) &=& 0,
+\hat{T}(b) &=& 0, \;\;\;\; {\rm bottom\;of\;shell}
+\label{BC2}
 \end{eqnarray}
 %
 then the assumed value of $\omega$ is an {\bf eigenfrequency} ($\omega^2$ is an {\bf eigenvalue}) and  $\hat{W}(r)$ and $\hat{T}(r)$ are {\bf eigenfunctions}.
-(See note \footnote{These are not eigenvalues and eigenfunctions of \refEq{ODEs} but rather of \citep[][Eq.~4.8-4.9]{DT}
+(See note \footnote{The hat-notation for $\hat{T}(r)$ is to distinguish the eigenfunction, which satisfies the boundary condition (\refeqii{BC1}{BC2}) and \refEq{ODEs}, from the function $T(r)$, which only satisfies \refEq{ODEs}.} and note \footnote{These are not eigenvalues and eigenfunctions of \refEq{ODEs} but rather of the equation \citep[][Eq.~4.8-4.9]{DT}
 %
 \begin{equation*}
-{\boldmath \cal H} \bs = \omega^2 \bs.
+{\boldmath \cal H} \bs = \omega^2 \bs,
 \end{equation*}
 %
 where ${\boldmath \cal H}$ is a linear operator with the eigensolution $\omega^2$ (eigenvalue) and $\bs$ (eigenfunction). It is best to think of {\em solution pairs} of $\omnl$ associated with functions $\Wnl(r)$ and $\Tnl(r)$.}.)
@@ -171,7 +173,7 @@ In general, there are an infinite number of frequencies that satisfy \refEq{ODEs
 F(\omnl) = 0.
 \end{equation}
 %
-The form of the function $F$ is described in \refEq{ODEs}, and we must solve those equations for the surface stress, $\hat{T}(a)$, for each assumed value of $l$ and $n$. Finding solutions that have zero surface stress is a numerical root-finding problem: you assume a value of and integrate the equations to see if it produces zero stress at the outer surface.
+The form of the function $F$ is described in \refEq{ODEs}, and we must solve those equations for the surface stress $\hat{T}(a)$ for each assumed value of $l$ and $n$. Finding solutions that have zero surface stress is a numerical root-finding problem: you assume a value of and integrate the equations to see if it produces zero stress at the outer surface.
 
 %-----------------------------
 
@@ -194,13 +196,13 @@ Our solution will involve three different Matlab scripts (\refFig{fig:workflow})
 
 \subsubsection{Computing the Surface Stress}
 
-To integrate the equations and evaluate the surface traction I created two scripts. The first script (\refSec{sec:stress}) computes the stress and displacement derivatives using the differential equations (\refeq{ODEs}). The input arguments and return values of this script are of the special form required by the Runge-Kutta functions in Matlab, and the name of this script is an argument to the Matlab Runge-Kutta function. The first input argument is the independent variable of integration (radius for our problem), the second is a vector that contains the dependent variables in the coupled first-order differential equations (displacement and stress). I set up $\mu$, $\rho$, $\omega$, and $l$ as {\bf global variables} so that they can be set and changed from the main script (listed later). The same global values are used in all the scripts. It's a good idea to keep this script as simple and short as you can, since it's executed often.
+To integrate the equations and evaluate the surface traction I created two scripts. The first script (\verb+stress_disp_tor.m+; \refSec{sec:stress}) computes the stress and displacement derivatives using the differential equations (\refeq{ODEs}). The input arguments and return values of this script are of the special form required by the Runge-Kutta functions in Matlab, and the name of this script is an argument to the Matlab Runge-Kutta function. The first input argument is the independent variable of integration (radius for our problem), the second is a vector that contains the dependent variables in the coupled first-order differential equations (displacement and stress). I set up $\mu$, $\rho$, $\omega$, and $l$ as {\bf global variables} so that they can be set and changed from the main script (\verb+spshell.m+). The same global values are used in all the scripts. It's a good idea to keep this script as simple and short as you can, since it's executed often.
 
-The second script (\refSec{sec:surf}) calculates the surface stress. For a given value of $\omega$, the \verb+surface_stress.m+ performs the computations needed to compute the stress and displacement eigenvectors. Note the brevity and simplicity of the two scripts used to solve \refEq{ODEs}. Since the Runge-Kutta routines are implemented in Matlab, we need only a two-line script to compute the derivatives and a one-line call to \verb+ode45+ to integrate the equations. Once the integration is complete, we look up the surface stress (at $r = a = 6371$ km), which after execution is stored in the last element of array \verb+sd+.
+The second script (\verb+surf_stress.m+; \refSec{sec:surf}) calculates the surface stress. For a given value of $\omega$, the function performs the computations needed to compute the stress and displacement eigenvectors. Note the brevity and simplicity of the two scripts used to solve \refEq{ODEs}. Since the Runge-Kutta routines are implemented in Matlab, we need only a two-line script to compute the derivatives and a one-line call to \verb+ode45+ to integrate the equations. Once the integration is complete, we look up the surface stress (at $r = a = 6371$ km), which after execution is stored in the last element of array \verb+sd+.
 
 \subsubsection{Finding the Roots}
 
-The third and final script (\refSec{sec:shell}) implements a simple root-finding search and provides visual feedback on the process. You should have no trouble finding lucid descriptions of the ideas behind searching for roots, or zeros, of a function \citep[\eg][]{Press1988}. The basic idea in this script is to begin a search at a small value of frequency (I chose $f = 1/3600$, corresponding to a period of one hour) and march forward with a small step size ($\Delta f$), looking for steps that produce a change in sign of the surface stress estimate, $\hat{T}(a)$. If the sign of the surface stress changes then we know that we’ve bracketed at least one zero of the function. Of course we have to be careful, a step size too large may jump more than one root in one step. If we choose too small a value for $\Delta f$, then we spend much more time searching. More clever approaches are more appropriate when dealing with more complicated models. For this example I opted to use a small step size rather than getting too fancy with something adaptive.
+The third script (\verb+spshell.m+; \refSec{sec:shell}) implements a simple root-finding search and provides visual feedback on the process. You should have no trouble finding lucid descriptions of the ideas behind searching for roots, or zeros, of a function \citep[\eg][]{Press1988}. The basic idea in this script is to begin a search at a small value of frequency (I chose $f = 1/3600$, corresponding to a period of one hour) and march forward with a small step size ($\Delta f$), looking for steps that produce a change in sign of the surface stress estimate, $\hat{T}(a)$. If the sign of the surface stress changes then we know that we’ve bracketed at least one zero of the function. Of course we have to be careful, a step size too large may jump more than one root in one step. If we choose too small a value for $\Delta f$, then we spend much more time searching. More clever approaches are more appropriate when dealing with more complicated models. For this example I opted to use a small step size rather than getting too fancy with something adaptive.
 
 Once I know two frequency values that bracket a root, I use the Matlab function \verb+fzero+ to find that root; \verb+fzero+ uses a bisection-interpolation procedure to find the root of the function. You must pass the name of the script used to calculate the surface stress and the bounding values of frequency to the \verb+fzero+ routine, and it returns the value of the root. Matlab allows you to control the options in the search for roots, but I found the default values suitable for this problem.
 
@@ -232,11 +234,12 @@ R(r) &=& (\kappa + \sfrac{4}{3}\mu)\frac{d U}{d r} + (\kappa - \sfrac{2}{3}\mu)r
 S(r) &=& \mu \left( \frac{d V}{d r} - r^{-1} V(r) + kr^{-1}U(r) \right)
 \\
 T(r) &=& \mu \left( \frac{d W}{d r} - r^{-1} W \right)
+\label{Tr}
 \end{eqnarray}
 %
 where $k = \sqrt{l(l+1)}$ (\refTab{tab:waveparm}).
 
-We see that the radial stress function, $T(r)$ is defined in terms of the radial displacement function, $W(r)$. For toroidal motion, as in our problem, only $W(r)$ is non-zero while $U(r) = V(r) = 0$ (and therefore $R(r) = S(r) = 0$).
+We see that the radial stress function $T(r)$ is defined in terms of the radial displacement function $W(r)$. (Note that \refEq{Tr} is the top equation in \refEq{ODEs}.) For toroidal motion, as in our problem, only $W(r)$ is non-zero while $U(r) = V(r) = 0$ (and therefore $R(r) = S(r) = 0$).
 
 %-------------------------------------------------------------
 
@@ -425,7 +428,9 @@ function value = surf_stress(f)
 
 global omega rvec WT rspan % mu rho l
 
-WT0 = [1.0 0.0];        % the initial values of [displacement stress]
+WT0 = [1.0 0.0];        % the initial values of [displacement stress],
+                        % at the bottom of the shell (core-mantle-boundary)
+                        % --> T(a) = 0 is Eq. 3
 
 omega = 2*pi*f;         % angular frequency (stress_disp_tor.m)
 
@@ -547,32 +552,32 @@ $\Tnl(r)$
 \end{equation}
 %
 
-\item In this problem we will assume a homogeneous earth model with density $\rho = 4380$~kg/m$^3$ and shear modulus (rigidity) \makebox{$\mu = 1.54 \times 10^{11}$~Pa}. Before you proceed, make sure you follow the basic structure of the program; in particular, pay attention to the use of {\bf global variables} within each of the scripts.
+\item In this problem we will assume a homogeneous earth model with density $\rho = 4380$~kg/m$^3$ and shear modulus (rigidity) \makebox{$\mu = 1.54 \times 10^{11}$~Pa}. Before you proceed, make sure you follow the basic structure of the program; in particular, pay attention to the use of {\bf global variables} within each of the scripts. (For example, you cannot change the dimension of any global variable.)
 \end{itemize}
 
 \begin{enumerate}
 \item (0.3)
 %
 \begin{enumerate}
-\item Write down the two equations represented by \refEq{ODEs} and the equations for the boundary conditions; show explicit $r$ dependence, $l$ dependence, and $n$ dependence (\eg $\omnl$).
+\item Write down the two equations represented by \refEq{ODEs}; show explicit $r$ dependence, $l$ dependence, and $n$ dependence (\eg $\omnl$).
 \item List and name the variables that describe the Earth structure?
 %How many material variables are present?
 
-\item What is the physical meaning of $W(r)$ and $T(r)$?
+\item What is the physical meaning of $Wnl(r)$ and $Tnl(r)$?
 \end{enumerate}
 
 %---------
 
-\item (0.0) Execute the script \verb+spshell_template.m+ and analyze the output. Two figures are generated, one for a set of $W(r)$, the other for a set of $T(r)$ (\refFig{fig:Tr}).
+\item (0.0) Execute the script \verb+spshell.m+ and analyze the output. Two figures are generated, one for a set of $W(r)$, the other for a set of $T(r)$ (\refFig{fig:Tr}).
 %
 \begin{enumerate}
 \item What is the range of frequencies that you are evaluating? List $f_{\rm min}$ and $f_{\rm max}$ in mHz. Draw two lines for $f = f_{\rm min}$ and $f = f_{\rm max}$ in \refFig{fig:dots}a.
 
-\item A key part of the problem is to identify the frequency intervals, $[f_i, f_{i+1}]$ where the surface stress, $T(a)$, changes sign. On \refFig{fig:Tr}, highlight the pair(s) ($i$ and $i+1$) that have $T(a)$ on opposite sides of $T(a) = 0$.
+\item A key part of the problem is to identify the frequency intervals $[f_i, f_{i+1}]$ where the surface stress $T(a)$ changes sign. On \refFig{fig:Tr}, highlight the pair(s) ($i$ and $i+1$) that have $T(a)$ on opposite sides of $T(a) = 0$.
 
 \item How many crossings of $T(a) = 0$ are there within this set of 14 input frequencies?
 
-\item The script is looping over a set of $(l_i, f_i)$ values. In \refFig{fig:dots}a, plot (by hand) 14 dots that represent your values.
+\item The script considers a set of $(l_i, f_i)$ values, where $i = 1, \ldots, 14$. In \refFig{fig:dots}a, plot (by hand) 14 dots that represent your values. Next to each dot, label the $i$ value.
 
 \end{enumerate}
 
@@ -580,7 +585,7 @@ $\Tnl(r)$
 
 %---------
 
-\item (0.0) Now set \verb+iplot_all_freqs = 0+ and rerun.
+\item (0.0) Now change \verb+iplot_all_freqs+ from 1 rto 0, then rerun.
 %
 \begin{enumerate}
 \item How many solutions to \refEq{ODEs} do you obtain over this range of frequencies?
@@ -597,22 +602,22 @@ $\Tnl(r)$
 %
 \begin{enumerate}
 \item (0.1) What aspects of the curves tells you which color curve is $\Tnl(r)$?
-\item (0.1) What is the relationship between the number of zero crossings of $\Wnl(r)$ (excluding endpoints) and $n$?
+\item (0.1) What is the relationship between the number of zero crossings of $\Wnl(r)$ and $n$?
 \item (0.1) What is the relationship between the number of zero crossings of $\Tnl(r)$ (excluding endpoints) and $n$?
 \item (0.2) What is the qualitative relationship between $n$ and $\fnl$ ($l$ fixed)? (Note \footnote{The eigenfrequencies are given by $\omnl = 2\pi(\fnl)$. However the values in the program---and listed in dispersion plots, such as those in \citet{SteinWysession}---are $\fnl$, a quantity that is somewhat more intuitive.})
-\item (0.2) Try $l=25$ and $l=100$ ($n$=0-8). \\
+\item (0.2) Try $l=25$ and $l=100$ ($n$=0--8). \\
 What is the qualitative relationship between $l$ and $\fnl$ ($n$ fixed)?
 \end{enumerate}
 
 %---------
 
 %\pagebreak
-\item (0.5) Modify your code to compute eigenfrequencies for $n=0$, $l=2$-9.
+\item (0.5) Modify your code to compute eigenfrequencies for $n=0$, $l$=2--9. (Continue to use \verb+fmax = 0.08+)
 %
 \begin{enumerate}
-\item (0.3) In \refFig{fig:dots}b, plot (by hand) {\em all} the function evaluations $(l, f)$ that you performed.
+\item (0.3) In \refFig{fig:dots}b, plot (by hand) {\em all} the function evaluations $(l, f)$ that you performed. Put a star on the first $(l,f)$ evaluation and a square on the final $(l,f)$ evaluation.
 
-Hint: what is $f_{\rm min}$?
+Hint: What is $f_{\rm min}$?
 
 \item (0.1) List the predicted eigenperiods in \refTab{tab:mode_pred}.
 
@@ -633,16 +638,16 @@ Hint: what is $f_{\rm min}$?
 \item (0.5) Generate a plot containing the two eigenfunctions $\Wnl(r)$ and $\Tnl(r)$ for $n=0$ and $l=40$.
 %
 \begin{enumerate}
+\item (0.1) Include your plot. Label $\Wnl(r)$, $\Tnl(r)$, and the $r$ axis.
 \item (0.3) Compute various wave parameters and list your values in the left half of \refTab{tab:eigfun}.
-\item (0.1) Include your plot.
-\item (0.1) mark the wavelength, $\lambda$, as a distance from the surface.
+\item (0.1) Mark the wavelength $\lambda$ as a distance from the surface.
 \end{enumerate}
 
 \label{prob:0T40_homo}
 
 %---------
 
-\item (1.5) A dispersion plot based on PREM is shown in Figure 2.9-10 of \citet{SteinWysession}; the inset figure is relevant to this problem. 
+\item (1.5) A dispersion plot based on PREM is shown in Figure 2.9-10 of \citet{SteinWysession}; the inset figure, shown in \refFig{fig:dots} of this homework, is relevant to this problem. 
 %
 \begin{enumerate}
 \item (1.2) Reproduce a similar plot for your homogeneous earth model. Use \lrange{1}{10} and plot with axes ranges \verb+[0 11 0 4]+, where the $y$-axis is frequency in mHz and the $x$-axis is $l$.
@@ -651,7 +656,7 @@ Note: Some points $(l,\,\fnl)$ will be outside the plotting range.
 
 \item (0.3) On your dispersion diagram, plot the observations in \refTab{tab:modes_obs} with a different symbol (or color) from the predictions. (Make sure you plot all predicted frequencies, not just the ones with matching observations.)
 
-Note: See code at the bottom of \verb+spshell_template.m+ to read in the observations.
+Note: See code at the bottom of \verb+spshell.m+ to read in the observations.
 
 \end{enumerate}
 
@@ -671,12 +676,12 @@ where $i$ is the measurement index that represents some particular $n$-$l$ pair,
 \begin{enumerate}
 \item (0.1) Write the expression for $F(\bem)$ in the case of $N=1$.
 
-\item (0.4) Compute $F(\bem)$ for all available observations (\refTab{tab:modes_obs}). These observations will be loaded within \verb+spshell_template.m+ if you comment out the last \verb+break+ statement.
+\item (0.4) Compute $F(\bem)$ for all available observations (\refTab{tab:modes_obs}). These observations will be loaded within \verb+spshell.m+ if you comment out the last \verb+break+ statement.
 
-Tip: Initialize an $a \times b$ matrix as \verb+Fobs = NaN(a,b)+, then fill certain entries according to $n$ and $l$ listed in the observations. This ``observations matrix'' can be differenced with a corresponding ``predictions matrix''; the residual matrix can be turned into a vector as \verb+Fres(:)+. See example code at the bottom of \verb+spshell_template.m+.
+Tip: Initialize an $a \times b$ matrix as \verb+Fobs = NaN(a,b)+, then fill certain entries according to $n$ and $l$ listed in the observations. This ``observations matrix'' can be differenced with a corresponding ``predictions matrix''; the residual matrix can be turned into a vector as \verb+Fres(:)+. See example code at the bottom of \verb+spshell.m+.
 
 \begin{itemize}
-\item Show your code for the calculation.
+\item Show your code excerpt for the calculation.
 \item List the value in mHz in \refTab{tab:homo}.
 \end{itemize}
 
@@ -788,7 +793,7 @@ This cubic function is a fit to the PREM profiles, so check that the numbers are
 \pagebreak
 \section*{Problem 3 (3.0). Phase speed and group speed}
 
-For this problem we use the {\bf cubic model} and we consider the fundamental mode ($n=0$) only. In other words, $\fnl$ for $n > 0$ will not be needed.
+For this problem we use the {\bf cubic model} and we consider the fundamental mode ($n=0$) only. In other words, $\fnl$ for $n > 0$ will not be needed. We are not using any observations (such as \refTab{tab:modes_obs}).
 
 \begin{enumerate}
 \item (0.5) Consider the set of $l$, \verb+lvec = [10:30:400]+. Using the expressions in \refTab{tab:waveparm}, make two dispersion plots for the fundamental mode:
@@ -805,7 +810,7 @@ Qualitatively, how do these compare with the predictions for PREM, shown in \ref
 %
 \begin{enumerate}
 \item Repeat Problem 1-\ref{prob:0T40_homo} for \tnl{0}{40} using the cubic model. List your values in \refTab{tab:eigfun}.
-\item How has the cubic model affected the depth sensitivity, $W(r)$, of \tnl{0}{40}?
+\item How has the cubic model affected the depth sensitivity \tnl{0}{40}, as indicated by the depth of the bulge in $W(r)$?
 \item How has it affected the wavelength of \tnl{0}{40}?
 \end{enumerate}
 
@@ -815,7 +820,7 @@ Qualitatively, how do these compare with the predictions for PREM, shown in \ref
 
 \item (0.0) In the next two parts, you will need to use discretized versions of $\rho(r)$ and $\mu(r)$. This discretization is already done within \verb+surf_stress.m+. When you plot $W(r)$ and $T(r)$, you are using discretized versions of these functions, where \verb+rvec+ is the discretized radius values associated with the eigenfunctions.
 
-Use the discretized radius, \verb+rvec+, to compute discretized versions of $\mu(r)$ and $\rho(r)$. This can be done with the command
+Use the discretized radius \verb+rvec+ to compute discretized versions of $\mu(r)$ and $\rho(r)$. This can be done with the command
 %
 \begin{verbatim}
 [rhovec,muvec] = earthfun(rvec)
@@ -840,11 +845,11 @@ where $c$ is phase speed (\refTab{tab:waveparm}). % and expressions for $I_2$ an
 The phase speed, $c$, and the group speed, $U$, have units of rad/s. Multiplication by $a$ (earth radius) will give the group speed in km/s ($U' = Ua$).
 %
 \begin{enumerate}
-\item Show you lines of code.
+\item (0.8) Show you lines of code.
 
 Hint: For an adequate, crude numerical integration, use the command \verb+diff(rvec)+ to get a discretized vector of $dr$ that can be multiplied with the discretized version of $W(r)$. (Integration is summation.)
 
-\item List both $U$ and $U'$ in \refTab{tab:eigfun}.
+\item (0.2) List both $U$ and $U'$ in \refTab{tab:eigfun}.
 \end{enumerate}
 %Also, repeat the calculation for the original homogeneous model, and list your two values in  \refTab{tab:eigfun}.
 
@@ -921,7 +926,7 @@ List your values with 0.1 precision.
 \begin{tabular}{||r|r|r|r|r|r|r|r|r|r|r||}
 \hline
       & $\;l=1\;$ & $\;l=2\;$ & $\;l=3\;$ & $\;l=4\;$ & $\;l=5\;$ & $\;l=6\;$ & $\;l=7\;$ & $\;l=8\;$ & $\;l=9\;$ & $\;l=10\;$ \\ \hline\hline
-$n=0$ & NA &  &  &  &  &  &  &  &  &  \\  \hline
+$n=0$ & NA &  &  &  &  &  &  &  &  & \blank \\  \hline
 $n=1$ & \blank & \blank & \blank & \blank & \blank & \blank & \blank & \blank & \blank & \blank \\  \hline
 $n=2$ & \blank & \blank & \blank & \blank & \blank & \blank & \blank & \blank & \blank & \blank \\  \hline
 $n=3$ & \blank & \blank & \blank & \blank & \blank & \blank & \blank & \blank & \blank & \blank \\  \hline

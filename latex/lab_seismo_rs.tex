@@ -36,14 +36,7 @@ Last compiled: \today
 
 The bandpass filter that is applied to the seismograms can have a dramatic effect on what is visible. The frequency limits of the bandpass is one of several important choices that are needed when plotting record sections.
 
-\item This lab utilizes the Waveform Suite for Matlab developed by Celso Reyes and Michael West \citep{ReyesWest2011}. This software package is installed on the network and will not be available off the network computers (unless you install it yourself). For information, see
-
-\verb+http://www.giseis.alaska.edu/input/celso/matlabweb/waveform_suite/waveform.html+
-
-In Matlab, type \\
-\verb+methods waveform+ \\
-to see the main functions in the toolbox.
-(Note that the Waveform Suite is open-source, but Matlab, which is required to use it, is not open-source.)
+\item This lab uses the GISMO Waveform Suite for Matlab; see \verb+lab_response.pdf+ for details.
 
 \item The seismic waveforms are stored at the Alaska Earthquake Center. AEC receives waveforms from all stations in Alaska, as well as all global stations from the Global Seismic Network (GSN = networks II + IU). Because most of the waveforms are from Alaska, most of the examples are from events from Alaska.
 
@@ -66,14 +59,16 @@ Most waveforms here are also available from the IRIS Data Management Center.
 %
 \begin{enumerate}
 \item Run \verb+run_getwaveform_626.m+ to produce the map in \refFig{fig:map_ex01} and the record section in \refFig{fig:rs_ex01}. \\
-Spend some time to understand the two key parts: (1) waveform extraction, (2) plotting a record section.
+{\bf Spend some time to understand the two key parts}: \\
+(1) waveform extraction, (2) plotting a record section.
 
+What input variables are needed to specify the bandpass? \\
 How is a bandpass filter applied within \verb+plotw_rs.m+? \\
 What input variables are needed to specify the bandpass?
 
-\item Comment the \verb+break+ statement at the end, and then reproduce the spectrogram in \refFig{fig:BOOM} by following the 7 steps within the Matlab comments.
+\item Comment the \verb+break+ statement at the end of \verb+run_getwaveform_626.m+, and then reproduce the spectrogram in \refFig{fig:BOOM} by following the 7 steps within the Matlab comments.
 
-\item Uncomment the \verb+break+ statement. If you want to see spectrograms for other stations in other examples, then you need to replace `BOOM' with another station name.
+\item Uncomment the \verb+break+ statement to turn off the spectrogram tool. If you want to see spectrograms for other stations in other examples, then you need to replace \verb+BOOM+ with another station name.
 
 \item The simplest example of waveform extraction can be seen with the lines of code at the top of \verb+run_getwaveform_626.m+:
 %
@@ -101,9 +96,11 @@ The function \verb+waveform+ is the key function that is called from within \ver
 \begin{itemize}
 \item Example 1: calving event at Yahtse glacier. 
 
+Zoom in on the station map to see the source--station geometry.
+
 Describe some oddities within the record section.
 
-Describe the characteristics of this signal, which was recorded only 1~km from the event. Do you see a distinct P wave?
+Describe the characteristics of this signal, which was recorded only 1~km from the event. Do you see a distinct P wave on any seismogram? (This will be clearer later, after you have seen P waves from normal earthquakes.)
 
 \item Example 2: near-source recordings of \magw{7.5} earthquake in SE Alaska. 
 
@@ -114,7 +111,7 @@ What happened to these seismograms?
 There are two signals that appear at most stations. \\
 Start by examining the station MDM (Murphy Dome).
 
-There is only one source, so how can you explain both signals?
+There is only one source, so how can you explain both signals in terms of their travel times and amplitudes?
 
 \item Example 4: very low frequency earthquake near Denali. 
 
@@ -149,7 +146,7 @@ For each possibly triggered event, enter the following information in \refTab{ta
 \centering
 \caption[]
 {{
-Possibly triggered earthquakes during the 2012 Sumatra \magw{8.6} earthquake in Alaska.
+Possibly triggered earthquakes during the 2012 Sumatra \magw{8.6} earthquake in Alaska. List the basnpass range that you used to make your assessments.
 \label{tab:triggered}
 }}
 \begin{spacing}{1.5}
@@ -173,8 +170,8 @@ Iliamna & & & & \\ \hline
 \end{enumerate}
 
 %-------------------------------------------------------------
-\bibliographystyle{agu08}
-\bibliography{carl_abbrev,carl_main,carl_source,carl_him,carl_alaska}
+%\bibliographystyle{agu08}
+%\bibliography{carl_abbrev,carl_main,carl_source,carl_him,carl_alaska}
 
 %-------------------------------------------------------------
 

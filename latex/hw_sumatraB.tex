@@ -12,7 +12,7 @@
 {\large \bf Problem Set 6: Analysis of the 2004 Sumatra-Andaman earthquake \\
 Part 2: Analyzing the effects of rupture complexity and Earth heterogeneity } \\
 GEOS 626: Applied Seismology, Carl Tape \\
-%Assigned: February 29, 2016 --- Due: March 9, 2016 \\
+Assigned: March 20, 2018 --- Due: March 27, 2018 \\
 Last compiled: \today
 \end{spacing}
 
@@ -36,10 +36,13 @@ Plate boundaries are from \citet{Bird2003}: AU = Australia, IN = India, BU = Bur
 \clearpage\pagebreak
 \section*{Overview and Instructions}
 
+\begin{spacing}{1.0}
+
 The purpose of this problem set is to handle a large data set of seismograms and to extract some useful scientific information about the earthquake source (and Earth structure). As you will see, much of the challenge is in representing the seismic waveforms in a sensible manner; this includes judging which seismograms are ``bad,'' that is, not representative of the ground motion. A key part of this representation is determining what bandpass to use for the seismograms for each scientific question.
 
 \begin{itemize}
-\item This problem set utilizes some of scripts in \verb+GEOTOOLS+ for analyzing sets of waveforms. See \verb+doc_startupB.pdf+ to set up \verb+GEOTOOLS+.
+\item This problem set uses some scripts in \verb+GEOTOOLS+ for analyzing sets of waveforms. \\
+See \verb+doc_startupB.pdf+ to set up \verb+GEOTOOLS+.
 
 %---------
 
@@ -91,7 +94,11 @@ Be sure you understand what a bandpass filter is.
 http://stuplots.geophys.uni-stuttgart.de/~plots/Modes/modes.html
 \end{verbatim}
 %
-To get a better feel for spherical harmonic functions, try out \verb+ylmplots.m+.
+To get a better feel for spherical harmonic functions, try out \verb+ylmplots.m+ and this website:
+%
+\begin{verbatim}
+http://lucien.saviot.free.fr/terre/index.en.html
+\end{verbatim}
 
 %---------
 
@@ -104,6 +111,8 @@ imatch = find(strcmp('SBA',sta)==1)
 Or try out the commands \verb+wkeep+ and \verb+wcut+.
 
 \end{itemize}
+
+\end{spacing}
 
 %------------------------
 
@@ -354,18 +363,15 @@ Hint: The variable \verb+nfac+ will change the amplitudes of the plotted wavefor
 \bibliography{carl_abbrev,carl_him,carl_main,carl_slab}
 %-------------------------------------------------------------
 
-%\clearpage
-
-%\input{/home/carltape/latex/misc/wave_params_insert}
-
-\pagestyle{empty}
-
 \clearpage\pagebreak
+
+%\pagestyle{empty}
+
 \begin{figure}
 \centering
 \begin{tabular}{cc}
-(a) & \includegraphics[width=11cm]{modes_toroidal} \\
-(b) & \includegraphics[width=11cm]{modes_spheroidal}
+(a) & \includegraphics[width=10cm]{modes_toroidal} \\
+(b) & \includegraphics[width=10cm]{modes_spheroidal}
 \end{tabular}
 \caption[]
 {{
@@ -386,6 +392,10 @@ These figures are generated from {\tt modes\_PREMobs.m}.
 %}}
 %\label{fig:love_eigfun_n0}
 %\end{figure}
+
+\clearpage\pagebreak
+
+\input{/home/carltape/latex/misc/wave_params_insert}
 
 %-------------------------------------------------------------
 \end{document}

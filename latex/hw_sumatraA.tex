@@ -153,10 +153,10 @@ $A(\omega)$ is clearly the amplitude in the sense that
 
 %-----------
 
-\item (0.1)
+\item (0.2)
 
 \begin{enumerate}
-\item Using integration by parts ($\int u\,dv = [u\,v] - \int v\,du$), show that 
+\item (0.1) Using integration by parts ($\int u\,dv = [u\,v] - \int v\,du$), show that 
 %
 \begin{eqnarray}
 \cF \left[ \dot{\fft}(t) \right] = i\omega \, \cF \left[ \fft(t) \right]
@@ -168,12 +168,12 @@ where $\dot{\fft}(t) = d\fft/dt$.
 
 Hint: You can assume that $h(t)$ is zero at $\pm\infty$. This is a reasonable assumption for a seismogram: the signal is at the noise level before the earthquake, and long after the earthquake, the effects of attenuation bring the signal back down to the noise level.
 
-\item What are the units of $\ffw(\omega)$?
+\item (0.1) What are the units of $\ffw(\omega)$?
 \end{enumerate}
 
 %-----------
 
-\item (0.2) \refEq{fftder1} holds for the first derivative of $\fft(t)$, which we denote as either $\dot{\fft}(t)$ or $\fft^{(1)}(t)$. The expression can be generalized for the $n$th derivative, which is (using two different notations)
+\item (0.1) \refEq{fftder1} holds for the first derivative of $\fft(t)$, which we denote as either $\dot{\fft}(t)$ or $\fft^{(1)}(t)$. The expression can be generalized for the $n$th derivative, which is (using two different notations)
 %
 \begin{eqnarray}
 \cF \left[ \fft^{(n)}(t) \right] &=& (i\omega)^n \, \cF \left[ \fft(t) \right]
@@ -283,7 +283,7 @@ Hint: the magnitude is $\mw > 6$.
 \item (0.0) Does this aftershock have the same mechanism as the mainshock?
 \item (0.4) In summary, identify and interpret the main features in the seismogram.
 
-Hint: Noise is a feature.
+Hint: Aftershocks would be one feature.
 \end{enumerate}
 
 %-------------------
@@ -315,9 +315,9 @@ What is the corresponding period?
 
 %-------------------
 
-\item (0.4) Using the same frequencies that you used to define the full $C(\omega)$, evaluate the instrument response to acceleration, $I_a(\omega)$. Hint: see lab on instrument response.
+\item (0.4) Using the same frequencies that you used to define the full $C(\omega)$, evaluate the instrument response to acceleration, $I_a(\omega)$. Hint: See lab on instrument response.
 
-Plot $I_a(\omega)$ as an amplitude spectrum over the full range of frequencies. Use log-log scaling.
+Plot $I_a(\omega)$ as an amplitude spectrum over the full range of frequencies (not just $[0.2,1.0]$~mHz). Use log-log scaling.
 
 %-------------------
 
@@ -350,7 +350,7 @@ Run \verb+CAN_noise.m+. This will generate a time series at CAN for 10 days prio
 \begin{enumerate}
 \item (0.2) Using the GCMT catalog, list the magnitude, location, and origin time of the conspicuous event within the time series. 
 
-\item (0.3) Extract {\bf a multi-day time series that does not contain any earthquake-like signals}. Include this plot. What is the dominant period?
+\item (0.3) Extract {\bf a multi-day time series that does not contain any earthquake-like signals}. Include this plot. What is the dominant period? Mark the Nyquist frequency on the $x$-axis.
 
 Tip: Use the command \verb+plot(w,'xunit','h')+ to plot in hours.
 
@@ -371,7 +371,7 @@ where \verb+Xabs+ is the amplitude spectrum $|X_a(\omega)|$.
 
 \item (0.2) On your plot, mark the ocean microseismic period ranges \trange{5}{8} and \trange{10}{16} that are mentioned in \citet[][Section 11.2]{ShearerE2}.
 
-\item (0.2) Qualitatively, how does your spectrum compare with Figure 11.6 of \citet{ShearerE2}?
+\item (0.2) Qualitatively, how does your spectrum---notably your ocean microseism peak---compare with Figure 11.6 of \citet{ShearerE2}?
 
 \item (0.1) Based on this observation, and considering all possible periods, what period range at CAN will provide the highest signal-to-noise ratio?
 
@@ -393,9 +393,10 @@ where \verb+Xabs+ is the amplitude spectrum $|X_a(\omega)|$.
 \begin{enumerate}
 \item (1.5) {\bf Direct arrival}. 
 Return to \verb+CAN_response.m+ in Problem 2.
-Analyze the direct arrival by extracting (use \verb+extract+) 1 hour before the centroid origin time to 3 hours after, where the centroid origin time is \\ \verb+otime_cmt = 7.323070424652778e5+ (serial days in Matlab).
+Analyze the direct arrival by extracting (use \verb+extract+; \eg see \verb+CAN_noise.m+) 1 hour before the centroid origin time to 3 hours after, where the centroid origin time is \\ \verb+otime_cmt = 7.323070424652778e5+ (units are in days)
 
 \begin{enumerate}
+\item (0.0) Make sure you are looking at a 4-hour time series before proceeding.
 \item (0.7) Plot the amplitude spectrum (log-log) and mark the two ocean microseism frequency intervals.
 \item (0.2) What is the approximate frequency and period associated with the maximal amplitude?
 \item (0.3) Discuss how your plot compares with the noise spectrum from Problem~3.
@@ -409,7 +410,7 @@ In your 3-hour spectrum can you identify any of the normal modes in the range $[
 \item (1.5) {\bf P wave}. Adapt \verb+CAN_P.m+ to answer the following questions.
 %
 \begin{enumerate}
-\item (0.7) Using Supplemental Figure S11 of \citet{Ammon2005} as a guide, extract ``the'' P-wave and include a plot. About how long is the P wave signal?
+\item (0.7) Using Supplemental Figure S11 of \citet{Ammon2005} as a guide, extract ``the'' P-wave and include a plot of the time series. About how long is the P wave signal?
 \item (0.4) Plot the amplitude spectrum of the P wave on a log-log plot with frequency ranging from $10^{-3}$~Hz to $10^1$~Hz. (Make sure you are working with the BHZ data.)
 
 \item (0.4) If you had to estimate a corner frequency \citep[][p.~267]{SteinWysession}, what would it be? Justify your estimate in words or numbers.

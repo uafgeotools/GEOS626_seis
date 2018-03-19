@@ -9,9 +9,6 @@
 \renewcommand{\theequation}{L\arabic{equation}}
 \renewcommand{\thesection}{L\arabic{section}}
 
-\newcommand{\snl}[2]{\mbox{$_{#1}\ssS_{#2}$}}
-\newcommand{\snlm}[3]{\mbox{$_{#1}\ssS_{#2}^{#3}$}}
-
 %--------------------------------------------------------------
 \begin{document}
 %-------------------------------------------------------------
@@ -45,12 +42,12 @@ Last compiled: \today
 \end{verbatim}
 \end{spacing}
 %
-(You can see these lines in \verb+sumatra_hf_template.m+.)
-You do not need more than one seismogram for each site. In general the multiple listings represent different seismometers being used or different vertical locations, like at the surface or down a deep borehole.
+(You can see these lines when running \verb+sumatra_hf_template.m+.)
+You do not need more than one seismogram for each site. In general the multiple listings represent different seismometers being used at different vertical locations, like at the surface and down a deep borehole.
 
 \item For such a big event as Sumatra, there are many seismograms that are ``clipped'' or distorted due to an erroneous response of the seismometer.
 
-\item Having a uniform distribution (by distance, azimuth, latitude, etc) is often needed for analyses. {\bf So when you are picking a subset, be sure you have enough stations to cover the particular variation of interest.} Look over the homework porblems to see what variations we will be covering.
+\item Having a uniform distribution (by distance, azimuth, latitude, etc) is often needed for analyses. {\bf So when you are picking a subset, be sure you have enough stations to cover the particular variation of interest.} Look over the homework problems to see what variations we will be covering.
 \end{itemize}
 
 \end{itemize}
@@ -63,7 +60,7 @@ You do not need more than one seismogram for each site. In general the multiple 
 \begin{enumerate}
 \item  Run \verb+sumatra_modes.m+ and examine the stations that were cut from the analysis. Describe three ``errors'' in these records.
 
-\item Using \verb+xpdf+ or \verb+evince+, browse the 139-page pdf file
+\item From a terminal window (not Matlab), use \verb+xpdf+ or \verb+evince+ to browse the 139-page pdf file
 
 \verb+/home/admin/databases/SUMATRA/data/wfobject/all_sumatra_modes.pdf+
 
