@@ -62,16 +62,14 @@ The matrix for this problem is
 
 %----------------
 
-\item (0.3) Find the matrix, $\bA$, ($T(\bx) = \bA\bx$) of the following linear transformations:
+\item (0.3) Find the matrix $\bA$ ($T(\bx) = \bA\bx$) of the following linear transformations:
 %
 \begin{enumerate}
-\item $\mathbb{R}^2 \rightarrow \mathbb{R}^2$ reflection about $x = 0$.
 \item $\mathbb{R}^2 \rightarrow \mathbb{R}^2$ reflection about $y = 0$.
+\item $\mathbb{R}^2 \rightarrow \mathbb{R}^2$ reflection about $x = 0$.
 \item $\mathbb{R}^3 \rightarrow \mathbb{R}^3$ reflection through $xy$-plane.
 \end{enumerate}
 %
-You are free to use any output from Matlab.
-
 Hint: What does $\bA$ do to the input vector $(x,y)$?
 
 %----------------
@@ -105,13 +103,18 @@ T \left( \left[ \begin{array}{r} 3 \\ 2 \\ 1  \end{array} \right] \right) = \lef
 %----------------
 
 \pagebreak
-\item (0.8) Compute the angle between $\bu = (1,1,1)^T$ and $\bv = (1,2,3)^T$, then compute the area of the parallelogram defined by these vectors using three different methods:
-%
+\item (0.8) 
 \begin{enumerate}
-\item (0.3) Use the height vector, $\bh = \bv - \proj_{\ssL} \bv$, where $\ssL$ is the line in the direction of $\bu$ (\refFig{fig:proj}).
+\item (0.2) Compute the angle between $\bu = (1,1,1)^T$ and $\bv = (1,2,3)^T$.
+
+\item Compute the area of the parallelogram defined by these vectors using three different methods:
+\begin{enumerate}
+\item (0.2) Use the height vector, $\bh = \bv - \proj_{\ssL} \bv$, where $\ssL$ is the line in the direction of $\bu$ (\refFig{fig:proj}).
 %Sketch the various vectors and the parallelogram.
-\item (0.3) Use the cross product formula, $\| \bu \times \bv \|$ (note: {\em not} the version $\|\bu\|\|\bv\|\sin\theta$, which is used in part a).
+\item (0.2) Use the cross product formula, $\| \bu \times \bv \|$ (note: {\em not} the version $\|\bu\|\|\bv\|\sin\theta$, which is used in part a).
 \item (0.2) Compute $\sqrt{\det(\bA^T \bA)}$, where $\bA = [\;\bu \; \bv\;]$.
+\end{enumerate}
+
 \end{enumerate}
 
 %----------------
@@ -181,7 +184,7 @@ Hint: For a scalar $a$, note that $a = a^T$.
 \end{array} \right].
 \end{eqnarray*}
 %
-Express the solution as a sum of three vectors.
+Express the solution as a sum of three vectors (including free parameters).
 
 Hint: Feel free to use a computer to help.
 %Matlab is permissible (though it is not needed).
