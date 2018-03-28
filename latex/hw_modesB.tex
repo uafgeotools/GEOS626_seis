@@ -3,6 +3,8 @@
 
 \input{hw626_header}
 
+\renewcommand{\baselinestretch}{1.0}
+
 \newcommand{\cutoff}[1]{{#1}_{x\bar{n}}}
 
 %--------------------------------------------------------------
@@ -13,7 +15,7 @@
 \centering
 {\large \bf Problem Set 7: Love waves for a layered Earth\footnote{This problem set was adapted from one by Charles Ammon, Penn State University.}} \\
 GEOS 626: Applied Seismology, Carl Tape \\
-Assigned: March 26, 2018 --- Due: April 2, 2018 \\
+Assigned: March 26, 2018 --- Due: April 4, 2018 \\
 Last compiled: \today
 \end{spacing}
 
@@ -24,6 +26,14 @@ Last compiled: \today
 This problem set is a direct extension of the problem set ``Toroidal modes of a spherically symmetric earth.'' Here we examine mode solutions for Love waves of a simple model of a layer over a halfspace. The layer represents the crust, the halfspace the upper mantle.
 
 \begin{itemize}
+\item Goals:
+%
+\begin{itemize}
+\item to explore Love waves through dispersion plots and eigenfunctions
+\item to relate Loves waves to toroidal modes
+\item to reproduce some textbook plots to fully understand how they were made
+\end{itemize}
+
 \item Background reading: \\
 Section 2.7 of \citet{SteinWysession} \\
 Chapter 7 of \citet{AkiRichardsE2}
@@ -38,7 +48,10 @@ Chapter 7 of \citet{AkiRichardsE2}
 
 %------------------------
 
+%\pagebreak
 \section*{Background}
+
+
 
 In the modes problem set you solved a system of coupled, first-order differential equations.
 %
@@ -78,30 +91,39 @@ Here the layer represents the crust, and the halfspace represents the upper mant
 
 %------------------------
 
-\subsection*{Problem 1 (2.0). Setup (no coding!)}
+\subsection*{Problem 1 (2.0). Setup (minimal coding)}
 
 \begin{enumerate}
 
-\item (0.3) Write down the two equations represented by \refEq{rODEs} and the boundary conditions; show explicit $r$ dependence and $n$ dependence (\eg $\omega_n$). For the boundary conditions, do not consider the technicalities in \verb+surf_stress_love.m+; just write down the analagous BCs to those from the toroidal shell problem.
+\item (0.3) Write down the two equations represented by \refEq{rODEs} and the boundary conditions; show explicit $r$ dependence and $n$ dependence (\eg $\omega_n$). For the boundary conditions, do not consider the technicalities in \verb+surf_stress_love.m+; just write down the analogous boundary conditions to those from the toroidal shell problem.
 
 %----------------
 
-\item (1.2) The appearance of overtone branches for \refEq{rODEs} depends on the {\em cut-off frequency of the nth higher mode} \citep[][Eq. 7.8]{AkiRichardsE2}
-\footnote{\refEq{wcn} is also listed in a different form in \citet[][p. 92]{SteinWysession}.}
-\footnote{I have specified the notation $\bar{n}$ to distinguish it from the $n$ used for the indexing of mode branches.}
+\item (1.2) The appearance of overtone branches for \refEq{rODEs} depends on the {\em cut-off frequency of the nth higher mode} 
 %
-\begin{equation}
-\cutoff{\omega} = \frac{\bar{n}\pi \beta_c}{H} \left( 1 - \frac{\beta_c^2}{\beta_m^2}\right)^{-1/2}
+\begin{eqnarray}
+\cutoff{\omega} &=& g\,\bar{n}
 \label{wcn}
-\end{equation}
+\\
+g &=& \frac{\pi\beta_c}{H} \left( 1 - \frac{\beta_c^2}{\beta_m^2}\right)^{-1/2}
+\label{wcn_Aki}
+\\
+&=& \frac{\pi}{H} \frac{1}{\frac{1}{\beta_c}\left(1 - \frac{\beta_c^2}{\beta_m^2} \right)^{1/2}}
+= \frac{\pi}{H} \frac{1}{\left(\frac{1}{\beta_c^2} - \frac{1}{\beta_m^2} \right)^{1/2}}
+= \frac{\pi}{H} \left( \frac{1}{\beta_c^2} - \frac{1}{\beta_m^2} \right)^{-1/2}
+\label{wcn_SW}
+\end{eqnarray}
 %
-where $\beta_c$ is the crustal velocity, $\beta_m$ is the mantle velocity, and $H$ is the thickness of the layer. \refEq{wcn} implies:
+where $\beta_c$ is the crustal velocity, $\beta_m$ is the mantle velocity, and $H$ is the thickness of the layer. \refEq{wcn_Aki} is the version listed in \citet[][Eq. 7.8]{AkiRichardsE2}; \refEq{wcn_SW} is the version listed in  \citet[][p. 92]{SteinWysession}. I have used the notation $\bar{n}$ to distinguish it from the $n$ used for the indexing of mode branches. Note that $g$ is a function of the structural model only.
+
+\refEq{wcn} implies:
 %
 \begin{itemize}
 \item The index $\bar{n} \ge 1$ represents the number branches ($n = 0, 1, \ldots, \bar{n}-1$) that are present for $\omega_{x\overline{(n-1)}} < \omega < \omega_{x\bar{n}}$.
 \item Only the $n=0$ fundamental branch exists for $\omega < \omega_{x1}$
 \item The $n=0$ and $n=1$ branches exist for $\omega_{x1} < \omega < \omega_{x2}$.
 \end{itemize}
+%
 
 Consider a model with the following properties for the crust (subscript~$c$) and upper mantle (subscript~$m$):
 %
@@ -121,7 +143,7 @@ H &=& 40\;{\rm km}
 \item (0.1) What are the shear modulus (or rigidity) values of $\mu_m$ and $\mu_c$ ($\mu = \rho\beta^2$)? \\
 What are the simplest units for shear modulus?
 
-\item (0.2) List the $\cutoff{f} = \cutoff{\omega}/(2\pi)$ for \nrange{1}{10}.
+\item (0.2) List the $\cutoff{f} = \cutoff{\omega}/(2\pi)$ for $\bar{n}=1$--10.
 
 \item (0.3) Using Figure 7.3 of \citet{AkiRichardsE2} as a guide (but with $f$ instead of $\omega$ for the $x$-axis), make a {\em schematic} (\ie drawn by hand) dispersion diagram with the horizontal axis (frequency $f$) ranging from 0 to 0.33~Hz and the vertical axis (phase speed $c$) ranging from $\beta_c$ to $\beta_m$.
 
@@ -133,7 +155,7 @@ Plot a dot on your sketch to represent this case.
 \item (0.1) Given a fixed period of $T = 20$~s, how many solutions do you expect? \\
 What about for $T = 6$ s? 
 
-\item (0.1) What is the wavelength of shear waves in the mantle, $\lambda_m$, for period $T = 20$~s?
+\item (0.1) What is the wavelength $\lambda_m$ of shear waves in the mantle for period $T = 20$~s?
 
 \item (0.2) Given a fixed period $T$, what is the range of phase speeds $c$ that must be searched? \\
 What is the corresponding range of wavenumbers $k$?
@@ -163,7 +185,7 @@ In order to avoid numerical overflow during integration, we will use a coordinat
 %\pagebreak
 \subsection*{Problem 2 (8.0). Implementation}
 
-The boundary conditions for this problem are similar to those used in the toroidal modes problem. The shear stess is zero at the surface and zero at some depth in the mantle, far below the main sensitivity depths of the waves of interest. This is implemented in \verb+surf_stress_love.m+ with the initial conditions
+The boundary conditions for this problem are similar to those used in the toroidal modes problem. The shear stress is zero at the surface and zero at some depth in the mantle, far below the main sensitivity depths of the waves of interest. This is implemented in \verb+surf_stress_love.m+ with the initial conditions
 %
 \begin{eqnarray}
 W(r_b) &=& 1.0
@@ -190,7 +212,8 @@ where $r_b = 0$ because of our choice of origin. Note that the ``bottom stress''
 Notes:
 %
 \begin{itemize}
-\item You will need to (significantly) adapt \verb+spshell_template.m+ to \verb+spshell_love.m+. %(You might even find that starting from scratch is easier.)
+\item You will need to rename \verb+spshell_template.m+ to \verb+spshell_love.m+ and then make significant modifications.
+%(You might even find that starting from scratch is easier.)
 
 Declare the following global variables:
 %
@@ -204,7 +227,7 @@ Note that \verb+rvec+ and \verb+WT+ are defined in \verb+surf_stress_love.m+, no
 \item One of the key parts of the code involves selecting the range of $k$ when searching for the roots $k_n$.
 %\item One of the key parts of the code involves selecting the range of $k$ when searching for the roots $k_n$. Furthermore, consider the order in which $k_n$ are computed in your search.
 Your answers in Problem~1-\ref{prob:model1} should be helpful here.
-Use the Matlab command \verb+linspace+ to generate a vector, \verb+kvec+, of \verb+numk+ values (try \verb+numk=100+).
+Use the Matlab command \verb+linspace+ to generate a vector \verb+kvec+ containing \verb+numk+ values (try \verb+numk=100+).
 
 \item I have provided \verb+surf_stress_love.m+ as a replacement for \verb+surf_stress.m+. Make sure you understand how this works.
 
@@ -327,10 +350,10 @@ Notes:
 
 %------------------------
 
-\pagebreak
 \subsection*{Problem} \howmuchtime\
 
 %-------------------------------------------------------------
+\pagebreak
 \bibliographystyle{agu08}
 \bibliography{carl_abbrev,carl_main,carl_source,carl_him,carl_alaska}
 %-------------------------------------------------------------
@@ -360,7 +383,7 @@ Notes:
 \end{tabular}
 \caption[]
 {{
-Dispersion plots for a toroidal modes in a homogeneous shell and Love waces in a layer-over-halfspace.
+Dispersion plots for a toroidal modes in a homogeneous shell and Love waves in a layer-over-halfspace.
 (a) Dispersion plot for toroidal modes in a homogeneous shell. The dotes shows the only allowable solutions; the curves are drawn to show the difference branches ($n=0$, $n=1$, etc). 
 Note the $10^{-3}$ scaling for wavenumber. These wavenumbers (and frequencies) are much smaller than those in (b).
 (b) Dispersion plot for Love waves in a layer-over-halfspace. The dots are {\bf not} discrete modes; one should think of the solution space as a set of curves (\ie connect the colored dots).

@@ -65,12 +65,20 @@ Make a copy of each of these files. The label \verb+CAN+ is for a station at Can
 \item instrument response and Fourier analysis: \citet[][Ch.~6]{SteinWysession}
 \item Sumatra earthquake: \citep{Lay2005,Ammon2005,Park2005,Ni2005}
 %\item normal modes: \citet[][Section 2.9]{SteinWysession} and \citet[][Ch.~8]{DT}. See also ``Computational details'' in Section 10.5.1 of DT.
-\item PDFs of all referenced Sumatra papers can be found in one of two directories:
+\item PDFs of all referenced Sumatra papers can be found this directory:
 %
 \begin{verbatim}
 /home/admin/databases/SUMATRA/papers/
-/home/admin/databases/SUMATRA/papers/SCIENCE_2005/
 \end{verbatim}
+%
+You can readily access these papers by setting a symbolic link
+%
+\begin{verbatim}
+cd
+ln -s /home/admin/databases/SUMATRA/papers sumatra
+\end{verbatim}
+%
+Example command to open a paper: \verb+xpdf ~/sumatra/04_Ammon2005all.pdf+.
 
 \end{itemize}
 
@@ -87,7 +95,7 @@ Make a copy of each of these files. The label \verb+CAN+ is for a station at Can
 
 %------------------------
 
-\pagebreak
+%\pagebreak
 \section*{Problem 1 (0.5). Complex numbers and functions}
 
 \begin{itemize}
