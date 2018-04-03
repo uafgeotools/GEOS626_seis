@@ -77,7 +77,7 @@ if iplot_all_freqs==1
         % update W(r) and T(r), stored within WT
         surf_stress(fvec(ii));
         
-        % plotting parameters
+        % plotting parameters (radius converted to km)
         rplot = rvec/1000;
         xmx = 1.1; ymn = rspan(1)/1000; ymx = rspan(2)/1000; dy = 100;
 
@@ -154,16 +154,19 @@ for ii = 2:numf
 
         % plotting eigenfunctions (displacement and stress as a function of radius)
         if iplot_eig_freqs==1
-            xmx = 1.2; ymn = rspan(1)/1000; ymx = rspan(2)/1000;
-            rplot = rvec/1000;
+            % normalize each eigenfunction by its max value
             Wplot = WT(:,1)/max(abs(WT(:,1)));
             Tplot = WT(:,2)/max(abs(WT(:,2)));
+            % plotting
+            xmx = 1.2; ymn = rspan(1); ymx = rspan(2);
             figure(1); if nmax==0, subplot(1,1,n+1); else subplot(3,3,n+1); end
             hold on;
-            plot(Wplot,rplot,'b');    % W(r), displacement (blue)
-            plot(Tplot,rplot,'r');    % T(r), stress (red)
-            plot([-xmx xmx],ymn*[1 1],'k',[-xmx xmx],ymx*[1 1],'k',[0 0],[ymn ymx],'k');
-            axis([-xmx xmx ymn-300 ymx+300]); %grid on;
+            plot(Wplot,rvec/1000,'b');    % W(r), displacement (blue)
+            plot(Tplot,rvec/1000,'r');    % T(r), stress (red)
+            plot([-xmx xmx],ymn/1000*[1 1],'k');
+            plot([-xmx xmx],ymx/1000*[1 1],'k');
+            plot([0 0],[ymn ymx]/1000,'k');
+            axis([-xmx xmx ymn/1000-300 ymx/1000+300]); %grid on;
             title(sprintf('f = %.2f mHz, T = %.2f min (l = %i)',froots(n+1)*1000,1/f0/60,l));
             text(-1,ymx+100,sprintf('n = %i',n));
             if mod(n-1,3)==0, ylabel('radius (km)'); end
