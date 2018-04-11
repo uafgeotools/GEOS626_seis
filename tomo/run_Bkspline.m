@@ -1,15 +1,14 @@
 %
-% test_spline_vals.m
+% run_Bkspline.m
 %
-% This is a plotting test function for spline_vals.m, which returns a
-% spherical spline basis function at specifited lat-lon points.  It also
-% returns the spatial derivatives of the basis function, which are useful
-% for representating derivatives of target functions, as well as for
-% damping.
+% This is a plotting test function for Bkspline.m, which returns a
+% spherical spline basis function at specifited lat-lon points.
+% It also returns the spatial derivatives of the basis function,
+% which are useful for representating derivatives of target functions,
+% as well as for damping.
 %
 
-clear
-close all
+clear, close all, clc
 format short
 format compact
 
@@ -26,35 +25,35 @@ latmin = ax1(3); latmax = ax1(4);
 
 % select sample spline (DEFAULT: pick one at random)
 q = 6;      % KEY: determines the scalelength of the spline (q = 0-10)
-clat = randomvec(min(lat),max(lat),1);
-clon = randomvec(min(lon),max(lon),1);
+clon = (lonmax - lonmin)*rand + lonmin;
+clat = (latmax - latmin)*rand + latmin;
 
-if 1==1
-    ncol = 1;
-    ff = spline_vals(clon, clat, q, lon, lat, {ncol});
-    [X,Y,Z] = griddataXB(lon,lat,ff(:,1),100,'cubic');
-    figure; pcolor(X,Y,Z); shading interp;
-    axis equal, axis(ax1); caxis([0 1]); colorbar('vert'); 
-    xlabel(' Longitude (deg)'); ylabel(' Latitude (deg)');
-    title([' Spherical spline basis function, order q=' num2str(q) ', centered at lon = ' ...
-        sprintf('%.2f',clon) ', lat = ' sprintf('%.2f',clat) ]);
-    %fontsize(11); orient tall, wysiwyg
-    break
-end
+% evaluate spline function
+ff = Bkspline(clon, clat, q, lon, lat);
 
-%----------------------------
-% THE REST IS FOR LOOKING AT DERIVATIVES OF BASIS FUNCTIONS -- THIS IS NOT
-% NEEDED IN THE TOMOGRAPHY PROBLEM
+% plotting
+[X,Y,Z] = griddataXB(lon,lat,ff(:,1),100,'cubic');
+figure; pcolor(X,Y,Z); shading interp;
+axis equal, axis(ax1); caxis([0 1]); colorbar('vert'); 
+xlabel(' Longitude (deg)'); ylabel(' Latitude (deg)');
+title([' Spherical spline basis function, order q=' num2str(q) ', centered at lon = ' ...
+    sprintf('%.2f',clon) ', lat = ' sprintf('%.2f',clat) ]);
+
+break
+
+%--------------------------------------------------------------------------
+% THE REST IS FOR LOOKING AT DERIVATIVES OF BASIS FUNCTIONS --
+% THIS IS NOT NEEDED IN THE TOMOGRAPHY PROBLEM
 
 ncol = 5;
-ff = spline_vals(clon, clat, q, lon, lat, {ncol});
+ff = Bkspline(clon, clat, q, lon, lat, {ncol});
 
 dfdp = ff(:,2);
 dfdt = ff(:,3);
 th   = (90-lat)/deg;
 
 % magnitude of surface gradient of spline
-% check the computation return spline_vals.m
+% check the computation return Bkspline.m
 dfmag = sqrt( dfdt.^2 + ((1./sin(th)) .* dfdp).^2 );
 norm( dfmag - ff(:,5) )
 
@@ -86,7 +85,7 @@ axis equal, axis(ax1); colorbar('horiz');
 
 % create sample data
 [lon,lat] = gridvec(lonmin,lonmax,20,latmin,latmax);
-ff = spline_vals(clon, clat, q, lon, lat, {ncol});
+ff = Bkspline(clon, clat, q, lon, lat, {ncol});
 
 [X,Y,Z] = griddataXB(lon,lat,ff(:,5),100,'cubic');
 quiver(lon,lat,ff(:,2),-ff(:,3),'k');  % minus sign is to plot the EAST component

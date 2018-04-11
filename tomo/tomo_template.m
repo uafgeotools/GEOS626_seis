@@ -39,7 +39,7 @@ nplot = length(lonplot);
 % this is needed to view the tomographic models that we generate at the end.
 B = zeros(nplot,nspline);
 for ii=1:nspline
-    ff = spline_vals(qlon(ii),qlat(ii),q,lonplot,latplot,{1});
+    ff = Bkspline(qlon(ii),qlat(ii),q,lonplot,latplot);
     B(:,ii) = ff(:);
 end
 

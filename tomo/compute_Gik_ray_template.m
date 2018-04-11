@@ -5,10 +5,9 @@
 % Template script for computing an element of the partial derivatives matrix, Gik.
 %
 
+close all, clear, clc
 format short
 format compact
-close all
-clear
 
 %-----------------------------
 
@@ -48,9 +47,8 @@ c0 = 3500;      % m/s
 %==========================================================================
 % compute design matrix
 
-% spline evaluations (DO NOT CHANGE THESE)
-opts = {1};     % with this option, spline_vals.m will return only the function evaluation (not the derivatives)
-q = 8;          % scale of spherical spline basis function
+% scale of spherical spline basis function
+q = 8;
 
 % number of points along each ray path
 nump = 1000;
@@ -67,7 +65,7 @@ Gik = zeros(ndata,nspline);
 disp('     i  isrc irec');
 for isrc = 1:nsrc
     for irec = 1:nrec
-        i = (isrc-1)*nrec + irec;
+        i = (isrc-1)*nrec + irec;   % measurement index (row of Gik)
         disp(sprintf('%6i%6i%6i',i,isrc,irec));
         
         
@@ -75,6 +73,7 @@ for isrc = 1:nsrc
         
     end
 end
+
 
 
 %==========================================================================

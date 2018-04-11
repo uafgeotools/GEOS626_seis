@@ -1,5 +1,5 @@
-function ff = spline_vals(clon, clat, q, lon_vec, lat_vec, opts)
-%SPLINE_VALS evlauate a spherical spline function at a set of input points
+function ff = Bkspline(clon, clat, q, lon_vec, lat_vec, opts)
+%BKSPLINE evlauate a spherical spline function at a set of input points
 %
 % INPUT:
 %   clon, clat, q   = these describe the local spherical spline basis function
@@ -10,8 +10,16 @@ function ff = spline_vals(clon, clat, q, lon_vec, lat_vec, opts)
 %   ff              = value of the spline function (and derivatives)
 %                     evaluated at the specified lon-lat points
 %
+% See Wang and Dahlen (1995)
+% This function also appears (as spline_vals.m) in the compearth repository
+%     https://github.com/carltape/compearth/
+% compearth / surfacevel2strain / matlab / util_est / 
+%
 % Carl Tape, 2005
 %
+
+% number of columns of ff to return
+if nargin==5, ncol=1; else ncol = opts{1}; end
 
 % convert to theta-phi
 deg    = 180/pi;
@@ -21,7 +29,6 @@ ph_vec = lon_vec/deg;
 th_vec = (90-lat_vec)/deg;
 
 % options and parameters -- q controls the scale (width) of the spline
-ncol  = opts{1};      % number of columns of ff to return
 nf    = 2^q;
 c72   = cos(72/deg);
 base  = acos(c72 / (1 - c72));
@@ -51,7 +58,7 @@ if sum([ length(inds1) length(inds2) length(inds3) length(inds4)]) - length(dif)
     error('datapoints have not been partitioned properly');
 end
 
-if ncol == 1
+if ncol==1
     
     ff = zeros(ndata,1);
     ff(inds2) = ((-0.25*dif(inds2)  + 0.75).*dif(inds2)  - 0.75).*dif(inds2) + 0.25;
@@ -59,7 +66,6 @@ if ncol == 1
     ff(inds4) = 1;
     
 else
-    
     cosdel = cos(th)*costh + sin(th) * sinth .* cos(ph - ph_vec);
     sindel = sqrt(1 - cosdel.*cosdel);
     cotdel = cosdel ./ sindel;
@@ -99,7 +105,6 @@ else
     ff(inds2,5) = 0.75 * db^-3 * (2*db - del(inds2)).^2; 
     end
                   
-    
     % datapoint is within the inner circle 
     ff(inds3,1) = (0.75*r(inds3) - 1.5) .* (r(inds3).^2) + 1;
     ff(inds3,2) = dq * (-3*r(inds3) + 2.25*r(inds3).^2) .* dadp(inds3);
