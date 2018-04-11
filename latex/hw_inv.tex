@@ -60,7 +60,7 @@ where $u_i$ denotes one of $M_{\rm g}$ geometrical parameters and $v_k$ denotes 
 
 \begin{enumerate}
 \item (0.2) How many geometrical parameters are needed to describe PREM?
-\item (0.2) How many material parameters are needed to describe PREM? Hint: $>$10.
+\item (0.2) How many material parameters are needed to describe PREM? Hint: $>$20.
 \item (0.1) How many {\em fewer} material parameters are needed to describe PREM in the isotropic approximation? Hint: Make sure to read the footnote of Table 1 in the paper.
 \end{enumerate}
 
@@ -141,20 +141,20 @@ In class we discussed the least-squares method and showed how to construct a sol
 An equation for an ellipse centered at $(0,0)$ is given by
 %
 \begin{equation}
-ax^2 + bxy + cy^2 = 1,
+ax^2 + bxy + cy^2 = 1
 \label{ellipse}
 \end{equation}
 %
-where $a$, $b$, and $c$ are the unknowns that we want to determine by using a least-squares method.
+The variables $a$, $b$, and $c$ are the unknowns that we want to determine by using a least-squares method in Problem~3.
 
 \begin{enumerate}
-\item (1.0) Write down a ``forward function'' for a model $\bem = (a,\,b,\,c)$ that inputs a polar angle $\theta_i$ and outputs the point $(x_i,\,y_i)$ on the ellipse described by $\bem$ (\refeq{ellipse}). This function can be thought of as
+\item (1.0) Determine a ``forward function'' for a model $\bem = (a,\,b,\,c)$ that inputs a polar angle $\theta_i$ and outputs the point $(x_i,\,y_i)$ on the ellipse described by $\bem$ (\refeq{ellipse}). This function can be thought of as
 %
 \begin{equation}
 f(\bem,\,\theta_i) = (x_i,\,y_i).
 \end{equation}
 %
-You want to find the expressions for $x_i$ and $y_i$ in terms of $a$, $b$, $c$, and $\theta_i$.
+List the expressions for $x_i$ and $y_i$ in terms of $a$, $b$, $c$, and $\theta_i$.
 
 \item (1.0) Now assume an input set of $N$ polar angles, $\btheta = (\theta_1, \theta_2, \ldots, \theta_N)$, and you want to determine the corresponding output $(x,y)$-points describing the ellipse.
 
@@ -166,6 +166,7 @@ Hint: For $N$ linearly spaced angles, use \verb+theta = linspace(0,2*pi,N)'+.
 
 %------------------------
 
+\pagebreak
 \subsection*{Problem 3 (4.0). Inverse problem: fitting an ellipse to a set of data}
 
 From Problem 2, you should now have a plotting tool for an arbitrary ellipse model $\bem$.
@@ -229,6 +230,7 @@ Hint: See the class notes on the linear regression example (\verb+notes_taylor.p
 
 You may find it easier to use the lines of code below to select your points. You can copy these lines of code directly from the PDF, then paste them into Matlab.
 
+\pagebreak
 \small
 \begin{spacing}{1.0}
 \begin{verbatim}

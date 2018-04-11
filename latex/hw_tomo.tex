@@ -41,7 +41,8 @@ At the end I have listed some additional references.
 \item 
 %The practical aspects of the assignment are entirely based on Matlab (plus its Mapping Toolbox), and I have provided several scripts that you will need.
 % in a reference directory available from the Blackboard website.
-The data files and Matlab scripts that you need are in the directory \verb+tomo/+. The two template scripts are \verb+compute_Gik_ray_template.m+ and \verb+tomo_template.m+.
+The data files and Matlab scripts that you need are in the directory \verb+tomo/+. \\
+The two template scripts are \verb+compute_Gik_ray_template.m+ and \verb+tomo_template.m+.
 
 \end{itemize}
 
@@ -106,7 +107,7 @@ and the model vector is given by
 %-----------------
 
 \item (3.0) {\em Compute an entry of the partial derivatives matrix}. \\
-Now adapt \verb+compute_Gik_ray_template.m+ to compute the $N \times M$ partial derivatives matrix~$\bG$.
+Now modify \verb+compute_Gik_ray_template.m+ to compute the $N \times M$ partial derivatives matrix~$\bG$.
 Take into account the following details:
 %
 \begin{itemize}
@@ -165,7 +166,7 @@ load Gik             % will load the file Gik.mat with the one variable Gik
 Instructions:
 %
 \begin{itemize}
-\item At this point, you should have saved your partial derivatives matrix, $\bG$. Now modify \verb+tomo_template.m+.
+\item At this point, you should have saved your partial derivatives matrix, $\bG$. \\ Now modify \verb+tomo_template.m+.
 
 \item In order to do the inverse problem, you will need the data vector of traveltime measurements (\refeq{d}). Load the column vector \verb+measure_vec.dat+ into Matlab, and check that it has dimension $3300 \times 1$.
 

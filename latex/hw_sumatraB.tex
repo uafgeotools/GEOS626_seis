@@ -131,7 +131,7 @@ The dispersion plot (\refFig{fig:premmodes}) identifies the frequency range 0.2-
 \item (0.1) List the toroidal modes, 0.2--1.0~mHz, that were observed in 1980. \\
 List them in increasing frequency.
 \item (0.1) List the spheroidal modes, 0.2--1.0~mHz, that were observed in 1980.
-\item (0.1) Describe the differences between what was observed in 1980 and what is observed in Figure~1 of \citet{Park2005}.
+\item (0.1) Identify the differences between what was observed in 1980 and what is observed in Figure~1 of \citet{Park2005}.
 %\item What toroidal and spheroidal modes are observed (or at least labeled) in Figure~1 of \citet{Park2005} but not observed in 1980?
 %\item What toroidal and spheroidal modes observed in 1980 are not present in Figure~1 of \citet{Park2005}?
 %\item What two modes are on top of each other?
@@ -147,7 +147,7 @@ List them in increasing frequency.
 \item (0.5)
 %
 \begin{enumerate}
-\item (0.4) Set \verb+iload = 0+ in \verb+sumatra_modes.m+, then modify \verb+ipick+ (or use \verb+wkeep.m+) and plot the stations you selected in \verb+lab_sumatra.pdf+. To save paper, use something like a $5 \times 4$ subplot.
+\item (0.4) Set \verb+bload = false+ in \verb+sumatra_modes.m+, then modify \verb+ipick+ (or use \verb+wkeep.m+) and plot the stations you selected in \verb+lab_sumatra.pdf+. To save paper, use something like a $5 \times 4$ subplot.
 
 \item (0.1) Compute the amplitude of the \snl{0}{0} peak for all your stations. \\
 List the median value.
@@ -200,7 +200,7 @@ See \citet[][Figure 3]{SSteinOkal2007} for additional background.
 \item (0.5) Table 5 of \citet{PREM} lists the observed frequencies of spheroidal modes; these are also read in by \verb+modes_PREMobs.m+.
 %
 \begin{enumerate}
-\item (0.2) See if you can identify the peaks for \snl{0}{0}, \snl{1}{0}, and \snl{2}{0} in the stacked Sumatra spectrum.
+\item (0.2) See if you can identify the peaks for \snl{0}{0}, \snl{1}{0}, and \snl{2}{0} in the stacked Sumatra spectrum. Include your plots.
 
 Hint: You will want to zoom into certain regions of the stacked spectrum.
 
@@ -223,7 +223,7 @@ See \citet[][p. 106]{SteinWysession} for background.
 %
 \begin{itemize}
 \item The Earth is flat.
-\item The travel time between the fault and any station is encapsulated with the simple velocity $v = 11$~km/s. This is the mean velocity for stations between $30^\circ < \Delta < 85^\circ$ of the source, assuming Jeffrey-Bullen P travel times and arc distances (not distances along the P wave ray path).
+\item The travel time between the fault and any station is encapsulated with the simple velocity $v = 11$~km/s. This is the mean velocity for stations between $30^\circ < \Delta < 85^\circ$ of the source, assuming Jeffreys--Bullen P travel times and arc distances (not distances along the P wave ray path).
 \item All stations are ``far'' from the fault, such that the distance from the station to the starting point is approximately equal to the distance from the station to the stopping point.
 \end{itemize}
 %
@@ -254,7 +254,9 @@ Hint: \refEq{Tr} is an equation with 6 unknowns: $T_r$, $L$, $v_r$, $v$, $\alpha
 
 %--------------------
 
-\item (1.2) Modify \verb+sumatra_hf_template.m+ to reproduce \citet[][Figure~1d]{Ni2005}, and include a plot of your record section.
+\item (1.2) 
+\begin{enumerate}
+\item (1.0) Modify \verb+sumatra_hf_template.m+ to reproduce \citet[][Figure~1d]{Ni2005}, and include a plot of your record section.
 
 Notes:
 %
@@ -270,6 +272,10 @@ Notes:
 
 \item You do not need to compute the smoothed envelopes---the bandpassed seismograms are enough. (Though computing the envelopes is easy to do; see previous homework solutions.) 
 \end{itemize}
+
+\item (0.2) What is the range in time shifts that are applied to your seismograms in order to align them?
+
+\end{enumerate}
 
 %--------------------
 
@@ -300,7 +306,7 @@ List the station name, distance $\Delta$, and azimuth $\alpha$ for each set of s
 
 Note: You may find the command \verb+extract+ and \verb+max+ useful for quantifying the amplitude ratio, though quantification is not required. If you do quantify the ratios, use the log-scaled quantity $\ln(A_{R1}/A_{R2})$, where $A_{R1}$ is the amplitude of the filtered R1 wave.
 
-\item (0.3) Explain your results.
+\item (0.3) Explain how the R1/R2 ratio can provide information on directivity.
 
 \item (0.3) Is your rupture direction ($\alpha_0$) different for the high-frequency P wave estimate than it is for the long-period Rayleigh wave estimate. Why might this be the case? \\
 Hint: Think about \refFig{fig:sumatra_chen}.
@@ -310,7 +316,7 @@ Hint: Think about \refFig{fig:sumatra_chen}.
 
 %------------------------
 
-\pagebreak
+%\pagebreak
 \section*{Problem 3 (2.0). Miscellaneous}
 
 In this problem, you will find it helpful to use an appropriate input for \verb+stasub+ so that \verb+getwaveform.m+ will return only a subset of stations/waveforms.
@@ -343,7 +349,7 @@ Notes:
 \begin{enumerate}
 \item (0.3) Modify \verb+sumatra_hf_template.m+ to reproduce the azimuthal record section of P waves shown in Figure S11 of \citet{Ammon2005}. (Plot with one column, not two.) Order the seismograms starting with the direction of the rupture direction (\verb+azstart+ parameter in \verb+plotw_rs.m+).
 Hint: The variable \verb+nfac+ will change the amplitudes of the plotted waveforms.
-\item (0.2) Qualitatively describe the variations in the P waves as a function of azimuth from the rupture direction.
+\item (0.2) Qualitatively describe the variations in the P waves as a function of azimuth from the rupture direction. (Use the waveforms in Figure S11 of \citet{Ammon2005} if your own record section does not match.)
 \end{enumerate}
 
 %------------

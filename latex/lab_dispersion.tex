@@ -41,13 +41,13 @@ Last compiled: \today \\
 \item The lab will revisit concepts in
 %
 \begin{itemize}
-\item the Fourier transform notes (\verb+notes_fft.pdf+) and the the lab on solar motion (\verb+lab_fft.pdf+)
+\item the Fourier transform notes (\verb+notes_fft.pdf+) and the lab on solar motion (\verb+lab_fft.pdf+)
 \item the homeworks on dispersion in a layered earth model (\verb+modesA+ and \verb+modesB+)
 \end{itemize}
 
 \item A key point is that in this lab the emphasis is on {\bf phase}, which we use to calculate traveltime differences. In the solar motion lab the emphasis was on {\bf amplitude}, which we used to identify the planets that influenced the sun's motion. (We did use phase to identify which planet was revolving about the sun in a negative sense.)
 
-\item Key Matlab functions for the lab are \verb+hilbert+, \verb+fft+, and \verb+ifft+. The function \verb+bandpass.m+ is only in the class repository.
+\item The key Matlab functions for the lab are \verb+hilbert+, \verb+fft+, and \verb+ifft+. The function \verb+bandpass.m+ is only in the class repository.
 
 \end{itemize}
 
@@ -56,7 +56,7 @@ Last compiled: \today \\
 %\pagebreak
 \section{Seismograms}
 
-Using the seismograms in \refFig{fig:seis}, your task is to compute the group speed ($U$) and phase speed ($c$) between Pasadena and Needles, each as a function of period ($T$).
+Using the seismograms in \refFig{fig:seis}, your task is to calculate the group speed $U$ and phase speed $c$ between Pasadena and Needles. These calculations of $U$ and $c$ will depend on period $T$.
 
 \begin{enumerate}
 \item Examine the seismograms in \refFig{fig:seis}.
@@ -120,24 +120,6 @@ where $\Delta x = 331$~km. Enter your values in \refTab{tab:group}.
 
 Hint: Use \verb+[~,imax] = max(h)+ to get the index of the maximum of \verb+h+, then \verb+ti(imax)+ to get the corresponding time.
 
-\begin{table}[h]
-\centering
-\caption[]
-{{
-Travel time measurements used for calculating group speed (\refeq{group}).
-\label{tab:group}
-}}
-\tgap
-\begin{tabular}{|c|c|c|c|c|c|c|}
-\hline
-$T$, s & $t_1$ & $t_2$ & $t_2 - t_1$ & $U(T)$ \\ \hline
-20 &    \hspace{2cm} & \hspace{2cm} & \hspace{1cm} & \hspace{1cm} \\ \hline
-30 &   & & & \\ \hline
-40 &   & & & \\ \hline
-50 &   & & & \\ \hline
-\end{tabular}
-\end{table}
-
 \item Plot $U$ versus $T$ for the four measurements.
 \end{enumerate}
 
@@ -152,9 +134,9 @@ $T$, s & $t_1$ & $t_2$ & $t_2 - t_1$ & $U(T)$ \\ \hline
 You will {\bf not} be using \verb+bandpass.m+.
 %
 \begin{itemize}
-\item Determine how the frequency vector in Matlab is stored (recall \verb+lab_fft.pdf+ and \verb+fftnotes.pdf+), then try to compute the harmonics of both time series for the target periods of 20, 30, 40, and 50~s. (See \refFig{fig:spec}.)
+\item Determine how the frequency vector in Matlab is stored (recall \verb+lab_fft.pdf+ and \verb+notes_fft.pdf+), then try to compute the harmonics of both time series for the target periods of 20, 30, 40, and 50~s. (See \refFig{fig:spec}.)
 \item For each period, make a plot with the harmonic of PAS and the harmonic of NEE, each normalized to 1.
-\item Plot using the time limits 2580 to 2780 s (\verb+xlim(tlims)+).
+\item Plot using the time limits 2100 to 3100 s (\verb+xlim([2100 3100])+).
 \end{itemize}
 
 \item Experiment with adding two harmonics together. Plot the time series that is the sum of the 20~s and 50~s harmonics for PAS.
@@ -183,27 +165,12 @@ is the phase shift between two time series for a given period $T$, $N$ is an int
 
 Solve for $\Delta t$ for the case with $N = 0$. Compute the min and max values for $\Delta t$ based on the min and max allowable values of $c$. Also compute $\Delta t_{\rm min}/T$ and $\Delta t_{\rm max}/T$. List the values in \refFig{tab:lims}.
 
-\begin{table}[h]
-\centering
-\caption[]
-{{
-Prior information on limits for allowable phase speeds, which provide limits on the travel time between the two stations.
-\label{tab:lims}
-}}
-\tgap
-\begin{tabular}{|c|c|c|c|c|c|c|}
-\hline
-$T$, s & $c_{\rm min}$, km/s & $c_{\rm max}$, km/s & $\Delta t_{\rm min}$ ($N=0$) & $\Delta t_{\rm max}$ ($N=0$) & $\Delta t_{\rm min}/T$ & $\Delta t_{\rm max}/T$ \\ \hline
-20 & 3.1 & 3.9 & \hspace{2cm} & \hspace{2cm} & \hspace{1cm} & \hspace{1cm} \\ \hline
-30 & 3.0 & 4.3 & & & & \\ \hline
-40 & 3.3 & 4.5 & & & & \\ \hline
-50 & 3.3 & 4.5 & & & & \\ \hline
-\end{tabular}
-\end{table}
-
 %----------------
 
-%\pagebreak
+\item Plot the unit-normalized harmonics for PAS and NEE for periods 20, 30, 40, and 50~s.
+
+Plot using the time limits 2580 to 2780 s (\verb+xlim([2580 2780])+).
+
 \item Measure the phase between PAS and NEE for the 20~s harmonic; use the command \verb+markt+ (note \footnote{Click on the figure, then type {\tt markt} in the command window, then click on the figure. You can zoom in on the peaks, but you must get out of the ``magnify mode'' to use {\tt markt}.}) to click points on your plots. 
 %
 \begin{eqnarray*}
@@ -216,11 +183,71 @@ t_2 &=&
 %
 Then, using \refEq{phase}, calculate a range of values of $c$ for $N = -5, -4, \ldots, 5$. What value of $N$ gives you a value of $c$ that is within the permissible range? What is your estimated $c$ for this period?
 
-Note: Which time series should your ``reference'' ($t_1$) time pick be on?
+Note: Which time series should your ``reference'' time pick $t_1$ be on?
 
 %----------------
 
 \item Repeat for the other three harmonics, and enter your results in the top half of \refTab{tab:picks}.
+
+%----------------
+
+\item In the bottom half of \refTab{tab:picks}, list the corresponding values of $t_2$ and $\Delta t$  for $N = 0$ and identify the corresponding peaks on the harmonic plots. Note that $t_1$ and $c$ will remain the same.
+
+\item Using your results in \refTab{tab:picks}, plot the phase speed dispersion as $c(T)$ for four points. Also plot the allowable range of $c(T)$ for each period.
+
+\end{enumerate}
+
+%-------------------------------------------------------------
+
+\section{From frequency-dependent surface wave speeds to 3D seismic wave speeds}
+
+From a pair of seismograms we can see how different frequencies of surface waves travel at different speeds between the two stations. In order to oibtain a spatial map of variations in surface wave speeds (group or phase), we need {\bf lots of stations and lots of measurements}. This would allow us to construct spatial maps of wave speed variations for each frequency.
+
+In order to convert the wave speed maps to 3D models of seismic wave speed (\eg $\vs$), we need to know what the sensitivity of each surface wave frequency to some initial (simple) model of wave speed structure. What we need are the eigenfunctions---similar to those that we calculated in the modes and Love wave homeworks.
+
+%-------------------------------------------------------------
+%\bibliographystyle{agu08}
+%\bibliography{carl_abbrev,carl_main,carl_him}
+
+%-------------------------------------------------------------
+
+\clearpage\pagebreak
+
+\begin{table}[h]
+\centering
+\caption[]
+{{
+Travel time measurements used for calculating group speed (\refeq{group}).
+\label{tab:group}
+}}
+\tgap
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+$T$, s & $t_1$ & $t_2$ & $t_2 - t_1$ & $U(T)$ \\ \hline
+20 &    \hspace{2cm} & \hspace{2cm} & \hspace{1cm} & \hspace{1cm} \\ \hline
+30 &   & & & \\ \hline
+40 &   & & & \\ \hline
+50 &   & & & \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption[]
+{{
+Prior information on limits for allowable phase speeds, which provide limits on the travel time between the two stations. {\bf No measurements are needed for this table.}
+\label{tab:lims}
+}}
+\tgap
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+$T$, s & $c_{\rm min}$, km/s & $c_{\rm max}$, km/s & $\Delta t_{\rm min}$ ($N=0$) & $\Delta t_{\rm max}$ ($N=0$) & $\Delta t_{\rm min}/T$ & $\Delta t_{\rm max}/T$ \\ \hline
+20 & 3.1 & 3.9 & \hspace{2cm} & \hspace{2cm} & \hspace{1cm} & \hspace{1cm} \\ \hline
+30 & 3.0 & 4.3 & & & & \\ \hline
+40 & 3.3 & 4.5 & & & & \\ \hline
+50 & 3.3 & 4.5 & & & & \\ \hline
+\end{tabular}
+\end{table}
 
 \begin{table}[h]
 \centering
@@ -246,28 +273,6 @@ $T$, s & $t_1$, s & $t_2$, s & $\Delta t$, s & $N$ & $c$, km/s \\ \hline\hline
 \end{tabular}
 \end{table}
 
-%----------------
-
-\item In the bottom half of \refTab{tab:picks}, list the corresponding values of $t_2$ and $\Delta t$  for $N = 0$ and identify the corresponding peaks on the harmonic plots. Note that $t_1$ and $c$ will remain the same.
-
-\item Plot the phase speed dispersion as $c(T)$ for four points. Also plot the allowable range of $c(T)$ for each period.
-
-\end{enumerate}
-
-%-------------------------------------------------------------
-
-\section{From frequency-dependent surface wave speeds to 3D seismic wave speeds}
-
-From a pair of seismograms we can see how different frequencies of surface waves travel at different speeds between the two stations. In order to oibtain a spatial map of variations in surface wave speeds (group or phase), we need {\bf lots of stations and lots of measurements}. This would allow us to construct spatial maps of wave speed variations for each frequency.
-
-In order to convert the wave speed maps to 3D models of seismic wave speed (\eg $\vs$), we need to know what the sensitivity of each surface wave frequency to some initial (simple) model of wave speed structure. What we need are the eigenfunctions---similar to those that we calculated in the modes and Love wave homeworks.
-
-%-------------------------------------------------------------
-%\bibliographystyle{agu08}
-%\bibliography{carl_abbrev,carl_main,carl_him}
-
-%-------------------------------------------------------------
-
 %-------------------------------------------------------------
 
 %\clearpage\pagebreak
@@ -277,7 +282,7 @@ In order to convert the wave speed maps to 3D models of seismic wave speed (\eg 
 \includegraphics[width=16cm]{PAS_NEE_seis.eps}
 \caption[]
 {{
-Vertical component seismograms from an earthquake (2002-Jan-02, $M=7.3$) in the Vanuatu Islands, southwest Pacific, recorded at two stations in southern California: Pasadena (PAS) and Needles (NEE). These two stations and the epicenter are almost on a great circles, and the distance between the two stations, $\Delta x$, is 331~km. The origin time of the event is $t = 0$; therefore the Rayleigh wave arrives at PAS after 2400~s, or 40 minutes.
+Vertical component seismograms from an earthquake (2002-01-02, \magw{7.3}) in the Vanuatu Islands, southwest Pacific, recorded at two stations in southern California: Pasadena (PAS) and Needles (NEE). These two stations and the epicenter are almost on a great circles, and the distance between the two stations is $\Delta x = 331$~km. The origin time of the event is $t = 0$; therefore the Rayleigh wave arrives at PAS after 2400~s, or 40 minutes.
 \label{fig:seis}
 }}
 \end{figure}
