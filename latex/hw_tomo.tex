@@ -69,7 +69,8 @@ Do the lab exercise in \verb+lab_tomo.pdf+.
 
 \item (1.0) {\em Formulate an entry of the partial derivatives matrix}.
 %
-From the class notes (\verb+notes_taylor.pdf+), the ray theory traveltime perturbation for the $i$th source-receiver combination is given by
+%From the class notes and lecture slides,
+The ray theory traveltime perturbation for the $i$th source-receiver combination is given by
 %
 \begin{equation}
 \delta T_i = -\int_{\mathrm{ray}_i} c^{-1}\,\delta\ln c\;\rmd s,
@@ -79,7 +80,7 @@ From the class notes (\verb+notes_taylor.pdf+), the ray theory traveltime pertur
 where $\rmd s$ denotes a segment of the $i$th ray.
 
 \begin{enumerate}
-\item Assume a homogeneous reference model with $c_0$ everywhere.
+\item (0.8) Assume a homogeneous reference model with $c_0$ everywhere.
 
 Show how \refEq{ray_tomography} leads to 
 %
@@ -101,13 +102,13 @@ and the model vector is given by
 \label{m}
 \end{equation}
 
-\item Write the expression for the $G_{ik}$ entry of the partial derivatives matrix~$\bG$.
+\item (0.2) Write the expression for the $G_{ik}$ entry of the partial derivatives matrix~$\bG$.
 \end{enumerate}
 
 %-----------------
 
 \item (3.0) {\em Compute an entry of the partial derivatives matrix}. \\
-Now modify \verb+compute_Gik_ray_template.m+ to compute the $N \times M$ partial derivatives matrix~$\bG$.
+Modify \verb+compute_Gik_ray_template.m+ to compute the $N \times M$ partial derivatives matrix~$\bG$.
 Take into account the following details:
 %
 \begin{itemize}
@@ -133,8 +134,8 @@ For example, row $i=3293$ of $\bG$ (and $\bDelta\bd$) corresponds to the pairing
 \begin{enumerate}
 \item (0.2) What are the units for $d_i$, $m_k$, and $G_{ik}$?
 
-\item (2.4) Demonstrate that the value of $G_{ik}$ with $i=126$ and $k=204$ is $-10.3747$. \\
-(To be safe, check the value \verb+Gik(126,204)+.) \\
+\item (2.4) Check that the value of $G_{ik}$ with $i=126$ and $k=204$ is $-10.3747$. \\ Show your code for calculating $G_{ik}$, and show the output for \verb+Gik(126,204)+.
+
 Note: Based on the indexing above, the $i=126$ measurement corresponds to the ray path between the \verb+isrc=1+ source and the \verb+irec=126+ receiver.
 
 \item (0.2) What does each row of $\bG$ correspond to?
@@ -166,7 +167,7 @@ load Gik             % will load the file Gik.mat with the one variable Gik
 Instructions:
 %
 \begin{itemize}
-\item At this point, you should have saved your partial derivatives matrix, $\bG$. \\ Now modify \verb+tomo_template.m+.
+\item At this point, you should have saved your partial derivatives matrix $\bG$. \\ Now modify \verb+tomo_template.m+.
 
 \item In order to do the inverse problem, you will need the data vector of traveltime measurements (\refeq{d}). Load the column vector \verb+measure_vec.dat+ into Matlab, and check that it has dimension $3300 \times 1$.
 
@@ -231,7 +232,7 @@ What happens as $\lambda \rightarrow \infty$?
 Notes:
 %
 \begin{itemize}
-\item I have pre-computed the necessary matrix, $\bB$, in \verb+tomo_template.m+, such that the function value $\delta\ln c(\phi_j, \theta_j)$ is computed by the dot product $\bB(j,:) \cdot \bem$. This operation is represented by \refEq{dlnv} and can be though of as
+\item I have pre-computed the necessary matrix $\bB$ in \verb+tomo_template.m+, such that the function value $\delta\ln c(\phi_j, \theta_j)$ is computed by the dot product $\bB(j,:) \cdot \bem$. This operation is represented by \refEq{dlnv} and can be thought of as
 %
 \begin{equation}
 \bc_{\lambda} = \bB \bem_{\lambda},
@@ -239,7 +240,7 @@ Notes:
 %
 where $\bc_{\lambda} = \delta\ln c(\phi, \theta)$ is a vector of phase speed perturbations.
 
-\item The simplest way to plot $\bc_{\lambda}$ is probably with the \verb+scatter+ command. But using something like \verb+pcolor+ will produce prettier results.
+\item The simplest way to plot $\bc_{\lambda}$ is probably with the \verb+scatter+ command. \\ But using something like \verb+pcolor+ will produce prettier results.
 
 \end{itemize}
 

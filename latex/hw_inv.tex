@@ -3,6 +3,8 @@
 
 \input{hw626_header}
 
+%\renewcommand{\baselinestretch}{1.0}
+
 %--------------------------------------------------------------
 \begin{document}
 %-------------------------------------------------------------
@@ -20,7 +22,7 @@ Last compiled: \today
 \subsection*{Overview}
 
 \begin{itemize}
-\item This problem set is designed to introduce you to the Preliminary Reference Earth Model \citep{PREM}, and to give you experience with forward and inverse problems.
+\item This problem set is designed to introduce you to the Preliminary Reference Earth Model \citep{PREM}, and to give you some experience with forward and inverse problems.
 
 \item Background reading:
 %
@@ -32,7 +34,7 @@ Last compiled: \today
 
 %\item A PDF of \citet{PREM} is available on the course website on Blackboard.
 
-\item Before you start, make sure you have done the lab exercise associated with \verb+lab_linefit.m+.
+\item Before you start, make sure you have done the lab exercise associated with \verb+lab_linefit.m+
 
 \end{itemize}
 
@@ -49,18 +51,24 @@ The Preliminary Reference Earth Model, established in 1980, is a seminal work in
 
 %-------------------
 
-\item (0.5) We now consider the {\em parameterization} of PREM. PREM is described in terms of geometrical and material parameters. We define a {\em geometrical parameter} as a parameter of the model related to the geometry of the model, and a {\em material parameter} as a parameter that is related to a material property of a model. Thus, we can describe PREM using the vector
+\item (0.5) We now consider the {\em parameterization} of PREM. PREM is described in terms of geometrical and material parameters.
+We define \textcolor{red}{a {\em geometrical parameter} as a parameter of the model related to the geometry of the model},
+and \textcolor{blue}{a {\em material parameter} as a parameter that is related to a material property of a model}.
+Thus, we can describe PREM using the vector
 %
 \begin{equation}
-\bem = (u_1, u_2, \ldots, u_i, \ldots, u_{M_g}, v_1, v_2, \ldots, v_k, \ldots, v_{M_m})^T
+\bem = (\textcolor{red}{u_1, u_2, \ldots, u_i, \ldots, u_{M_g}},
+\textcolor{blue}{v_1, v_2, \ldots, v_k, \ldots, v_{M_m}})^T
+\label{bem}
 \end{equation}
 %
 where $u_i$ denotes one of $M_{\rm g}$ geometrical parameters and $v_k$ denotes one of $M_{\rm m}$ material parameters.
+The entries in $\bem$ are the numbers listed in Table~1 of \citet{PREM}.
 %The $A+B$ parameters of $\bem$ {\em completely describe} PREM.
 
 \begin{enumerate}
-\item (0.2) How many geometrical parameters are needed to describe PREM?
-\item (0.2) How many material parameters are needed to describe PREM? Hint: $>$20.
+\item (0.2) How many \textcolor{red}{geometrical parameters} are needed to describe PREM?
+\item (0.2) How many \textcolor{blue}{material parameters} are needed to describe PREM? Hint: $>$20.
 \item (0.1) How many {\em fewer} material parameters are needed to describe PREM in the isotropic approximation? Hint: Make sure to read the footnote of Table 1 in the paper.
 \end{enumerate}
 
@@ -78,8 +86,11 @@ where $u_i$ denotes one of $M_{\rm g}$ geometrical parameters and $v_k$ denotes 
 
 Hint: Use the command \verb+polyval+ to save some time.
 
-\item (0.4) Compute $\vs$ for depths of 1.5~km, 10~km, 20~km, and 50~km; list the values with $>$5 significant digits, so that I can numerically check them. \\
-Do the values seem reasonable, given the materials you expect at these depths?
+\item (0.2) Compute $\vs$ for depths of 1.5~km, 10~km, 20~km, and 50~km.
+%
+List the values with $>$5 significant digits, so that I can numerically check them.
+
+\item (0.2) Do the values seem reasonable, given the materials you expect at these depths?
 \end{enumerate}
 
 %-------------------
@@ -121,9 +132,9 @@ We have replaced the normalized radial integration limits, $[0,1]$, with actual 
 %
 where $N$ is the number of layers in PREM, $r_0 = 0$, $r_N = D$, $a_{ik}$ represents the $\delta\vs(r)$ coefficient associated with the $i$th layer and the $k$th-order polynomial term, and $b_{ik}$ are the corresponding coefficients for $\delta\rho(r)$.
 
-\item (0.2) How many observations are represented in \refEq{dT2}? 
+\item (0.1) How many observations are represented in \refEq{dT2}? 
 
-How many unknown parameters are represented in \refEq{dT2}? (Assume that each layer is parameterized by a cubic polynomial.)
+\item (0.1) How many unknown parameters are represented in \refEq{dT2}? (Assume that each layer is parameterized by a cubic polynomial.)
 
 \item (0.3) Using the (simple) formula for angular frequency, derive an expression for $\delta\omega/\omega$ in terms of $\delta T/T$.
 

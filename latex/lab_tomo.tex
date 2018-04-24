@@ -34,13 +34,13 @@ This function may be expanded in terms of a set of $M$ basis functions:
 \label{dlnv}
 \end{equation}
 %
-where $\delta m_k$, $k=1,\ldots,M$, represent the model coefficients describing the model perturbation.  Here we choose to use spherical spline basis functions \citep{WangDahlen1995spline,Wang1998}.
+where $\delta m_k$, $k=1,\ldots,M$, represent the model coefficients describing the model perturbation $\delta\ln c(\bx)$, and $B_k(\bx)$ is a basis function. Here we choose to use spherical spline basis functions \citep{WangDahlen1995spline,Wang1998}.
 
-Run the Matlab script \verb+test_spline_vals.m+ (inside the directory \verb+tomo+) in order to familiarize yourself with spherical spline basis functions. This script will generate a spherical spline basis function of grid order $q$, centered at a randomly selected gridpoint.  Change the value for $q$ and see what happens. 
+Run the Matlab script \verb+run_Bkspline.m+ (inside the directory \verb+tomo+) in order to familiarize yourself with spherical spline basis functions. This script will generate a spherical spline basis function of grid order $q$, centered at a randomly selected gridpoint. Change the value for $q$ and see what happens. 
 %An example of a $q = 8$ basis function is shown in \refFig{fig:basis}b.
 
 \begin{itemize}
-\item What is the value of the $q=8$ spline function that is centered at (longitude, latitude) = $(-117^\circ,\;34^\circ)$, evaluated at the point $(-117.05^\circ,\;34.25^\circ)$?
+\item What is the value of the $q=8$ spline function that is centered at (longitude, latitude) = $(-117^\circ,\;34^\circ)$, evaluated at the points $(-117.05^\circ,\;34.25^\circ)$ and $(-117.10^\circ,\;34.35^\circ)$?
 \end{itemize}
 
 %------------------------
@@ -50,9 +50,9 @@ Run the Matlab script \verb+test_spline_vals.m+ (inside the directory \verb+tomo
 In order to construct a matrix of partial derivatives for the tomographic inversion, you will need to know how to integrate functions along ray paths that are on the sphere. Determine how to do the following two operations in Matlab.
 
 \begin{itemize}
-\item Discretizing a ray path on the sphere.
+\item Discretizing a ray path between two points on the sphere.
 
-I used the \verb+gcwaypts+ function in the Matlab Mapping toolbox.
+I used the \verb+gcwaypts+ (``great circle waypoints'') function in the Matlab Mapping Toolbox.
 
 \item Numerical integration of a function evaluated along a ray path.
 
