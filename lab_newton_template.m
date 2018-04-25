@@ -6,12 +6,8 @@
 % See Tarantola (2005), Eq. 6.291.
 % See lab_newton.pdf for instructions to this lab exercise.
 %
-% This is a preparatory exercise for genlsq_template.m
-%
 
-close all
-clear
-clc
+close all, clear, clc
 format long
 
 % define a misfit function and its derivatives
@@ -27,13 +23,13 @@ whos
 % specify bounds for choosing initial model (and for plotting)
 mA = -2;
 mB = 2;
-m = linspace(mA,mB,100);
+mplot = linspace(mA,mB,100);
 
 % COMPUTE MINIMUM OF MISFIT FUNCTION HERE USING BUILT-IN MATLAB FUNCTION
 
 
 figure; hold on;
-plot(m,F(m));
+plot(mplot,F(mplot));
 % PLOT MATLAB MINIMUM HERE
 xlabel('model m'); ylabel('misfit function, F(m)');
 

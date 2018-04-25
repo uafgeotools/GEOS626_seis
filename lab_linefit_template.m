@@ -100,18 +100,20 @@ m2_vec = linspace(mtar(2)-m2_ran, mtar(2)+m2_ran, nx);
 [M1,M2] = meshgrid(m1_vec,m2_vec);
 [a,b] = size(M1);
 ng = a*b;                       % number of gridpoints in model space
-m1 = reshape(M1,ng,1);
-m2 = reshape(M2,ng,1);
+m1 = reshape(M1,1,ng);
+m2 = reshape(M2,1,ng);
 
 % compute misfit function (and gradient)
 RSSm = zeros(ng,1);             % initialize misfit function
 % INITIALIZE GRADIENT HERE
 
+
 for kk=1:ng
     mtry = [m1(kk) m2(kk)]';    % a sample from model space
     dtry = G*mtry;              % predictions from the model
     res = d - dtry;             % residuals between data and predictions
-    RSSm(kk) = sum(res.*res);    % residual sum of squares
+    RSSm = sum(res.*res);       % residual sum of squares
+    RSSm(kk) = RSS;
     
     % COMPUTE GRADIENT HERE [DO NOT USE MATLAB'S gradient FUNCTION]
 
