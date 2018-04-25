@@ -50,8 +50,8 @@ c0 = 3500;      % m/s
 % scale of spherical spline basis function
 q = 8;
 
-% number of points along each ray path
-nump = 1000;
+% number of segments along each ray path
+nseg = 1000;
 
 % number of measurements (one per station or ray)
 ndata = nrec*nsrc;
