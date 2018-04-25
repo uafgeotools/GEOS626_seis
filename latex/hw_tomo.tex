@@ -30,7 +30,7 @@ Last compiled: \today
 \item solving the least-squares problem using regularization
 \end{itemize}
 
-\item The source-receiver geometry for this problem is shown in \refFig{fig:geometry}.
+\item The source--receiver geometry for this problem is shown in \refFig{fig:geometry}.
 
 \item This example problem can be thought of as a surface-wave tomography problem, whereby the unknown model is a spatial map of surface wave phase speed and the observations are measurements of surface wave traveltimes.
 
@@ -70,7 +70,7 @@ Do the lab exercise in \verb+lab_tomo.pdf+.
 \item (1.0) {\em Formulate an entry of the partial derivatives matrix}.
 %
 %From the class notes and lecture slides,
-The ray theory traveltime perturbation for the $i$th source-receiver combination is given by
+The ray theory traveltime perturbation for the $i$th source--receiver combination is given by
 %
 \begin{equation}
 \delta T_i = -\int_{\mathrm{ray}_i} c^{-1}\,\delta\ln c\;\rmd s,
@@ -107,6 +107,10 @@ and the model vector is given by
 
 %-----------------
 
+\item (0.0) Run \verb+compute_Gik_ray_template.m+ and type \verb+whos+ to identify the dimensions of the variables.
+
+%-----------------
+
 \item (3.0) {\em Compute an entry of the partial derivatives matrix}. \\
 Modify \verb+compute_Gik_ray_template.m+ to compute the $N \times M$ partial derivatives matrix~$\bG$.
 Take into account the following details:
@@ -114,7 +118,7 @@ Take into account the following details:
 \begin{itemize}
 \item Assume a homogeneous reference phase speed model with $c_0 = 3500$~m/s.
 
-\item Because the reference model is homogeneous, the ray paths are simply great circles.  Use the built-in Matlab function \verb+gcwaypts+ to compute the ray paths, and use 1000 points or so to effectively describe the ray path (\verb+nump+). The function \verb+distance+ will compute the great-circle distance (in degrees) between two points on a sphere.
+\item Because the reference model is homogeneous, the ray paths are simply great circles.  Use the built-in Matlab function \verb+gcwaypts+ to compute the ray paths, and use 1000 segments or so to effectively describe the ray path (\verb+nseg+). The function \verb+distance+ will compute the great-circle distance (in degrees) between two points on a sphere.
 
 \item Each measurement involves a single source--receiver pair. Use the source--receiver ordering provided in \verb+compute_Gik_ray_template.m+ (see also \refFig{fig:geometry}b), which is
 %
@@ -206,7 +210,7 @@ List the sum of the squares of the entries of the model vector $\bem_{\lambda}$;
 
 \verb+lamvec = 10.^linspace(log10(minlam), log10(maxlam), numlam);+
 
-with $\lambda_{\rm min} = 0.1$ and $\lambda_{\rm max} = 1000$.
+with $\lambda_{\rm min} = 0.1$ and $\lambda_{\rm max} = 1000$ (specify a value for \verb+numlam+).
 
 %------------
 
@@ -223,7 +227,7 @@ I recommend transforming the quantities by $\log_{10}$, then using the \verb+plo
 \item (1.0) 
 
 \begin{enumerate}
-\item (0.6) Plot some of these model vectors by expanding them in the spherical spline basis functions. Use the same color scale for each plot: \verb+caxis([-0.05 0.05])+. (See~Note\footnote{If you want the {\tt seis} color scale from GMT, then type {\tt colormap(seis)} after each figure is done.}.) Superimpose the source locations in each plot.
+\item (0.6) Plot some of these model vectors by expanding them in the spherical spline basis functions. Use the same color scale for each plot: \verb+caxis([-0.05 0.05])+. (See~Note\footnote{If you want the {\tt seis} color scale from GMT, then type {\tt colormap(seis)} after each figure is done.}.) {\bf Superimpose the source locations in each plot.}
 
 \item (0.4) Comment on any trends that you see in phase speed maps that you produce. \\
 What happens as $\lambda \rightarrow \infty$?
@@ -255,8 +259,7 @@ Note: Plot only the five sources that were used in the inversion.
 \item (0.3) Repeat using only the first source.
 \end{enumerate}
 
-\item (0.4) What are two ways to stabilize the inverse problem based on the experimental design? \\
-Hint: How can we construct a matrix $\bG^T\bG$ with fewer zeros?
+\item (0.4) What are two ways to stabilize the inverse problem based on {\bf the experimental design}? Hint: How can we construct a matrix $\bG^T\bG$ with fewer zeros?
 
 \end{enumerate}
 
@@ -265,8 +268,10 @@ Hint: How can we construct a matrix $\bG^T\bG$ with fewer zeros?
 \pagebreak
 \subsection*{Problem 3 (1.8). Connections with real tomography problems.}
 
+For your answers to this problem, try to imagine explaining the concepts to a fellow graduate student who is not a seismologist. (This should make your answers more explicit.)
+
 \begin{enumerate}
-\item (0.6) Our data vector contains a set of traveltime differences between a wave in our model and a wave in the target model (\ie the unknown Earth model). For real problems, how is this measurement made?
+\item (0.6) Our data vector contains a set of traveltime differences between a wave in our model and a wave in the target model (\ie the unknown Earth model). For problems using recorded seismic data, how is this measurement made?
 
 \item (0.6) After the first iteration, we no longer have a uniform ``reference'' model for phase speed. How will we need to adapt our algorithm to accommodate iterations of the phase speed model?
 

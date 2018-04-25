@@ -117,7 +117,7 @@ Or try out the commands \verb+wkeep+ and \verb+wcut+.
 %------------------------
 
 %\pagebreak
-\section*{Problem 1 (4.0). Splitting of normal mode frequencies}
+\section*{Problem 1 (4.5). Splitting of normal mode frequencies}
 
 The template script is \verb+sumatra_modes_template.m+. See note \footnote{In this problem, our spectra are computed from the calibration-applied seismograms; the complete instrument response has not been deconvolved, as we did in the earlier homework. This should not impact our main findings, since we are not computing the {\em relative} amplitudes between modes within a given spectrum.}.
 
@@ -155,11 +155,11 @@ List the median value.
 
 %---------
 
-\item (0.5) ``Stacking'' refers to summing similar functions in order to enhance the signal-to-noise ratio. Use the function \verb+w2fstack.m+ to generate a stack of your spectra.
+\item (1.0) ``Stacking'' refers to summing similar functions in order to enhance the signal-to-noise ratio. Use the function \verb+w2fstack.m+ to generate a stack of your spectra.
 %
 \begin{enumerate}
-\item (0.3) Include a plot of the stacked spectrum over two ranges: 0.2--10~mHz and 0.2--1.0~mHz.
-\item (0.2) Qualitatively, describe the meaning of this spectrum, \eg what is the physical explanation for the spikes? It may be helpful to recall the modes homework.
+\item (0.4) Include a plot of the stacked spectrum over two ranges: 0.2--10~mHz and 0.2--1.0~mHz.
+\item (0.6) Qualitatively, describe the meaning of this spectrum, \eg what is the physical explanation for the spikes? It may be helpful to recall the modes homework.
 \end{enumerate}
 %
 % PROBABLY NO NEED TO REMIND EVERYONE ABOUT TIDES HERE, THOUGH IT IS THE LARGEST PEAK IN THE ENTIRE SPECTRUM
@@ -317,7 +317,7 @@ Hint: Think about \refFig{fig:sumatra_chen}.
 %------------------------
 
 %\pagebreak
-\section*{Problem 3 (2.0). Miscellaneous}
+\section*{Problem 3 (1.5). Miscellaneous}
 
 In this problem, you will find it helpful to use an appropriate input for \verb+stasub+ so that \verb+getwaveform.m+ will return only a subset of stations/waveforms.
 
@@ -349,12 +349,13 @@ Notes:
 \begin{enumerate}
 \item (0.3) Modify \verb+sumatra_hf_template.m+ to reproduce the azimuthal record section of P waves shown in Figure S11 of \citet{Ammon2005}. (Plot with one column, not two.) Order the seismograms starting with the direction of the rupture direction (\verb+azstart+ parameter in \verb+plotw_rs.m+).
 Hint: The variable \verb+nfac+ will change the amplitudes of the plotted waveforms.
-\item (0.2) Qualitatively describe the variations in the P waves as a function of azimuth from the rupture direction. (Use the waveforms in Figure S11 of \citet{Ammon2005} if your own record section does not match.)
+\item Qualitatively describe the variations in the P waves as a function of azimuth from the rupture direction. (Use the waveforms in Figure S11 of \citet{Ammon2005} if your own record section does not match.)
 \end{enumerate}
 
 %------------
 
-\item (0.5) \input{hw_sumatraB_CAN}
+\pagebreak
+\item (0.0) {\bf\em Optional} \input{hw_sumatraB_CAN}
 
 \end{enumerate}
 

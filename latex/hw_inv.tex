@@ -101,7 +101,23 @@ Hint: Check your result with \citet[][Figure~1.1]{ShearerE2}.
 
 %-------------------
 
-\item (1.5) Read \citet{PREM}, Section 6 and the Appendix. We will consider a simplified version of Equation (1) in Section 6. Imagine you are the PREM authors. You have a pre-PREM ``starting'' (or ``initial'') model describing a spherically symmetric Earth. You have tabulated toroidal mode periods only (not spheroidal modes). Your measurements, $\delta T/T$, are therefore the differences between mode periods in your starting model (``predictions'') and mode periods identified from earthquake data (``observations''). You are therefore seeking to use your measurements to determine the perturbation functions $\delta\vs(r)$ and $\delta\rho(r)$, since these are the two parameters to which toroidal modes are sensitive. Our simplified version of Equation (1) is therefore
+\item (1.5) Read \citet{PREM}, Section 6 and the Appendix. Consider Equation (1) in their Section 6:
+%
+\begin{eqnarray}
+\frac{\delta T}{T} &=& \int_0^1 \rmd r \left(
+\delta v_p \cdot \tilde{P} + 
+\delta v_s \cdot \tilde{S} +
+\delta\rho \cdot \tilde{R} +
+\delta q_\mu \tilde{M} \cdot \ln\tau +
+\delta q_\kappa \tilde{K} \cdot \ln\tau
+\right)
+\nonumber \\
+&& + \; \text{(terms related to changes in radii of discontinuities)}
+\label{dTprem}
+\end{eqnarray}
+%
+We will consider a simplified version of \refEq{dTprem}.
+Imagine you are the PREM authors. You have a pre-PREM ``starting'' (or ``initial'') model describing a spherically symmetric Earth with fixed boundaries between layers. You have tabulated toroidal mode periods only (not spheroidal modes). Your measurements $\delta T/T$ are therefore the differences between mode periods in your starting model (``predictions'') and mode periods identified from earthquake data (``observations''). You are therefore seeking to use your measurements to determine the perturbation functions $\delta\vs(r)$ and $\delta\rho(r)$, since these are the two parameters to which toroidal modes are sensitive. Our simplified version of Equation (1) is therefore
 %
 \begin{equation}
 \frac{\delta T}{T} = \int_0^D \left(\delta\vs(r) \, \tilde{S}(r) + \delta\rho(r) \, \tilde{R}(r)\right) \rmd r,
@@ -119,7 +135,7 @@ where the (unknown) velocity perturbation is expanded as a third-order polynomia
 \label{dvs}
 \end{eqnarray*}
 %
-We have replaced the normalized radial integration limits, $[0,1]$, with actual radial limits, $[0,D]$, where $D$ is the radius of Earth. (Also we use the notation $\vs\,\tilde{S}$ instead of $\vs \cdot \tilde{S}$, since these are functions, not vectors.)
+We have replaced the normalized radial integration limits $[0,1]$ with actual radial limits $[0,D]$, where $D$ is the radius of Earth. (Also we use the notation $\vs\,\tilde{S}$ instead of $\vs \cdot \tilde{S}$, since these are functions, not vectors.)
 
 \begin{enumerate}
 \item (1.0) Show that \refEq{dT1} above can be written as
@@ -147,7 +163,7 @@ where $N$ is the number of layers in PREM, $r_0 = 0$, $r_N = D$, $a_{ik}$ repres
 %\pagebreak
 \subsection*{Problem 2 (2.0). Forward problem: Generating an ellipse described by $\bem$}
 
-In class we discussed the least-squares method and showed how to construct a solution for fitting a line to scattered data, which required a  two-parameter model ($y$-intercept and slope). Here the task is to compute a best-fitting ellipse for a set of data. We start by making a plotting tool for ellipses.
+In class we discussed the least-squares method and showed how to construct a solution for fitting a line to scattered data, which required a  two-parameter model ($y$-intercept and slope). Here the task is to compute a best-fitting ellipse for a set of data. We start by making a {\bf plotting tool} for ellipses.
 
 An equation for an ellipse centered at $(0,0)$ is given by
 %
@@ -159,7 +175,7 @@ ax^2 + bxy + cy^2 = 1
 The variables $a$, $b$, and $c$ are the unknowns that we want to determine by using a least-squares method in Problem~3.
 
 \begin{enumerate}
-\item (1.0) Determine a ``forward function'' for a model $\bem = (a,\,b,\,c)$ that inputs a polar angle $\theta_i$ and outputs the point $(x_i,\,y_i)$ on the ellipse described by $\bem$ (\refeq{ellipse}). This function can be thought of as
+\item (1.0) {\bf (no coding)} Determine a ``forward function'' for a model $\bem = (a,\,b,\,c)$ that inputs a polar angle $\theta_i$ and outputs the point $(x_i,\,y_i)$ on the ellipse described by $\bem$ (\refeq{ellipse}). This function can be thought of as
 %
 \begin{equation}
 f(\bem,\,\theta_i) = (x_i,\,y_i).
@@ -203,7 +219,8 @@ Using \refEq{ellipse}, write down a system of 8 equations containing the unknown
 F(\bem) = \hlf (\bd - \bG\bem)^T(\bd - \bG\bem)
 \end{equation}
 %
-derive the expressions for the gradient, $\bgamma(\bem)$, and the Hessian, $\bH(\bem)$. Your answer should include only these variables: $a$, $b$, $c$, $x_i$, $y_i$, and $N$.
+derive the expressions for the gradient, $\bgamma(\bem)$, and the Hessian, $\bH(\bem)$. \\
+Your answer should include only these variables: $a$, $b$, $c$, $x_i$, $y_i$, and $N$.
 
 Hint: See the class notes on the linear regression example (\verb+notes_taylor.pdf+).
 
