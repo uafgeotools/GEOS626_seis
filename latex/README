@@ -1,10 +1,6 @@
 classes/seismo/latex/README
 
-This directory contains the latex source code used to make the homework assignments and labs. If you are interested in learning latex by doing your homework or labs in latex, then you can use these files as templates.
-
-The template files require carlcommands.tex for user-defined variables. The figure files are not available (but could be if you want them).
-
-If GEOTOOLS is installed, then the path to all bib files and carlcommands.tex should be visible. At the start of GEOS 626, carlcommands.tex should be in seismo/latex. After GEOTOOLS is installed, the seismo copy of carlcommands.tex can be deleted.
+This directory contains the latex source code used to make the homework assignments and labs. If you are interested to use latex for your labs or homework, then you can use these files as templates.
 
 ------
 TO COMPILE
@@ -15,7 +11,37 @@ xdvi hw_matlab &
 TO EDIT (use some text editor like emacs or gedit)
 emacs hw_matlab.tex
 
+The figures and bibliographic references will not be visible.
+
 ------
+[NOTES FOR UAF USERS ONLY]
+
+1. The template files require carlcommands.tex for user-defined variables. The figure files are not available (but could be if you want them).
+
+2. To see the bibliography files, you need to set the path to them.
+Check with this command: echo $LATEX_SRC
+If that is empty and if you have GEOTOOLS installed, then add this line to your .bashrc file
+source /home/admin/share/global_bashrc
+or copy and paste these lines into your .bashrc file
+
+# first check the local path (priority #1)
+export TEXINPUTS=.:
+export BSTINPUTS=.:
+export BIBINPUTS=.:
+# then check here (priority #2)
+export LATEX_SRC=$REPOS/GEOTOOLS/latex_util/bib
+export TEXINPUTS=${TEXINPUTS}:${LATEX_SRC}
+export BSTINPUTS=${BSTINPUTS}:${LATEX_SRC}
+export BIBINPUTS=${BIBINPUTS}:${LATEX_SRC}
+
+3. To compile with the bibliography, do this:
+
+latex hw_matlab ; bibtex hw_matlab ; latex hw_matlab ; latex hw_matlab 
+
+4. Some figures will not be visible to you, but you won't need those figures for your own solutions.
+
+------
+[NOTES FOR UAF USERS ONLY]
 IF YOU WANT A TUTORIAL ON USING LATEX
 
 The GEOTOOLS repository contains some instructions and examples in Latex.

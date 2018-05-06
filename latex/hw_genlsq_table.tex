@@ -1,20 +1,21 @@
 \begin{table}[h]
-\centering
 \caption[]{{
 Functions used in {\tt genlsq.m}.
-Assume $M$ model parameters and $N$ observations (in our problem, $N=12$ arrival times). Do not list numbers for the dimensions; instead use $M$ and $N$ (and 1).
+Assume $M$ model parameters and $N$ observations (in our problem, $N=12$ arrival times).
+Do not list numbers for the dimensions; instead use $M$ and $N$ (and 1).
 \label{tab:funs}
 }}
-\begin{spacing}{3}
-\begin{tabular}{l|l|l|l|l}
+\begin{spacing}{4}
+\hspace{-1.2cm}
+\begin{tabular}{r|l|l|l|l|l|l}
 \hline
-         &                          & input     & output    & output \\
-function & description \hspace{4cm} & dimension & dimension & units \hspace{0.5cm} \\
+         &                          & input      & math      & input     & output    & output \\
+function & description \hspace{3cm} & variables  & notation  & dimension & dimension & units \hspace{0.5cm} \\
 \hline\hline 
-\verb+tt+ & & & & \\ \hline
-\verb+d+  & & & & \\ \hline
-\verb+G+  & & & & \\ \hline
-\verb+S+  & & & & \\ \hline
+\verb+tt+ & & {\tt x,y,t,v,xr,yr} & $g_i(\bem)$ & $M \times 1$ & $1 \times 1$ & \\ \hline
+\verb+d+  & & & & & & \\ \hline
+\verb+G+  & & & & & & \\ \hline
+\verb+S+  & & & & & & \\ \hline
 \end{tabular}
 \end{spacing}
 \end{table}

@@ -43,7 +43,7 @@ Last compiled: \today
 \includegraphics[width=13cm]{optimhw_fig02.eps}
 \caption[Source-receiver geometry]
 {{
-Source--receiver geometry for the earthquake location problem. The ray paths are drawn between the (fixed) receivers and the initial epicenter, $\bem_{\rm initial}$. The target data are computed from the target model, $\bem_{\rm target}$, with errors added. Both $\bem_{\rm initial}$ and $\bem_{\rm target}$ are samples within the prior distribution, which is centered at $\bem_{\rm prior}$ and represented by the 1000 dots. Alternatively, one could choose $\bem_{\rm prior}$ to be $\bem_{\rm initial}$.
+Source--receiver geometry for the earthquake location problem. The ray paths are drawn between the (fixed) receivers and the initial epicenter $\bem_{\rm initial}$. The target data are computed from the target model $\bem_{\rm target}$. Both $\bem_{\rm initial}$ and $\bem_{\rm target}$ are samples within the prior distribution, which is centered at $\bem_{\rm prior}$ and represented by the 1000 dots. Alternatively, one could choose $\bem_{\rm prior}$ to be $\bem_{\rm initial}$.
 \label{fig:srcrec}
 }}
 \end{figure}
@@ -61,7 +61,7 @@ Generalized least squares was introduced by Tarantola \citep{TarantolaValette198
 Following \citet[][p.~205]{Tarantola2005}, the general form of a {\bf nonlinear least-squares misfit function} is
 %\footnote{Here I am using $\cprior$ whereas Tarantola uses $\covm$.}
 %
-\begin{eqnarray}
+\begin{eqnarray*}
 \misfitvar(\bem) &=& \misfitvar_{\rm D}(\bem) + \misfitvar_{\rm M}(\bem) 
 \\
 &=& \hlf \left\| \bg(\bem) - \bd_{\rm obs} \right\|^2_{\rm D} + \hlf \left\| \bem - \mprior \right\|^2_{\rm M}
@@ -69,10 +69,10 @@ Following \citet[][p.~205]{Tarantola2005}, the general form of a {\bf nonlinear 
 &=& \hlf \left( \bg(\bem) - \bd_{\rm obs}\right)^T \; \covdi \left( \bg(\bem) - \bd_{\rm obs} \right)
 \;+\; \hlf \left( \bem - \mprior \right)^T \; \cpriori \left( \bem - \mprior \right).
 \nonumber
-\label{misfit_gen}
-\end{eqnarray}
+%\label{misfit_gen}
+\end{eqnarray*}
 %
-Note these differences in notation:
+Note these differences in notation (see \refTab{tab:vars}):
 
 \vspace{0.2cm}
 \begin{tabular}{l|c|c}
@@ -86,10 +86,10 @@ posterior model vector              & $\widetilde{\bem}$               & $\mpost
 \end{tabular}
 \vspace{0.2cm}
 
-A Matlab solution to a least squares problem may be as simple as \verb+m = G\d+, but what is the meaning (and computation) behind this expression? The objective of this assignment is to ``demystify'' some of the black-box elements of least-squares inverse problems. This will involve a combination of reading \citet{Tarantola2005}, solving some equations, and implementing the equations within Matlab. We approach these topics with the classic example of earthquake location.
+A Matlab solution to a least squares problem may be as simple as \verb+m = G\d+, but what is the meaning (and computation) behind this expression? The objective of this assignment is to demystify some of the black-box elements of least-squares inverse problems. This will involve a combination of reading \citet{Tarantola2005}, solving some equations, and implementing the equations within Matlab. We approach these topics with the classic example of earthquake location.
 
 % comment out for 627:
-See \citet[][Chapter 7]{SteinWysession} for an introduction to the earthquake location problem. However, note that they do not approach the problem from a generalized least squares perspective, as we do in this assignment. In particular, they do not consider the model misfit term, $(\bem-\mprior)^T \cpriori (\bem-\mprior)$. But they do introduce the concept of the data covariance matrix and posterior model covariance matrix on p. 421.
+See \citet[][Chapter 7]{SteinWysession} for an introduction to the earthquake location problem. However, note that they do not approach the problem from a generalized least squares perspective, as we do in this assignment. In particular, they do not consider the model misfit term $(\bem-\mprior)^T \cpriori (\bem-\mprior)$. But they do introduce the concept of the data covariance matrix and posterior model covariance matrix on p. 421.
 
 Throughout the assignment, and in the code, keep in mind the interchangability of these terms:
 %
@@ -147,7 +147,7 @@ HINT: You may find it useful to use the two matrix identities that we derived in
 \subsection*{Problem 1 (2.0). Earthquake location: theory}
 
 \begin{enumerate}
-\item (0.7) Derive an equation for the arrival time, $t_r$,  of a seismic wave that originates at source location ($x_s, y_s$) at origin time $t_s$ and is recorded at receiver location ($x_r, y_r$). Assume that the medium is homogeneous and characterized with a single wavespeed, $V$.
+\item (0.7) Derive an equation for the arrival time $t_r$ of a seismic wave that originates at source location ($x_s, y_s$) at origin time $t_s$ and is recorded at receiver location ($x_r, y_r$). Assume that the medium is homogeneous and characterized with a single wavespeed $V$.
 
 \item (0.2) Let $t_r = g(\bem)$, where $\bem = (x_s,y_s,t_s,V)$.
 Is $g$ a linear function of $t_s$? Is it a linear function of $x_s$, $y_s$, or $V$?
@@ -178,7 +178,7 @@ Use $\cdots$ to indicate an element within a sequence.
 \item It may help to relate this problem to a real-world example of earthquake location. Imagine that you detect a P wave at some particular station (``station X''). The next closest station, which has not yet ``seen'' the P wave, is 20~km away. At that moment you might assume a prior model for the epicenter $(x_s, y_s)$ that is centered on station X and has a Gaussian distribution characterized by $\sigma = 20$~km. 
 Your prior model for the structure of the medium is assumed to be homogeneous with P-velocity reference value $V = 5$~km/s (with some associated uncertainty). Your prior model for the origin time could be the arrival time at station X (with some associated uncertainty).
 
-You then record the P wave arrival times at all other stations. You choose an initial model; a sensible choice might be the prior model that is station X, P arrival time at station X, and velocity $V$. With this initial model, you compute predicted arrival times at all stations. Using \refEq{misfit_gen}, you quantify the misfit between your predicted arrival times and the observed arrival times. The rest is optimization.
+You then record the P wave arrival times at all other stations. You choose an initial model; a sensible choice might be the prior model that is station X, P arrival time at station X, and velocity $V$. With this initial model, you compute predicted arrival times at all stations. Using the generalized least squares misfit function, you quantify the misfit between your predicted arrival times and the observed arrival times. The rest is optimization.
 
 \end{itemize}
 
@@ -190,24 +190,24 @@ You then record the P wave arrival times at all other stations. You choose an in
 Run \verb+genlsq_template.m+, then hit ``0'' to exit. You should generate six figures, one of which is \refFig{fig:srcrec}. Examine \verb+genlsq_template.m+ and \verb+forward_epicenter.m+ to see what is being plotted in these figures. Answer the following questions ``in words,'' that is, without excerpts from the code.
 
 \begin{enumerate}
-\item In the code, how is the prior model and the prior model covariance matrix determined?
+\item (0.0) In the code, how is the prior model and the prior model covariance matrix determined?
 
 \vspace{1cm}
 
-\item Explain how the initial model and target model are determined (in the hypothetical case that \verb+random_initial_model=1+ and \verb+irandom_target_model=1+.)
+\item (0.1) Explain how the initial model and target model are determined (in the hypothetical case that \verb+irandom_initial_model=1+ and \verb+irandom_target_model=1+.)
 
 \begin{itemize}
 \item initial model
 \item target model
 \end{itemize}
 
-\item Explain what the ``observations'' are and how they are generated.
+\item (0.2) Explain what the ``observations'' are and how they are generated.
 
 \vspace{1cm}
 
-\item What do the functions \verb+tt+, \verb+d+, \verb+G+, and \verb+S+ do? Complete \refTab{tab:funs}.
+\item (0.2) What do the functions \verb+tt+, \verb+d+, \verb+G+, and \verb+S+ do? Put your responses in \refTab{tab:funs}.
 
-\item What are the two main reasons for generating samples of $\cprior$?
+\item (0.0) What are the two main reasons for generating samples of $\cprior$?
 
 \vspace{1cm}
 
@@ -231,7 +231,7 @@ Run \verb+genlsq_template.m+, then hit ``0'' to exit. You should generate six fi
 \bem_{n+1} \approx \bem_{n} - \bHh^{-1}_n \bgammah_n.
 \end{equation}
 %
-What are $\bgammah$ and $\bHh$?
+What are the expressions for $\bgammah$ and $\bHh$?
 
 \vspace{1cm}
 
@@ -288,7 +288,7 @@ List $\mpost$ and $\cpost$ after \textcolor{red}{four iterations}. (The initial 
 
 \item (0.5) 
 \begin{enumerate}
-\item (0.1) In the space provided in \verb+genlsq.m+, use $\cpost$ to compute the posterior correlation matrix. Show your lines of code, and display the correlation matrix. Do not use the Matlab command \verb+corrcov+ in you computation, but you can use this command to check.
+\item (0.1) In the space provided in \verb+genlsq.m+, use $\cpost$ to compute the posterior correlation matrix. Show your lines of code, and display the correlation matrix. Do {\bf not} use the Matlab command \verb+corrcov+ in you computation, but you can use this command to check.
 
 \item (0.3) List the posterior standard deviations for each model parameter. Include units.
 
@@ -308,7 +308,7 @@ List $\mpost$ and $\cpost$ after \textcolor{red}{four iterations}. (The initial 
 
 \item (0.3)
 \begin{enumerate}
-\item (0.1) List how the uncertainty estimates for the model parameters change from the prior model to the posterior model.
+\item (0.1) List numbers to show how the uncertainty estimates for the model parameters change from the prior model to the posterior model.
 \item (0.2) List the parameters in order of greatest reduction in uncertainty to least reduction in uncertainty.
 \end{enumerate}
 
@@ -322,11 +322,19 @@ List $\mpost$ and $\cpost$ after \textcolor{red}{four iterations}. (The initial 
 
 %------------------
 
-\item (0.5) What is the {\em physical meaning} of a {\bf positive correlation entry} in the model correlation matrix? List the largest positive off-diagonal correlation coefficient, and infer why this is present.
+\item (0.5) What is the {\em physical meaning} of a {\bf positive correlation entry} in the model correlation matrix?
+\begin{enumerate}
+\item (0.1) List the largest positive off-diagonal correlation coefficient.
+\item (0.4) Infer why this is present.
+\end{enumerate}
 
 %------------------
 
-\item (0.5) What is the {\em physical meaning} of a {\bf negative correlation entry} in the model correlation matrix? List the largest negative off-diagonal correlation coefficient, and infer why this is present.
+\item (0.5) What is the {\em physical meaning} of a {\bf negative correlation entry} in the model correlation matrix?
+\begin{enumerate}
+\item (0.1) List the largest negative off-diagonal correlation coefficient.
+\item (0.4) Infer why this is present.
+\end{enumerate}
 
 %------------------
 
