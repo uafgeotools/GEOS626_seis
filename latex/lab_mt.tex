@@ -40,7 +40,7 @@ Last compiled: \today
 
 \subsection*{Instructions}
 
-This is a pen-and-paper lab exercise that does not involve any computer. You should have a ruler, and you are permitted to use a calculator. The exercise directly follows the class notes \mtfile, which has Figures 1--7 and Table 1. I recommend using colored pens or pencils.
+This is a pencil-and-paper lab exercise that does not involve any computer. You should have a ruler, and you are permitted to use a calculator. The exercise directly follows the class notes \mtfile, which has Figures 1--7 and Table 1. I recommend using colored pens or pencils.
 
 \medskip\noindent
 {\em Note}: When estimating the coordinates (\ie the lengths of each component) of a vector, you want to imagine the origin to be at the tail of the vector. 
@@ -50,7 +50,9 @@ This is a pen-and-paper lab exercise that does not involve any computer. You sho
 \subsection*{Exercises}
 
 \begin{enumerate}
+
 \item Examine Figure~\ref{fig:template} and the equations in the figure.
+\label{prob:bigvec}
 
 \begin{enumerate}
 \item Is this a double couple moment tensor? Why or why not?
@@ -75,7 +77,11 @@ M = \begin{pmatrix} m_{11} & m_{12} \\ m_{21} & m_{22} \end{pmatrix}
 
 \end{enumerate}
 
-\item We now want to relate our graphical representation of the moment matrix with some standard depictions in the literature. One is that the moment matrix entries are represented as couples, such as in \citet[][Figure 4.4-4]{SteinWysession} (Figure~\ref{fig:SW} here), \citet[][Figure~9.2]{ShearerE2}, and \citet[][Figure 3.7]{AkiRichardsE2}.
+%--------------
+
+\item 
+\label{prob:matrix}
+We now want to relate our graphical representation of the moment matrix with some standard depictions in the literature. One is that the moment matrix entries are represented as couples, such as in \citet[][Figure 4.4-4]{SteinWysession} (Figure~\ref{fig:SW} here), \citet[][Figure~9.2]{ShearerE2}, and \citet[][Figure 3.7]{AkiRichardsE2}.
 %
 \begin{enumerate}
 \item Sketch the force couples in Figure~\ref{fig:template4} associated with the four entries of the matrix of the moment tensor $m_{ij}$. You should sketch 8 arrows in total---the same number you sketched in Figure~\ref{fig:template}.
@@ -92,7 +98,17 @@ Here, draw all forces as unit vectors.
 
 %--------------
 
-\item See Figure~\ref{fig:couples2} of \mtfile.
+\item 
+\label{prob:couples1}
+See Figure~\ref{fig:template_couples1}.
+Write the moment matrix for each of the three examples.
+
+%--------------
+
+\item
+\label{prob:couples2}
+See Figure~\ref{fig:template_couples2}.
+%See Figure~\ref{fig:couples2} of \mtfile.
 %
 \begin{enumerate}
 \item Write the moment matrix for the right-hand figure.
@@ -103,7 +119,9 @@ Here, draw all forces as unit vectors.
 
 %--------------
 
-\item See Figure~\ref{fig:templateDC}.
+\item 
+\label{prob:DC}
+See Figure~\ref{fig:templateDC}.
 %
 \begin{enumerate}
 \item Write the matrix of the moment tensor for each of the vector fields.
@@ -126,7 +144,9 @@ Sketch $\mb{N}$ and $\mb{S}$ at the application point $\e_2$ in the right-hand p
 
 %--------------
 
-\item Figure~\ref{fig:decom}.
+\item 
+\label{prob:decom}
+Figure~\ref{fig:decom}.
 %
 \begin{enumerate}
 \item Identify the red vectors in the bottom two plots, and highlight the same vectors in the corresponding top two plots.
@@ -136,7 +156,9 @@ Sketch $\mb{N}$ and $\mb{S}$ at the application point $\e_2$ in the right-hand p
 
 %--------------
 
-\item In \refFig{fig:SWfour}, use the templates and draw the couples (in red) for the following matrices:
+\item 
+\label{prob:arrows}
+In \refFig{fig:SWfour}, use the templates and draw the couples (in red) for the following matrices:
 %
 \begin{equation*}
 %M =
@@ -170,8 +192,7 @@ Sketch $\mb{N}$ and $\mb{S}$ at the application point $\e_2$ in the right-hand p
 \centering
 \includegraphics[width=\linewidth]{couples_mod}
 \caption{
-Same as Figure~\ref{fig:couples1}, but here the basis chosen is to be aligned with the edges of the page.
-This will be used as a template for the class exercise.
+[Problem~\ref{prob:bigvec}] Same as Figure~\ref{fig:couples1} of \mtfile, but here the basis chosen is to be aligned with the edges of the page.
 \label{fig:template}
 }
 \end{figure}
@@ -189,7 +210,7 @@ $m_{11}$ & $m_{12}$ \\ \hline
 $m_{21}$ & $m_{22}$ \\ \hline
 \end{tabular}
 \caption{
-Template for the class exercise.
+[Problem~\ref{prob:matrix}] 
 The four panels should be thought of as the entries of the $2 \times 2$ matrix $M$, with entries $m_{11}$, $m_{12}$, $m_{21}$, and $m_{22}$.
 Tip: $m_{12}$ will correspond to forces pointing in the $\pm\e_1$ directions and offset in the $\pm\e_2$ direction (e.g., see Figure~\ref{fig:SW} for the 3D analog).
 \label{fig:template4}
@@ -198,9 +219,30 @@ Tip: $m_{12}$ will correspond to forces pointing in the $\pm\e_1$ directions and
 
 \begin{figure}
 \hspace{-1cm}
+\includegraphics[width=18cm]{couples1}
+\caption{
+[Problem~\ref{prob:couples1}] Repeat of Figure~\ref{fig:couples1} from \mtfile.
+Make measurements on these figures to determine the entries of the moment tensor matrix for each case.
+\label{fig:template_couples1}
+}
+\end{figure}
+
+\begin{figure}
+\hspace{-1cm}
+\includegraphics[width=18cm]{couples2}
+\caption{
+[Problem~\ref{prob:couples2}] 
+Repeat of Figure~\ref{fig:couples2} from \mtfile.
+\label{fig:template_couples2}
+}
+\end{figure}
+
+\begin{figure}
+\hspace{-1cm}
 \includegraphics[width=18cm]{couples3doubleCouple}
 \caption{
-Repeat of Figure~\ref{fig:couples3doubleCouple} for class exercise.
+[Problem~\ref{prob:DC}] 
+Repeat of Figure~\ref{fig:couples3doubleCouple} from \mtfile.
 \label{fig:templateDC}
 }
 \end{figure}
@@ -216,6 +258,7 @@ Repeat of Figure~\ref{fig:couples3doubleCouple} for class exercise.
 \makebox{\hspace{0.5cm}}
 \includegraphics[height=8cm]{couples4decomposition_new}
 \caption{
+[Problem~\ref{prob:decom}]
 Repeat of Figures~\ref{fig:couples1} and \ref{fig:couples4decomposition}.
 The red vectors at the bottom are from the set of black vectors at the top.
 In the bottom plots, note that all vectors originate from the tip of $\e_1$, $-\e_1$, $\e_2$, or $-\e_2$.
@@ -236,6 +279,7 @@ No matter what the choice of basis, the isotropic components (green) will be the
 \centering
 \includegraphics[width=0.8\linewidth]{SW_F4.4-4.eps}
 \caption{
+[Problem~\ref{prob:arrows}]
 Figure 4.4-4 from \citet{SteinWysession}.
 After the exercise you should see the connection between Figure~\ref{fig:template4} (which is $2 \times 2$, not $3 \times 3$) and this figure.
 \label{fig:SW}
@@ -251,7 +295,7 @@ After the exercise you should see the connection between Figure~\ref{fig:templat
 \includegraphics[width=9cm]{SW_F4.4-4.eps} & \includegraphics[width=9cm]{SW_F4.4-4.eps} 
 \end{tabular}
 \caption{
-Template for bonus exercise.
+[Problem~\ref{prob:arrows}]
 \label{fig:SWfour}
 }
 \end{figure}
