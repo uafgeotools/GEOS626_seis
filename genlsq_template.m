@@ -34,7 +34,7 @@ idata_errors = 2;               % 0(none),  1(random), 2(fixed)
 ifig = 1;                       % 0,1
 
 % to print figures to PS files
-iprint = 0;
+bprint = false;
 pdir = pwd;
 
 %=========================================
@@ -64,7 +64,7 @@ if ifig==1
             ['mean = ' sprintf('%.5f',mean(etemp)) ...
             '; std = ' sprintf('%.5f',std(etemp)) ]});
     end
-    if iprint==1, print(gcf,'-depsc',[pdir 'mprior1']); end
+    if bprint, print(gcf,'-depsc',[pdir 'mprior1']); end
 
     % plot different histograms of properties of the data covariance samples
     figure; nr=4; nc=3;
@@ -78,7 +78,7 @@ if ifig==1
             '; std = ' sprintf('%.5f',std(etemp)) ]});
     end
     orient tall, wysiwyg
-    if iprint==1, print(gcf,'-depsc',[pdir 'CD1']); end
+    if bprint, print(gcf,'-depsc',[pdir 'CD1']); end
     
     figure; hold on;
     plot(dobs_samples,'.-');
@@ -91,7 +91,7 @@ if ifig==1
     %title(' BLACK = d(mprior);  RED DASHED = d(mtarget);  RED = d(mtarget) + errors');
     xlim([0.5 ndata+0.5]); set(gca,'xtick',[1:ndata]);
     xlabel('Data index'); ylabel('Prediction value, g(m)'); grid on;
-    if iprint==1, print(gcf,'-depsc',[pdir 'CD2b']); end
+    if bprint, print(gcf,'-depsc',[pdir 'CD2b']); end
 end
 
 %---------------------------------------------
@@ -161,7 +161,7 @@ if ifig==1
     legend(stlabS); xlim([-0.5 niter+0.5]); ylim(log10(ylims));
     set(gca,'xtick',[-1:niter+1]); grid on;
     xlabel('k, iteration'); ylabel(' log10[ S(m^k) ], misfit function'); title(stit);
-    if iprint==1, print(gcf,'-depsc',[pdir 'converge_' ftag]); end
+    if bprint, print(gcf,'-depsc',[pdir 'converge_' ftag]); end
 end
 
 %///////////////////////////////
@@ -262,7 +262,7 @@ if ifig==1
         if kk==1, title({stl1,stl2,stl3});
         else title({stl2,stl3}); end
     end
-    if iprint==1, print(gcf,'-depsc',[pdir 'mpost2_' ftag]); end
+    if bprint, print(gcf,'-depsc',[pdir 'mpost2_' ftag]); end
     
     % correlation matrices and scatterplots
     %plot_covsamples(mprior_samples,rho_prior,'mprior',[],[],[],mlabs);
@@ -293,7 +293,7 @@ if ifig==1
     plot(mpost(1),mpost(2),'o','markersize',10,'markerfacecolor','c','markeredgecolor','w');
     plot(mtarget(1),mtarget(2),'o','markersize',10,'markerfacecolor','r','markeredgecolor','w');
     title('samples of prior (blue) and posterior (cyan)');
-    if iprint==1, print(gcf,'-depsc',[pdir 'mpost_' ftag '_epi']); end
+    if bprint, print(gcf,'-depsc',[pdir 'mpost_' ftag '_epi']); end
 end
 
 %==========================================================================

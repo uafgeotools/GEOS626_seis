@@ -64,7 +64,7 @@ d = @(m) ([   tt(m(1),m(2),m(3),m(4),xrec(1),yrec(1))
               tt(m(1),m(2),m(3),m(4),xrec(12),yrec(12))
            ]);
 
-% N x M matrix of partial derivatives (differentiate tt with respect to each parameter)
+% ndata x nparm matrix of partial derivatives (differentiate tt with respect to each parameter)
 % evaluated at model m = (m(1),m(2),m(3),m(4))
 G = @(m) ([
     -(d2(m(1),m(2),xrec(1),yrec(1)))^(-1/2)*(xrec(1)-m(1))/(V0*exp(m(4)))       -(d2(m(1),m(2),xrec(1),yrec(1)))^(-1/2)*(yrec(1)-m(2))/(V0*exp(m(4)))       1  -d1(m(1),m(2),xrec(1),yrec(1))/(V0*exp(m(4)))
@@ -81,7 +81,7 @@ G = @(m) ([
     -(d2(m(1),m(2),xrec(12),yrec(12)))^(-1/2)*(xrec(12)-m(1))/(V0*exp(m(4)))    -(d2(m(1),m(2),xrec(12),yrec(12)))^(-1/2)*(yrec(12)-m(2))/(V0*exp(m(4)))    1  -d1(m(1),m(2),xrec(12),yrec(12))/(V0*exp(m(4)))
     ]);
 
-% M x M matrix of second partial derivatives (only used in full Newton method)
+% nparm x nparm matrix of second partial derivatives (only used in full Newton method)
 % note: this contains the measurement index ii
 G2 = @(m,ii)  ([
    (d1(m(1),m(2),xrec(ii),yrec(ii)))^-3*(yrec(ii)-m(2))^2/(V0*exp(m(4)))               -(d1(m(1),m(2),xrec(ii),yrec(ii)))^-3*(xrec(ii)-m(1))*(yrec(ii)-m(2))/(V0*exp(m(4)))     0  (d1(m(1),m(2),xrec(ii),yrec(ii)))^-1*(xrec(ii)-m(1))/(V0*exp(m(4)))
@@ -225,15 +225,15 @@ axepi = [0 100 0 100];
 
 % source-receiver geometry with ray paths
 plot_epicenters([],mprior,minitial,mtarget,{xrec,yrec,1,axepi});
-if iprint==1, print(gcf,'-depsc',sprintf('%srcrec_rays_f%i',pdir,iforward)); end
+if bprint, print(gcf,'-depsc',sprintf('%srcrec_rays_f%i',pdir,iforward)); end
 
 % source-receiver geometry with ray paths
 plot_epicenters(mprior_samples,mprior,minitial,mtarget,{xrec,yrec,1,axepi});
-if iprint==1, print(gcf,'-depsc',sprintf('%smprior_rays_f%i',pdir,iforward)); end
+if bprint, print(gcf,'-depsc',sprintf('%smprior_rays_f%i',pdir,iforward)); end
 
 % with prior samples (no ray paths)
 opts = {xrec,yrec,0,axepi};
 plot_epicenters(mprior_samples,mprior,minitial,mtarget,opts);
-if iprint==1, print(gcf,'-depsc',sprintf('%smprior_f%i',pdir,iforward)); end
+if bprint, print(gcf,'-depsc',sprintf('%smprior_f%i',pdir,iforward)); end
 
 %==========================================================================
