@@ -1,12 +1,9 @@
 # GEOS626_seis
 
 A public GitHub repository within the organization
-[uafgeotools](https://github.com/uafgeotools). Contains materials for GEOS 626 Applied Seismology, a class at the University of Alaska Fairbanks by [Carl Tape](https://sites.google.com/alaska.edu/carltape/):
+[uafgeotools](https://github.com/uafgeotools). Contains materials for GEOS 626 Applied Seismology, a class at the University of Alaska Fairbanks by [Carl Tape](https://sites.google.com/alaska.edu/carltape/) ([ctape@alaska.edu](mailto:ctape@alaska.edu))
 
-Contact: Carl Tape ([ctape@alaska.edu](mailto:ctape@alaska.edu))
-
-Course webpage:  
-[GEOS 626](https://sites.google.com/alaska.edu/carltape/home/teaching/aseis)  
+Course webpage: [GEOS 626](https://sites.google.com/alaska.edu/carltape/home/teaching/aseis)  
 
 The repository can be obtained from GitHub with this command:
 ```
