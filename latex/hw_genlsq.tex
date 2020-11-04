@@ -43,7 +43,10 @@ Last compiled: \today
 \includegraphics[width=13cm]{optimhw_fig02.eps}
 \caption[Source-receiver geometry]
 {{
-Source--receiver geometry for the earthquake location problem. The ray paths are drawn between the (fixed) receivers and the initial epicenter $\bem_{\rm initial}$. The target data are computed from the target model $\bem_{\rm target}$. Both $\bem_{\rm initial}$ and $\bem_{\rm target}$ are samples within the prior distribution, which is centered at $\bem_{\rm prior}$ and represented by the 1000 dots. Alternatively, one could choose $\bem_{\rm prior}$ to be $\bem_{\rm initial}$.
+Source--receiver geometry for the earthquake location problem. The ray paths are drawn between the (fixed) receivers and the initial epicenter $\bem_{\rm initial}$.
+The target data are computed using the target model \textcolor{red}{$\bem_{\rm target}$}.
+The data $\dvec$ are constructed by adding errors to the target data.
+Both $\bem_{\rm initial}$ and $\bem_{\rm target}$ are samples within the prior distribution, which is centered at \textcolor{blue}{$\bem_{\rm prior}$} and represented by the 1000 dots. Alternatively, one could choose \textcolor{blue}{$\bem_{\rm prior}$} to be $\bem_{\rm initial}$.
 \label{fig:srcrec}
 }}
 \end{figure}
@@ -75,13 +78,14 @@ Following \citet[][p.~205]{Tarantola2005}, the general form of a {\bf nonlinear 
 Note these differences in notation (see \refTab{tab:vars}):
 
 \vspace{0.2cm}
-\begin{tabular}{l|c|c}
+\begin{tabular}{l|c|c|c}
 \hline
-variable                            & Tarantola notation (p. 66)       & our notation \\ \hline
-prior model covariance matrix       & $\bC_{\rm M}$                     & $\cprior$    \\ \hline
-posterior model covariance matrix   & $\widetilde{\bC}_{\rm M}$         & $\cpost$     \\ \hline
-prior model vector                  & $\mprior$                        & $\mprior$     \\ \hline
-posterior model vector              & $\widetilde{\bem}$               & $\mpost$     \\ \hline
+                                    & Tarantola         & Aster    & our \\ 
+variable                            & notation (p. 66) & notation (p. 261)  & notation \\ \hline
+prior model covariance matrix       & $\bC_{\rm M}$                & $\bC_{\rm M}$    & $\cprior$    \\ \hline
+posterior model covariance matrix   & $\widetilde{\bC}_{\rm M}$    & $\bC_{M'}$      & $\cpost$     \\ \hline
+prior model vector                  & $\mprior$                  & $\mprior$      & $\mprior$     \\ \hline
+posterior model vector              & $\widetilde{\bem}$         & $\bem_{\rm MAP}$ & $\mpost$     \\ \hline
 \hline
 \end{tabular}
 \vspace{0.2cm}
@@ -178,7 +182,7 @@ Use $\cdots$ to indicate an element within a sequence.
 \item It may help to relate this problem to a real-world example of earthquake location. Imagine that you detect a P wave at some particular station (``station X''). The next closest station, which has not yet ``seen'' the P wave, is 20~km away. At that moment you might assume a prior model for the epicenter $(x_s, y_s)$ that is centered on station X and has a Gaussian distribution characterized by $\sigma = 20$~km. 
 Your prior model for the structure of the medium is assumed to be homogeneous with P-velocity reference value $V = 5$~km/s (with some associated uncertainty). Your prior model for the origin time could be the arrival time at station X (with some associated uncertainty).
 
-You then record the P wave arrival times at all other stations. You choose an initial model; a sensible choice might be the prior model that is station X, P arrival time at station X, and velocity $V$. With this initial model, you compute predicted arrival times at all stations. Using the generalized least squares misfit function, you quantify the misfit between your predicted arrival times and the observed arrival times. The rest is optimization.
+You then record the P wave arrival times at all other stations. You choose an initial model; a sensible choice might be the prior model that is station X, P arrival time at station X, and velocity $V$. With this initial model, you compute predicted arrival times at all stations. Using \refEq{misfit_gen}, you quantify the misfit between your predicted arrival times and the observed arrival times. The rest is optimization.
 
 \end{itemize}
 
@@ -223,19 +227,24 @@ Run \verb+genlsq_template.m+, then hit ``0'' to exit. You should generate six fi
 
 \vspace{1cm}
 
-\item (0.2) Complete \refTab{tab:vars}.
+\item (0.1) Complete \refTab{tab:vars}.
 
 \item (0.1) Compare Eq.~6.319 with Eq.~6.291,
 %
 \begin{equation}
 \bem_{n+1} \approx \bem_{n} - \bHh^{-1}_n \bgammah_n.
+\label{mn}
 \end{equation}
 %
-What are the expressions for $\bgammah$ and $\bHh$?
+What are the equations for $\bgammah$ and $\bHh$?
 
 \vspace{1cm}
 
-\item (0.1) What is the equation for $\cpost$?
+\item (0.1) List expressions for $\bH$ and $\bgamma$, and rewrite \refEq{mn} in terms of these variables. (See \verb+notes_tarantola.pdf+)
+
+\vspace{1cm}
+
+\item (0.1) From Section 3.2.3, what is the equation for $\cpost$?
 
 \end{enumerate}
 
@@ -288,7 +297,7 @@ List $\mpost$ and $\cpost$ after \textcolor{red}{four iterations}. (The initial 
 
 \item (0.5) 
 \begin{enumerate}
-\item (0.1) In the space provided in \verb+genlsq.m+, use $\cpost$ to compute the posterior correlation matrix. Show your lines of code, and display the correlation matrix. Do {\bf not} use the Matlab command \verb+corrcov+ in you computation, but you can use this command to check.
+\item (0.1) In the space provided in \verb+genlsq.m+, use $\cpost$ to compute the posterior correlation matrix. Show your lines of code, and display the correlation matrix. Do not use the Matlab command \verb+corrcov+ in your computation, but you can use this command to check.
 
 \item (0.3) List the posterior standard deviations for each model parameter. Include units.
 

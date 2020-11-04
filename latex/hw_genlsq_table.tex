@@ -1,8 +1,9 @@
 \begin{table}[h]
 \caption[]{{
 Functions used in {\tt genlsq.m}.
-Assume $M$ model parameters and $N$ observations (in our problem, $N=12$ arrival times).
-Do not list numbers for the dimensions; instead use $M$ and $N$ (and 1).
+Assume $\nparm$ model parameters and $\ndata$ observations (in our problem, $\nparm=4$ model parameters and $\ndata=12$ arrival times).
+Note that that Matlab in-line function definitions may contain additional variables that are fixed for the problem.
+Do not list numbers for the dimensions; instead use $\nparm$ and $\ndata$ (and 1).
 \label{tab:funs}
 }}
 \begin{spacing}{4}
@@ -12,7 +13,7 @@ Do not list numbers for the dimensions; instead use $M$ and $N$ (and 1).
          &                          & input      & math      & input     & output    & output \\
 function & description \hspace{3cm} & variables  & notation  & dimension & dimension & units \hspace{0.5cm} \\
 \hline\hline 
-\verb+tt+ & & {\tt x,y,t,v,xr,yr} & $g_i(\bem)$ & $M \times 1$ & $1 \times 1$ & \\ \hline
+\verb+tt+ & & {\tt x,y,t,v,xr,yr} & $g_i(\bem)$ & $\nparm \times 1$ & $1 \times 1$ & \\ \hline
 \verb+d+  & & & & & & \\ \hline
 \verb+G+  & & & & & & \\ \hline
 \verb+S+  & & & & & & \\ \hline
@@ -22,7 +23,7 @@ function & description \hspace{3cm} & variables  & notation  & dimension & dimen
 
 \begin{table}[h]
 \caption[]{{
-Classification of variables for generalized least squares. In the first column, list the name of the corresponding variable in {\tt genlsq$\_$template.m}. Assume $M$ model parameters and $N$ observations (in our problem, $N=12$ arrival times). Do not list numbers for the dimensions; instead use $M$ and $N$ (and 1).
+Classification of variables for generalized least squares. In the first column, list the name of the corresponding variable in {\tt genlsq$\_$template.m}. Assume $\nparm$ model parameters and $\ndata$ observations (in our problem, $\ndata=12$ arrival times). Do not list numbers for the dimensions; instead use $\nparm$ and $\ndata$ (and 1).
 \label{tab:vars}
 }}
 \begin{spacing}{1.4}
@@ -34,7 +35,7 @@ our notation & Tarantola notation & {\tt genlsq.m} & dimension & description \hs
 $\bem_n$
 & --
 & --
-& $M \times 1$ 
+& $\nparm \times 1$ 
 & model vector
 &
 \\ \hline
@@ -65,7 +66,7 @@ $\bd$
 &
 & 
 \\ \hline
-$\bg_n = \bg(\bem_n)$
+$\bd_n = \bg(\bem_n)$
 & --
 &
 &
@@ -78,7 +79,7 @@ $F(\bem_n)$
 &
 &
 \\ \hline
-$\covdi (\bg(\bem_n) - \bd)$
+$\covdi (\bd_n - \bd)$
 & --
 & --
 &
