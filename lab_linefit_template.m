@@ -81,7 +81,7 @@ xlabel(' Residual'); ylabel(' Number'); title([' Ntotal = ' num2str(n)]);
 
 %fontsize(11); orient tall, wysiwyg
 
-break
+%error
 
 %---------------------------
 % generate a plot showing the residual sum of squares (RSS) as a function of model space
@@ -112,7 +112,7 @@ for kk=1:ng
     mtry = [m1(kk) m2(kk)]';    % a sample from model space
     dtry = G*mtry;              % predictions from the model
     res = d - dtry;             % residuals between data and predictions
-    RSSm = sum(res.*res);       % residual sum of squares
+    RSS = sum(res.*res);        % residual sum of squares
     RSSm(kk) = RSS;
     
     % COMPUTE GRADIENT HERE [DO NOT USE MATLAB'S gradient FUNCTION]
